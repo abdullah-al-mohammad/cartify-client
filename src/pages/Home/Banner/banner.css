@@ -1,0 +1,39 @@
+.bannerBg{
+    background: linear-gradient(rgba(0, 0, 0, 0.534), rgba(41, 40, 40, 0.534)), url('../../../assets/banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 30% center;
+}
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-ripple::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: white;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+  z-index: -1;
+  -webkit-transition: width 0.5s ease, height 0.5s ease;
+  -moz-transition: width 0.5s ease, height 0.5s ease;
+  -ms-transition: width 0.5s ease, height 0.5s ease;
+  -o-transition: width 0.5s ease, height 0.5s ease;
+}
+@media screen and (max-width: 1024px) {
+   .bannerBg{
+    background-position: center;
+}
+}
+
+.btn-ripple:hover::before {
+  width: 300%;
+  height: 300%;
+}
