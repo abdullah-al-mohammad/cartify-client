@@ -1,9 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../Router/provider/AuthProvider';
-const useAuth = () => {
-  const auth = useContext(AuthContext)
 
-  return auth
-}
+const useAuth = () => useContext(AuthContext);
 
-export default useAuth
+export default useAuth;

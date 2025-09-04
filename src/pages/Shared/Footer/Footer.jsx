@@ -9,23 +9,21 @@ AOS.init();
 
 const Footer = () => {
   return (
-    <footer className="text-neutral-content p-10 border-t-4 bg-base-100 border-bold_red-0">
+    <footer className="p-10 border-t-4 border-bold_red-0">
       <div className='container mx-auto footer footer-horizontal footer-center '>
         <aside>
           <div className='flip-container'>
-            <img className='transition-transform duration-500 flip-image' src={logo} alt="" sizes="" srcset="" />
+            <img className='transition-transform duration-500 flip-image w-20' src={logo} alt="logo" />
           </div>
           <p className="font-bold">
-            Lifesaver Blood Donation
-            <br />
-            Your blood can give someone another chance at life. Donate today and be the reason someone smiles tomorrow.
+            At [Your Store Name], we bring you quality products at the best prices. Our mission is to make online shopping simple, secure, and enjoyable.
           </p>
-          <p>Copyright © {new Date().getFullYear()} - Lifesaver Blood Donation | All rights reserved.</p>
-          <p>Contact Us: lifesaver@blooddonation.org | +880-1234-567890</p>
+          <p>Copyright © {new Date().getFullYear()} - [cartify]. All Rights Reserved.</p>
+          <p>Contact Us: cartify@.org | +880-1234-567890</p>
         </aside>
         <nav id='social'>
           <div className="grid grid-flow-col gap-4 items-center">
-            <h5 className='text-bold_red-0'>Follow Us:</h5>
+            <h5 className='text-bold_red-0'>Follow us for the latest updates, offers, and trends</h5>
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

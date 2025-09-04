@@ -31,15 +31,15 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/dashboard/createDonationRequest">
-          Donate Blood
+        <NavLink to="/">
+          Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/blog">Blogs</NavLink>
+        <NavLink to="/">About</NavLink>
       </li>
       {user ? <li>
-        <NavLink to="/dashboard/adminHome">Funding</NavLink>
+        <NavLink to="cart">Cart</NavLink>
       </li> :
         <li>
           <NavLink to="/login">Login</NavLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <div className={`navbar fixed z-50 text-white transition-all duration-700 ${scrolled ? "shadow-md opacity-100" : "opacity-70"}`} style={{
       background: scrolled
-        ? 'linear-gradient(180deg, black, black, #740707)'
+        ? 'black'
         : 'transparent',
     }}>
       <div className="container mx-auto">
@@ -97,10 +97,10 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+              className="menu dropdown-content bg-base-200 rounded-box text-black z-1 mt-4 w-52 p-2 shadow-sm"
             >
               <li>
-                <NavLink to={'dashboard/profile'}>Dashboard</NavLink>
+                <NavLink to={'users'}>Dashboard</NavLink>
               </li>
               <li>
                 <button onClick={handleLogout} type="button">Logout</button>

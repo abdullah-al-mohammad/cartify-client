@@ -7,6 +7,16 @@ import Main from "../layout/Main";
 import Dashboard from "../layout/dashboard/Dashboard";
 import { Users } from "../pages/Users/Users";
 import AdminRoute from "./AdminRoute";
+import AddProduct from "../pages/addProduct/AddProduct";
+import Orders from "../pages/order/Order";
+import ProductDetails from "../pages/productDetails/ProductDetails";
+import ShippingPage from "../pages/shipping/Shipping";
+import PaymentPage from "../pages/payment/Payment";
+import PlaceOrderPage from "../pages/placeOrder/PlaceOrder";
+import OrderSuccess from "../pages/orderSuccess.jsx/OrderSuccess";
+import PrivateRoute from "./PrivateRoute";
+import ProductList from "../pages/Home/productList/ProductList";
+import CartModal from "../pages/cartModal/CartModal";
 
 
 
@@ -26,18 +36,40 @@ export const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login></Login>
+      },
+      // ✅ Checkout Flow
+      { path: "shipping", element: <PrivateRoute><ShippingPage /></PrivateRoute> },
+      { path: "shipping/payment", element: <PrivateRoute><PaymentPage /></PrivateRoute> },
+      { path: "shipping/payment/placeorder", element: <PrivateRoute><PlaceOrderPage /></PrivateRoute> },
+      { path: "/shipping/payment/placeorder/success", element: <PrivateRoute><OrderSuccess /></PrivateRoute> },
+      {
+        path: "productDetails",
+        element: <ProductList></ProductList>
+      },
+      {
+        path: "cart",
+        element: <CartModal></CartModal>
       }
     ],
   },
   {
     path: "/",
-    element: <Dashboard></Dashboard>,
+    element: <AdminRoute>
+      <Dashboard></Dashboard>
+    </AdminRoute>,
     children: [
       {
         path: "users",
         element: <Users></Users>,
-        // loader: ({ params }) => fetch(`http://localhost:5000/users/admin${params.id}`)
-      }
+      },
+      {
+        path: "products",
+        element: <AddProduct></AddProduct>
+      },
+      {
+        path: "/orders",
+        element: <Orders></Orders>
+      },
     ]
   }
 ]);

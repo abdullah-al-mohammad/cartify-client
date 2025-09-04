@@ -8,16 +8,19 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import AuthProvider from "./Router/provider/AuthProvider";
+import { CartProvider } from "./Router/provider/CartProvider";
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <div>
-          <RouterProvider router={router} />
-        </div>
-      </QueryClientProvider>
+      <CartProvider>
+        <QueryClientProvider client={queryClient}>
+          <div>
+            <RouterProvider router={router} />
+          </div>
+        </QueryClientProvider>
+      </CartProvider>
     </AuthProvider>
   </StrictMode>
 );
