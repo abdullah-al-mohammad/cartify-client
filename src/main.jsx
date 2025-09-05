@@ -16,9 +16,7 @@ createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <CartProvider>
         <QueryClientProvider client={queryClient}>
-          <div>
-            <RouterProvider router={router} />
-          </div>
+          <RouterProvider router={router} />
         </QueryClientProvider>
       </CartProvider>
     </AuthProvider>
