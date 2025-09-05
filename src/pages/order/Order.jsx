@@ -13,7 +13,7 @@ export default function Orders() {
     if (filter.startDate || filter.endDate) {
       query = `?startDate=${filter.startDate}&endDate=${filter.endDate}`;
     }
-    const res = await axiosSecure.get(`/orders`);
+    const res = await axiosSecure.get(`/orders/${query}`);
     setOrders(res.data);
   };
 

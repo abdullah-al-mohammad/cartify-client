@@ -49,12 +49,9 @@ const Login = () => {
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen pt-20">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-bold_red-0">Login now!</h1>
-            <p className="py-6">
-              Blood donation is a life-saving act that helps patients in need of transfusions due to accidents, surgeries, childbirth complications, cancer treatments, and chronic illnesses like anemia or blood disorders. A single blood donation can save up to three lives
-            </p>
+            <h1 className="text-5xl font-bold text-bold_red-0">Login now</h1>
           </div>
           <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl loginBG">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -94,10 +91,10 @@ const Login = () => {
                 {errors.password?.type === 'pattern' && <span className="text-red-500">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</span>}
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-bold_red-0 border-bold_red-0 transition duration-500 ease-in-out hover:bg-white hover:text-bold_red-0 px-8">Login</button>
+                <button className="btn bg-bold_red-0 border-bold_red-0 text-white transition duration-500 ease-in-out hover:bg-white hover:text-bold_red-0 px-8">Login</button>
               </div>
             </form>
-            <p className="p-5">Don't have an account please ? <Link className="text-success" to={'/register'}>Register</Link></p>
+            <p className="p-5">Don't have an account? <Link className="text-success" to={'/register'}>Register</Link></p>
           </div>
         </div>
       </div>

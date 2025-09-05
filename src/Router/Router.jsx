@@ -9,13 +9,13 @@ import { Users } from "../pages/Users/Users";
 import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/addProduct/AddProduct";
 import Orders from "../pages/order/Order";
-import ProductDetails from "../pages/productDetails/ProductDetails";
+import Product from "../pages/product/Product";
 import ShippingPage from "../pages/shipping/Shipping";
 import PaymentPage from "../pages/payment/Payment";
 import PlaceOrderPage from "../pages/placeOrder/PlaceOrder";
 import OrderSuccess from "../pages/orderSuccess.jsx/OrderSuccess";
 import PrivateRoute from "./PrivateRoute";
-import ProductList from "../pages/Home/productList/ProductList";
+import Products from "../pages/Home/products/Products";
 import CartModal from "../pages/cartModal/CartModal";
 
 
@@ -37,14 +37,13 @@ export const router = createBrowserRouter([
         path: 'login',
         element: <Login></Login>
       },
-      // ✅ Checkout Flow
       { path: "shipping", element: <PrivateRoute><ShippingPage /></PrivateRoute> },
       { path: "shipping/payment", element: <PrivateRoute><PaymentPage /></PrivateRoute> },
       { path: "shipping/payment/placeorder", element: <PrivateRoute><PlaceOrderPage /></PrivateRoute> },
-      { path: "/shipping/payment/placeorder/success", element: <PrivateRoute><OrderSuccess /></PrivateRoute> },
+      { path: "shipping/payment/placeorder/success", element: <PrivateRoute><OrderSuccess /></PrivateRoute> },
       {
-        path: "productDetails",
-        element: <ProductList></ProductList>
+        path: "products",
+        element: <Products></Products>
       },
       {
         path: "cart",
@@ -67,7 +66,7 @@ export const router = createBrowserRouter([
         element: <AddProduct></AddProduct>
       },
       {
-        path: "/orders",
+        path: "orders",
         element: <Orders></Orders>
       },
     ]

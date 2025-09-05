@@ -1,16 +1,14 @@
-import ProductDetails from '../../productDetails/ProductDetails'
 import Banner from '../Banner/Banner'
-import ProductList from '../productList/ProductList'
+import Products from '../products/Products'
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Banner></Banner>
       <div className="max-w-screen-xl mx-auto">
-        <ProductList></ProductList>
-        {/* <ProductDetails></ProductDetails> */}
+        <Products></Products>
       </div>
-    </div>
+    </>
   )
 }
 
