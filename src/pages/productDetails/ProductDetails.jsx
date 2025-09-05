@@ -31,12 +31,12 @@ export default function ProductDetails({ p }) {
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <div>
+    <div>
+      <div className="text-center">
         <img
           src={product.photos[0]}
           alt={product.name}
-          className="w-full md:w-64 h-64"
+          className="w-full h-64"
         />
         <div className="card-body">
           <h2 className="text-2xl font-bold">{product.name}</h2>
@@ -50,7 +50,7 @@ export default function ProductDetails({ p }) {
             )}
           </p>
 
-          <div className="flex items-center gap-2 mt-4">
+          <div className="flex items-center justify-center gap-2 mt-4">
             <button
               className="btn btn-sm"
               onClick={() => setQty(Math.max(1, qty - 1))}

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [filter, setFilter] = useState({ startDate: "", endDate: "" });
   const axiosSecure = useAxiosSecure()
+  const { user } = useAuth()
 
   const fetchOrders = async () => {
     let query = "";
     if (filter.startDate || filter.endDate) {
       query = `?startDate=${filter.startDate}&endDate=${filter.endDate}`;
     }
-    const res = await axiosSecure.get(`orders${query}`);
+    const res = await axiosSecure.get(`/orders`);
     setOrders(res.data);
   };
 
@@ -75,8 +77,8 @@ export default function Orders() {
             orders.map((order, index) => (
               <tr key={order._id}>
                 <td>{index + 1}</td>
-                <td>{order.customerName}</td>
-                <td>${order.totalPrice}</td>
+                <td>{user.displayName}</td>
+                <td>${order.total}</td>
                 <td>{order.status}</td>
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td>

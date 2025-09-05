@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const API_URL = "http://localhost:5000/products"; // তোমার backend base url
 
 export default function AddProduct() {
   const [products, setProducts] = useState([]);
-  const axiosPublic = useAxiosPublic()
   const axiosSecure = useAxiosSecure()
   const [form, setForm] = useState({
     name: "",
@@ -70,6 +66,20 @@ export default function AddProduct() {
     fetchProducts();
   };
 
+  // Update Product status/stock
+  const handleUpdate = async (id, field, value) => {
+    // Update state immediately
+    setProducts(prev =>
+      prev.map(p =>
+        p._id === id
+          ? { ...p, [field]: field === "stockStatus" ? value === true || value === "true" : value }
+          : p
+      )
+    );
+    // Send patch to backend
+    await axiosSecure.patch(`/products/${id}`, { [field]: value });
+  };
+
   return (
     <div className="p-6">
       <h2 className="text-xl font-bold mb-4">Product Management</h2>
@@ -114,8 +124,24 @@ export default function AddProduct() {
               <tr key={p._id}>
                 <td>{index + 1}</td>
                 <td>{p.name}</td>
-                <td>{p.status}</td>
-                <td>{p.stockStatus ? "In Stock" : "Out of Stock"}</td>
+                <td>
+                  <select
+                    value={p.status}
+                    onChange={(e) => handleUpdate(p._id, "status", e.target.value)}
+                    className="select select-bordered select-sm"
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
+                <td><select
+                  value={p.stockStatus ? "true" : "false"}
+                  onChange={(e) => handleUpdate(p._id, "stockStatus", e.target.value === "true")}
+                  className="select select-bordered select-sm"
+                >
+                  <option value="true">In Stock</option>
+                  <option value="false">Out of Stock</option>
+                </select></td>
                 <td>
                   ${p.price}
                   {p.discount > 0 && (
