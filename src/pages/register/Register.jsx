@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { Controller, set, useForm } from "react-hook-form";
-import Select from "react-select";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./register.css"
+// import { ToastContainer, toast } from 'react-toastify';
 
 // image hosting api key
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
@@ -15,6 +15,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const Register = () => {
   const navigate = useNavigate()
+  // const notify = () => toast("Wow so easy!");
   const {
     register,
     handleSubmit,
@@ -26,19 +27,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState()
 
-  // const { data = {}, isLoading: loading } = useQuery({
-  //   queryKey: ["district"],
-  //   queryFn: async () => {
-  //     const [district, subDistrict] = await Promise.all([
-  //       fetch("district.json").then((res) => res.json()),
-  //       fetch("sub-district.json").then((res) => res.json()),
-  //     ]);
-  //     return { districts: district, subDistricts: subDistrict };
-  //   },
-  // });
-  // if (loading) {
-  //   return <span>loading....</span>;
-  // }
 
   const onSubmit = async (data) => {
     const email = data.email;
@@ -63,13 +51,13 @@ const Register = () => {
           // navigate("")
           const imageUrl = res.data.data.display_url;
           updateUserProfile(name, imageUrl);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Your account has been created successfully",
-            showConfirmButton: false,
-            timer: 1500
-          });
+          // Swal.fire({
+          //   position: "center",
+          //   icon: "success",
+          //   title: "Your account has been created successfully",
+          //   showConfirmButton: false,
+          //   timer: 1500
+          // });
           const userInfo = {
             name: name,
             email: email,
@@ -83,15 +71,13 @@ const Register = () => {
         console.error(error);
       });
   };
+  // <ToastContainer />
   return (
     <div className="pt-20">
       <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-bold_red-0">Register as a donor!</h1>
-            <p className="py-6 registerBG">
-              Blood donation is a life-saving act that helps patients in need of transfusions due to accidents, surgeries, childbirth complications, cancer treatments, and chronic illnesses like anemia or blood disorders. A single blood donation can save up to three lives
-            </p>
+            <h1 className="text-5xl font-bold text-bold_red-0">Register now</h1>
           </div>
           <div className="card bg-base-100 w-full max-w-screen-md shrink-0 shadow-2xl registerBG">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -102,7 +88,7 @@ const Register = () => {
                 </label>
                 <input
                   type="name"
-                  placeholder="Your Name"
+                  placeholder="Your ame"
                   {...register("name", { required: true })}
                   className="input input-bordered w-full"
                   required
@@ -182,7 +168,7 @@ const Register = () => {
                 <button className="btn bg-bold_red-0 border-bold_red-0 transition duration-500 ease-in-out hover:bg-white hover:text-bold_red-0 px-8">Register</button>
               </div>
             </form>
-            <p className="p-5">Already have an account please ? <Link className="text-success" to={'/login'}>Login</Link> </p>
+            <p className="p-5">Already have an account? <Link className="text-success" to={'/login'}>Login</Link> </p>
           </div>
         </div>
       </div>

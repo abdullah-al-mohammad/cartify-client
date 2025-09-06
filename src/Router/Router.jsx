@@ -9,7 +9,6 @@ import { Users } from "../pages/Users/Users";
 import AdminRoute from "./AdminRoute";
 import AddProduct from "../pages/addProduct/AddProduct";
 import Orders from "../pages/order/Order";
-import Product from "../pages/product/Product";
 import ShippingPage from "../pages/shipping/Shipping";
 import PaymentPage from "../pages/payment/Payment";
 import PlaceOrderPage from "../pages/placeOrder/PlaceOrder";

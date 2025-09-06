@@ -2,14 +2,18 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/cartify.png";
 import useAuth from "../../../hooks/useAuth";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+import 'aos/dist/aos.css';
 import { useState, useEffect } from "react";
+import CartModal from "../../cartModal/CartModal";
+import { useCart } from "../../../Router/provider/CartProvider";
 // ..
 AOS.init();
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false)
+  const { cart } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       const bannerHeight = document.getElementById('banner')?.offsetHeight || 0;
@@ -38,8 +42,18 @@ const Navbar = () => {
       <li>
         <NavLink to="/">About</NavLink>
       </li>
-      {user ? <li>
-        <NavLink to="cart">Cart</NavLink>
+      {user ? <li className="indicator mr-5">
+        {/* <span className="indicator-item badge badge-secondary">12</span> */}
+        <button
+          onClick={() => setIsCartOpen(true)}
+        >
+          Cart
+          {cart.length > 0 && (
+            <span className="indicator-item badge badge-secondary absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              {cart.length}
+            </span>
+          )}
+        </button>
       </li> :
         <li>
           <NavLink to="/login">Login</NavLink>
@@ -79,7 +93,7 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link to={'/'} className="btn bg-transparent border-none shadow-none text-xl">
+          <Link to='/' className="btn bg-transparent border-none shadow-none text-xl">
             <img className="w-10 h-10" src={logo} alt="" />
             <h5>Cartify</h5>
           </Link>
@@ -109,6 +123,7 @@ const Navbar = () => {
           </div>}
         </div>
       </div>
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 };

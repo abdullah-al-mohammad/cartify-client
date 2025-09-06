@@ -3,15 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../Router/provider/CartProvider";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const API_URL = "http://localhost:5000/orders"; // তোমার backend order route
-
 export default function PlaceOrderPage() {
   const { cart, removeFromCart } = useCart();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure()
 
   const [shippingInfo, setShippingInfo] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState("cod"); // Cash on Delivery default
+  const [paymentMethod, setPaymentMethod] = useState("cod");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,15 +41,14 @@ export default function PlaceOrderPage() {
     setLoading(true);
     try {
       const res = await axiosSecure.post("/orders", orderData);
-      // backend থেকে returned order id নিয়ে localStorage এ save
       const savedOrder = {
         ...orderData,
-        id: res.data.insertedId // যদি backend insertOne result return করে
+        id: res.data.insertedId
       };
       localStorage.setItem("order", JSON.stringify(savedOrder));
-      removeFromCart(); // 🧹 Cart clear
+      removeFromCart();
       localStorage.removeItem("shippingInfo");
-      navigate("success"); // ✅ Go to success page
+      navigate("success");
     } catch (err) {
       console.error(err);
       alert("Order failed. Try again!");
