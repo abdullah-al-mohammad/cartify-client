@@ -10,7 +10,7 @@ export default function AdminDashboard() {
           <Link to="users" className="block hover:bg-gray-700 p-2 rounded">
             Manage Users
           </Link>
-          <Link to="products" className="block hover:bg-gray-700 p-2 rounded">
+          <Link to="product" className="block hover:bg-gray-700 p-2 rounded">
             Manage Products
           </Link>
           <Link to="orders" className="block hover:bg-gray-700 p-2 rounded">
