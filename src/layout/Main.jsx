@@ -1,18 +1,35 @@
-
-import { Outlet } from 'react-router-dom'
-import Navbar from '../pages/Shared/Navbar/Navbar'
-import Footer from '../pages/Shared/Footer/Footer'
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import shopping from '../assets/shoppingcart.png';
+import CartModal from '../pages/cartModal/CartModal';
+import Footer from '../pages/Shared/Footer/Footer';
+import Navbar from '../pages/Shared/Navbar/Navbar';
+import { useCart } from '../Router/provider/CartProvider';
 
 const Main = () => {
+  const { cart } = useCart();
+  console.log(cart);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <>
       <Navbar></Navbar>
-      <div className='min-h-screen'>
+      <div className="min-h-screen">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
+      <button onClick={() => setIsCartOpen(true)}>
+        <div className="float-right indicator fixed right-16 bottom-40">
+          <img className="max-w-10" src={shopping} alt="" />
+          <span className="indicator-item badge badge-dash">
+            {/* <FontAwesomeIcon icon={faCartShopping} className="text-4xl text-green-600" /> */}
+            {cart.length}
+          </span>
+        </div>
+      </button>
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

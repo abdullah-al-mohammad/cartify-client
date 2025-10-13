@@ -1,30 +1,28 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 export default function ShippingPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    fullName: user?.name || "",
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
+    fullName: user?.name || '',
+    address: '',
+    city: '',
+    postalCode: '',
+    country: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    console.log('shipping');
-
+  const handleSubmit = e => {
     e.preventDefault();
-    localStorage.setItem("shippingInfo", JSON.stringify(form));
-    navigate("payment");
+    localStorage.setItem('shippingInfo', JSON.stringify(form));
+    navigate('payment');
   };
 
   return (

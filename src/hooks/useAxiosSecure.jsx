@@ -5,12 +5,10 @@ const axiosSecure = axios.create({
   baseURL: 'http://localhost:5000'
 })
 const useAxiosSecure = () => {
-  const navigate = useNavigate()
   // Add a request interceptor
   axiosSecure.interceptors.request.use(function (config) {
 
     const token = localStorage.getItem('access-token')
-    console.log(token);
 
     config.headers.authorization = `Bearer ${token}`
     return config;
@@ -25,10 +23,9 @@ const useAxiosSecure = () => {
     return response;
   }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    const status = error.response.status
-    if (status === 401 || status === 403) {
-      // navigate('/login')
-    }
+    // const status = error.response.status
+    // if (status === 401 || status === 403) {
+    // }
     return Promise.reject(error);
   });
 

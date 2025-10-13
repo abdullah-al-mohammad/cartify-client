@@ -1,50 +1,50 @@
-import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import { useCart } from "../../Router/provider/CartProvider";
-
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import { useCart } from '../../Router/provider/CartProvider';
 
 const CartModal = ({ isOpen, onClose }) => {
-  const { user } = useAuth()
-  const navigate = useNavigate()
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const { cart, increment, decrement, removeFromCart } = useCart();
 
   if (!isOpen) return null;
 
-  // 🧮 Subtotal হিসাব
-  const subtotal = cart.reduce(
-    (acc, item) => acc + (item.finalPrice ?? item.price) * item.qty,
-    0
-  );
+  // 🧮 Subtotal
+  const subtotal = cart.reduce((acc, item) => acc + (item.finalPrice ?? item.price) * item.qty, 0);
 
-  // 🚚 Shipping charge (ধরো ফিক্সড $10, চাইলে কন্ডিশন বসাতে পারো)
+  // 🚚 Shipping charge
   const shipping = cart.length > 0 ? 10 : 0;
 
   // 💰 Grand Total
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
-
     if (user) {
-      // ✅ logged in হলে shipping এ নিয়ে যাবে
-      navigate("shipping");
+      //if logged in  shipping send to shipping
+      navigate('shipping');
     } else {
-      // 🔒 logged in না থাকলে login পেজে নিয়ে যাবে
-      navigate("/login?redirect=/checkout/shipping");
+      // if dont  logged in then send to login page
+      navigate('/login?redirect=/checkout/shipping');
     }
-    onClose(); // modal বন্ধ করে দেবে
+    onClose(); // modal
   };
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-      <div className="bg-white w-96 p-6 rounded-xl shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Your Cart</h2>
+      <div className="bg-base-100 w-96 p-6 rounded-xl shadow-lg">
+        <div className="flex justify-between">
+          <h2 className="text-lg font-bold mb-4">Your Cart</h2>
+          <button className="btn btn-error" onClick={onClose}>
+            ✕
+          </button>
+        </div>
 
         {cart.length === 0 ? (
           <p className="text-gray-500">Cart is empty</p>
         ) : (
           <>
             <ul className="space-y-3">
-              {cart.map((item) => (
+              {cart.map(item => (
                 <li key={item._id} className="flex justify-between items-center border-b py-2">
                   <div>
                     <p className="font-semibold">{item.name}</p>
@@ -81,10 +81,7 @@ const CartModal = ({ isOpen, onClose }) => {
                     )}
                   </div>
 
-                  <button
-                    className="btn btn-xs btn-error"
-                    onClick={() => removeFromCart(item._id)}
-                  >
+                  <button className="btn btn-xs btn-error" onClick={() => removeFromCart(item._id)}>
                     ✕
                   </button>
                 </li>
@@ -114,7 +111,11 @@ const CartModal = ({ isOpen, onClose }) => {
           <button className="btn" onClick={onClose}>
             Close
           </button>
-          {cart.length > 0 && <button className="btn btn-primary" onClick={handleCheckout}>Checkout</button>}
+          {cart.length > 0 && (
+            <button className="btn btn-primary" onClick={handleCheckout}>
+              Checkout
+            </button>
+          )}
         </div>
       </div>
     </div>

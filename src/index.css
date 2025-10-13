@@ -2,30 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-
-h1, h2, h3, h4, h5, h6{
-    /* font-family: "Josefin Sans", sans-serif; */
-     font-family: "Poppins", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-family: 'Poppins', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
-p, span, a, li, button{
-   font-family: "Roboto", sans-serif;
-  
+p,
+span,
+a,
+li,
+button {
+  font-family: 'Roboto', sans-serif;
 }
-/* body{
-    background-color: #ffffff;
-   color: #000000;
-}  */
-/* Dark mode */
- /* @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #ffffff;
-  }
-} */
 
 :root {
   --bg-color: white;

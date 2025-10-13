@@ -1,65 +1,69 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  //  1. Initialize cart from localStorage immediately
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  // Add product to cart
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((item) => item._id === product._id);
+  //  Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  //  Add product to cart
+  const addToCart = product => {
+    setCart(prevCart => {
+      const existing = prevCart.find(item => item._id === product._id);
 
       if (existing) {
-        // update qty
-        return prevCart.map((item) =>
-          item._id === product._id ? { ...item, qty: product.qty } : item
+        return prevCart.map(item =>
+          item._id === product._id
+            ? { ...item, qty: item.qty + product.qty } //  accumulate quantity
+            : item
         );
       } else {
-        // add new product
-        return [...prevCart, product];
+        return [...prevCart, { ...product, qty: product.qty || 1 }]; //  default qty = 1
       }
     });
   };
 
-  // Increment quantity
+  //  Increment quantity
   const increment = (id, stock) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item._id === id
-          ? item.qty < stock
-            ? { ...item, qty: item.qty + 1 }
-            : item // can't exceed stock
-          : item
+    setCart(prev =>
+      prev.map(item =>
+        item._id === id ? (item.qty < stock ? { ...item, qty: item.qty + 1 } : item) : item
       )
     );
   };
 
-  // Decrement quantity
-  const decrement = (id) => {
-    setCart((prev) =>
+  //  Decrement quantity
+  const decrement = id => {
+    setCart(prev =>
       prev
-        .map((item) =>
-          item._id === id
-            ? { ...item, qty: item.qty > 1 ? item.qty - 1 : 0 }
-            : item
-        )
-        .filter((item) => item.qty > 0) // remove if qty=0
+        .map(item => (item._id === id ? { ...item, qty: item.qty > 1 ? item.qty - 1 : 0 } : item))
+        .filter(item => item.qty > 0)
     );
   };
 
-  // Remove item completely
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item._id !== id));
+  //  Remove item from cart
+  const removeFromCart = id => {
+    setCart(prev => prev.filter(item => item._id !== id));
   };
 
-  // 🔹 Clear cart
+  //  Clear cart
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem('cart'); //  also clear from localStorage
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, increment, decrement, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, increment, decrement, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
