@@ -8,7 +8,6 @@ import { useCart } from '../Router/provider/CartProvider';
 
 const Main = () => {
   const { cart } = useCart();
-  console.log(cart);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   return (
@@ -21,10 +20,7 @@ const Main = () => {
       <button onClick={() => setIsCartOpen(true)}>
         <div className="float-right indicator fixed right-16 bottom-40">
           <img className="max-w-10" src={shopping} alt="" />
-          <span className="indicator-item badge badge-dash">
-            {/* <FontAwesomeIcon icon={faCartShopping} className="text-4xl text-green-600" /> */}
-            {cart.length}
-          </span>
+          <span className="indicator-item badge badge-dash">{cart.length}</span>
         </div>
       </button>
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>

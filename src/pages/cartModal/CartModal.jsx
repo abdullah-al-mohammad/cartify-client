@@ -24,7 +24,8 @@ const CartModal = ({ isOpen, onClose }) => {
       navigate('shipping');
     } else {
       // if dont  logged in then send to login page
-      navigate('/login?redirect=/checkout/shipping');
+      // navigate('/login?redirect=/checkout/shipping');
+      navigate('/login', { state: { from: '/shipping' } });
     }
     onClose(); // modal
   };

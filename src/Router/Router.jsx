@@ -1,73 +1,104 @@
-
-import Register from "../pages/register/Register";
-import Login from "../pages/login/Login";
-import Home from "../pages/Home/Home/Home";
-import { createBrowserRouter } from "react-router-dom";
-import Main from "../layout/Main";
-import Dashboard from "../layout/dashboard/Dashboard";
-import { Users } from "../pages/Users/Users";
-import AdminRoute from "./AdminRoute";
-import AddProduct from "../pages/addProduct/AddProduct";
-import Orders from "../pages/order/Order";
-import ShippingPage from "../pages/shipping/Shipping";
-import PaymentPage from "../pages/payment/Payment";
-import PlaceOrderPage from "../pages/placeOrder/PlaceOrder";
-import OrderSuccess from "../pages/orderSuccess.jsx/OrderSuccess";
-import PrivateRoute from "./PrivateRoute";
-import Products from "../pages/Home/products/Products";
-import CartModal from "../pages/cartModal/CartModal";
-
-
+import { createBrowserRouter } from 'react-router-dom';
+import Main from '../layout/Main';
+import Dashboard from '../layout/dashboard/Dashboard';
+import Home from '../pages/Home/Home/Home';
+import Products from '../pages/Home/products/Products';
+import { Users } from '../pages/Users/Users';
+import AddProduct from '../pages/addProduct/AddProduct';
+import CartModal from '../pages/cartModal/CartModal';
+import Login from '../pages/login/Login';
+import Orders from '../pages/order/Order';
+import OrderSuccess from '../pages/orderSuccess.jsx/OrderSuccess';
+import PaymentPage from '../pages/payment/Payment';
+import PlaceOrderPage from '../pages/placeOrder/PlaceOrder';
+import Register from '../pages/register/Register';
+import ShippingPage from '../pages/shipping/Shipping';
+import AdminRoute from './AdminRoute';
+import PrivateRoute from './PrivateRoute';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main></Main>,
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: 'register',
-        element: <Register></Register>
+        element: <Register></Register>,
       },
       {
         path: 'login',
-        element: <Login></Login>
-      },
-      { path: "shipping", element: <PrivateRoute><ShippingPage /></PrivateRoute> },
-      { path: "shipping/payment", element: <PrivateRoute><PaymentPage /></PrivateRoute> },
-      { path: "shipping/payment/placeorder", element: <PrivateRoute><PlaceOrderPage /></PrivateRoute> },
-      { path: "shipping/payment/placeorder/success", element: <PrivateRoute><OrderSuccess /></PrivateRoute> },
-      {
-        path: "products",
-        element: <Products></Products>
+        element: <Login></Login>,
       },
       {
-        path: "cart",
-        element: <CartModal></CartModal>
-      }
+        path: 'shipping',
+        element: (
+          <PrivateRoute>
+            <ShippingPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'shipping/payment',
+        element: (
+          <PrivateRoute>
+            <PaymentPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'shipping/payment/placeorder',
+        element: (
+          <PrivateRoute>
+            <PlaceOrderPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'shipping/payment/placeorder/success',
+        element: (
+          <PrivateRoute>
+            <OrderSuccess />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'products',
+        element: <Products></Products>,
+      },
+      {
+        path: 'cart',
+        element: (
+          <PrivateRoute>
+            <CartModal></CartModal>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
-    path: "/",
-    element: <AdminRoute>
-      <Dashboard></Dashboard>
-    </AdminRoute>,
+    path: '/',
+    element: (
+      <AdminRoute>
+        <Dashboard></Dashboard>
+      </AdminRoute>
+    ),
     children: [
       {
-        path: "users",
+        path: 'users',
         element: <Users></Users>,
       },
       {
-        path: "product",
-        element: <AddProduct></AddProduct>
+        path: 'product',
+        element: <AddProduct></AddProduct>,
       },
       {
-        path: "orders",
-        element: <Orders></Orders>
+        path: 'orders',
+        element: <Orders></Orders>,
       },
-    ]
-  }
+    ],
+  },
 ]);
