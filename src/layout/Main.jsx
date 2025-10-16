@@ -18,9 +18,9 @@ const Main = () => {
       </div>
       <Footer></Footer>
       <button onClick={() => setIsCartOpen(true)}>
-        <div className="float-right indicator fixed right-16 bottom-40">
-          <img className="max-w-10" src={shopping} alt="" />
-          <span className="indicator-item badge badge-dash">{cart.length}</span>
+        <div className="float-right indicator fixed right-7 md:right-16 bottom-40 bg-slate-100 p-2 rounded-full">
+          <img className="max-w-5" src={shopping} alt="" />
+          <span className="indicator-item badge badge-error">{cart.length}</span>
         </div>
       </button>
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
