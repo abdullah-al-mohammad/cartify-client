@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-
+import { useEffect, useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 export default function AddProduct() {
   const [products, setProducts] = useState([]);
-  const axiosSecure = useAxiosSecure()
-  const [form, setForm] = useState({
-    name: "",
-    slug: "",
-    photos: "",
-    description: "",
-    price: "",
+  const axiosSecure = useAxiosSecure();
+
+  const defaultFrom = {
+    name: '',
+    slug: '',
+    photos: '',
+    description: '',
+    price: '',
     discount: 0,
     stockStatus: true,
-    status: "active",
-    categories: "",
-  });
+    status: 'active',
+    categories: '',
+  };
+  const [form, setForm] = useState(defaultFrom);
 
   // Fetch all products
   const fetchProducts = async () => {
-    const res = await axiosSecure.get("/products");
+    const res = await axiosSecure.get('/products');
     setProducts(res.data);
   };
 
@@ -28,40 +29,30 @@ export default function AddProduct() {
   }, []);
 
   // Handle form input change
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
   // Add new product
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const newProduct = {
       ...form,
-      photos: form.photos.split(","), // multiple photos as array
-      categories: form.categories.split(","),
+      photos: form.photos.split(','), // multiple photos as array
+      categories: form.categories.split(','),
       price: Number(form.price),
       discount: Number(form.discount),
-      stockStatus: form.stockStatus === "true",
+      stockStatus: form.stockStatus === 'true',
     };
     await axiosSecure.post('/products', newProduct);
 
     fetchProducts();
-    setForm({
-      name: "",
-      slug: "",
-      photos: "",
-      description: "",
-      price: "",
-      discount: 0,
-      stockStatus: true,
-      status: "active",
-      categories: "",
-    });
+    setForm(defaultFrom);
   };
 
   // Delete product
-  const handleDelete = async (id) => {
+  const handleDelete = async id => {
     await axiosSecure.delete(`/products/${id}`);
     fetchProducts();
   };
@@ -72,7 +63,7 @@ export default function AddProduct() {
     setProducts(prev =>
       prev.map(p =>
         p._id === id
-          ? { ...p, [field]: field === "stockStatus" ? value === true || value === "true" : value }
+          ? { ...p, [field]: field === 'stockStatus' ? value === true || value === 'true' : value }
           : p
       )
     );
@@ -86,22 +77,78 @@ export default function AddProduct() {
 
       {/* Add Product Form */}
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 mb-6">
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Name" className="input input-bordered" />
-        <input name="slug" value={form.slug} onChange={handleChange} placeholder="Slug" className="input input-bordered" />
-        <input name="photos" value={form.photos} onChange={handleChange} placeholder="Photos (comma separated URLs)" className="input input-bordered col-span-2" />
-        <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" className="textarea textarea-bordered col-span-2"></textarea>
-        <input name="price" value={form.price} onChange={handleChange} type="number" placeholder="Price" className="input input-bordered" />
-        <input name="discount" value={form.discount} onChange={handleChange} type="number" placeholder="Discount" className="input input-bordered" />
-        <select name="stockStatus" value={form.stockStatus} onChange={handleChange} className="select select-bordered">
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Name"
+          className="input input-bordered"
+        />
+        <input
+          name="slug"
+          value={form.slug}
+          onChange={handleChange}
+          placeholder="Slug"
+          className="input input-bordered"
+        />
+        <input
+          name="photos"
+          value={form.photos}
+          onChange={handleChange}
+          placeholder="Photos (comma separated URLs)"
+          className="input input-bordered col-span-2"
+        />
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          placeholder="Description"
+          className="textarea textarea-bordered col-span-2"
+        ></textarea>
+        <input
+          name="price"
+          value={form.price}
+          onChange={handleChange}
+          type="number"
+          placeholder="Price"
+          className="input input-bordered"
+        />
+        <input
+          name="discount"
+          value={form.discount}
+          onChange={handleChange}
+          type="number"
+          placeholder="Discount"
+          className="input input-bordered"
+        />
+        <select
+          name="stockStatus"
+          value={form.stockStatus}
+          onChange={handleChange}
+          className="select select-bordered"
+        >
           <option value="true">In Stock</option>
           <option value="false">Out of Stock</option>
         </select>
-        <select name="status" value={form.status} onChange={handleChange} className="select select-bordered">
+        <select
+          name="status"
+          value={form.status}
+          onChange={handleChange}
+          className="select select-bordered"
+        >
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
         </select>
-        <input name="categories" value={form.categories} onChange={handleChange} placeholder="Categories (comma separated)" className="input input-bordered col-span-2" />
-        <button type="submit" className="btn btn-primary col-span-2">Add Product</button>
+        <input
+          name="categories"
+          value={form.categories}
+          onChange={handleChange}
+          placeholder="Categories (comma separated)"
+          className="input input-bordered col-span-2"
+        />
+        <button type="submit" className="btn btn-primary col-span-2">
+          Add Product
+        </button>
       </form>
 
       {/* Product List Table */}
@@ -127,21 +174,23 @@ export default function AddProduct() {
                 <td>
                   <select
                     value={p.status}
-                    onChange={(e) => handleUpdate(p._id, "status", e.target.value)}
+                    onChange={e => handleUpdate(p._id, 'status', e.target.value)}
                     className="select select-bordered select-sm"
                   >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                   </select>
                 </td>
-                <td><select
-                  value={p.stockStatus ? "true" : "false"}
-                  onChange={(e) => handleUpdate(p._id, "stockStatus", e.target.value === "true")}
-                  className="select select-bordered select-sm"
-                >
-                  <option value="true">In Stock</option>
-                  <option value="false">Out of Stock</option>
-                </select></td>
+                <td>
+                  <select
+                    value={p.stockStatus ? 'true' : 'false'}
+                    onChange={e => handleUpdate(p._id, 'stockStatus', e.target.value === 'true')}
+                    className="select select-bordered select-sm"
+                  >
+                    <option value="true">In Stock</option>
+                    <option value="false">Out of Stock</option>
+                  </select>
+                </td>
                 <td>
                   ${p.price}
                   {p.discount > 0 && (
@@ -151,14 +200,20 @@ export default function AddProduct() {
                   )}
                 </td>
                 <td>{p.discount}%</td>
-                <td>{p.categories.join(", ")}</td>
+                <td>{p.categories.join(', ')}</td>
                 <td>
-                  <button className="btn btn-error btn-sm" onClick={() => handleDelete(p._id)}>Delete</button>
+                  <button className="btn btn-error btn-sm" onClick={() => handleDelete(p._id)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))
           ) : (
-            <tr><td colSpan="8" className="text-center">No products found</td></tr>
+            <tr>
+              <td colSpan="8" className="text-center">
+                No products found
+              </td>
+            </tr>
           )}
         </tbody>
       </table>

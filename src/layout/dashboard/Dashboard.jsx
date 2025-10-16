@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from 'react-router-dom';
 
 export default function AdminDashboard() {
   return (
@@ -20,7 +20,7 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 bg-gray-100">
+      <main className="flex-1 p-6">
         <Outlet /> {/* Nested pages will render here */}
       </main>
     </div>
