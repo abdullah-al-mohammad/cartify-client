@@ -6,7 +6,7 @@ AOS.init();
 
 const Banner = () => {
   return (
-    <div id="banner" className="bannerBg md:h-screen pt-40 pb-96 lg:pb-0">
+    <div id="banner" className="bannerBg md:h-screen py-40 lg:pb-0">
       <div className="container mx-auto md:text-start text-white text-wrap text-center p-10">
         <h1
           className="text-4xl md:text-6xl"
