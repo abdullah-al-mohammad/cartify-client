@@ -1,14 +1,14 @@
 // src/components/Skeleton/ProductGridSkeleton.jsx
 
-import ProductSkeleton from './skeleton';
+import Skeleton from './skeleton';
 
-export default function ProductGridSkeleton({ count = 8 }) {
+export default function ProductGridSkeleton({ count = 10 }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {Array(count)
         .fill(0)
         .map((_, index) => (
-          <ProductSkeleton key={index} />
+          <Skeleton key={index} />
         ))}
     </div>
   );
