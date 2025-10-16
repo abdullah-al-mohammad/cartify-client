@@ -1,4 +1,4 @@
-export default function ProductSkeleton() {
+export default function Skeleton() {
   return (
     <div className="card bg-base-100 shadow-sm animate-pulse">
       {/* Image placeholder */}
