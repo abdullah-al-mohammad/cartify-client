@@ -9,13 +9,13 @@ const CartModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  // 🧮 Subtotal
+  //Subtotal
   const subtotal = cart.reduce((acc, item) => acc + (item.finalPrice ?? item.price) * item.qty, 0);
 
-  // 🚚 Shipping charge
+  //Shipping charge
   const shipping = cart.length > 0 ? 10 : 0;
 
-  // 💰 Grand Total
+  // Grand Total
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
