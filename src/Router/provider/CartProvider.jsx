@@ -26,7 +26,7 @@ export const CartProvider = ({ children }) => {
             : item
         );
       } else {
-        return [...prevCart, { ...product, qty: product.qty || 1 }]; //  default qty = 1
+        return [...prevCart, { ...product, qty: product.qty || 1, stock: product.stock || 10 }]; //  default qty = 1
       }
     });
   };
