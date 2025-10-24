@@ -5,7 +5,6 @@ import CartModal from '../cartModal/CartModal';
 export default function Product({ product }) {
   const { cart, addToCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  console.log(product);
 
   const { _id } = product;
 
