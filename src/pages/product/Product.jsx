@@ -17,7 +17,7 @@ export default function Product({ product }) {
   // };
   const handleQtyChange = newQty => {
     if (newQty < 1 || newQty > product.stock) return;
-    addToCart({ ...product, qty: newQty, stock: product.stock || 10 });
+    addToCart({ ...product, qty: newQty, stock: product.stock || 5 });
   };
 
   return (
