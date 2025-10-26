@@ -59,14 +59,10 @@ export default function AddProduct() {
 
   // Update Product status/stock
   const handleUpdate = async (id, field, value) => {
+    // Convert stockStatus to number
+    const updatedValue = field === 'stockStatus' ? Number(value) : value;
     // Update state immediately
-    setProducts(prev =>
-      prev.map(p =>
-        p._id === id
-          ? { ...p, [field]: field === 'stockStatus' ? value === true || value === 'true' : value }
-          : p
-      )
-    );
+    setProducts(prev => prev.map(p => (p._id === id ? { ...p, [field]: updatedValue } : p)));
     // Send patch to backend
     await axiosSecure.patch(`/products/${id}`, { [field]: value });
   };
@@ -127,8 +123,19 @@ export default function AddProduct() {
           onChange={handleChange}
           className="select select-bordered"
         >
-          <option value="true">In Stock</option>
-          <option value="false">Out of Stock</option>
+          {/* <option value="true">In Stock</option>
+          <option value="false">Out of Stock</option> */}
+          {Array.from(
+            { length: 21 },
+            (
+              _,
+              i // up to 20 stock for example
+            ) => (
+              <option key={i} value={i}>
+                {i === 0 ? 'Out of Stock' : `${i} in Stock`}
+              </option>
+            )
+          )}
         </select>
         <select
           name="status"
@@ -183,12 +190,15 @@ export default function AddProduct() {
                 </td>
                 <td>
                   <select
-                    value={p.stockStatus ? 'true' : 'false'}
-                    onChange={e => handleUpdate(p._id, 'stockStatus', e.target.value === 'true')}
+                    value={p.stockStatus}
+                    onChange={e => handleUpdate(p._id, 'stockStatus', Number(e.target.value))}
                     className="select select-bordered select-sm"
                   >
-                    <option value="true">In Stock</option>
-                    <option value="false">Out of Stock</option>
+                    {Array.from({ length: 21 }, (_, i) => (
+                      <option key={i} value={i}>
+                        {i === 0 ? 'Out of Stock' : `${i} in Stock`}
+                      </option>
+                    ))}
                   </select>
                 </td>
                 <td>
