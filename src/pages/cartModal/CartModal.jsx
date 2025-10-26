@@ -57,7 +57,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       <button
                         className="btn btn-xs"
                         onClick={() => decrement(item._id)}
-                        disabled={item.qty <= 1}
+                        disabled={item.qty <= 0}
                       >
                         -
                       </button>
@@ -76,7 +76,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       </button>
                     </div>
 
-                    {item.qty >= item.stock && (
+                    {item.qty >= item.stockStatus && (
                       <p className="text-red-500 text-xs mt-1">Stock Out</p>
                     )}
                   </div>
