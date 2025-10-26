@@ -24,7 +24,6 @@ const CartModal = ({ isOpen, onClose }) => {
       navigate('shipping');
     } else {
       // if dont  logged in then send to login page
-      // navigate('/login?redirect=/checkout/shipping');
       navigate('/login', { state: { from: '/shipping' } });
     }
     onClose(); // modal
@@ -89,8 +88,8 @@ const CartModal = ({ isOpen, onClose }) => {
               ))}
             </ul>
 
-            {/* 🧾 Cart Summary */}
-            <div className="mt-6 border-t pt-4">
+            {/*Cart Summary */}
+            <div className="mt-6 pt-4">
               <p className="flex justify-between text-sm">
                 <span>Subtotal:</span>
                 <span>${subtotal.toFixed(2)}</span>
