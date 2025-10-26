@@ -7,7 +7,6 @@ export default function Product({ product }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { _id } = product;
-  console.log(product);
 
   const inCart = cart.find(item => item._id === _id);
   const currentQty = inCart?.qty || 0;
