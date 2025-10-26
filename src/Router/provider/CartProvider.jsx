@@ -15,30 +15,15 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   //  Add product to cart
-  // const addToCart = product => {
-  //   setCart(prevCart => {
-  //     const existing = prevCart.find(item => item._id === product._id);
-  //     if (existing) {
-  //       // If quantity is decreasing, just update (no alert)
-  //       if (product.qty <= existing.qty) {
-  //         return prevCart.map(item =>
-  //           item._id === product._id ? { ...item, qty: product.qty } : item
-  //         );
-  //       }
-  //       // If quantity is increasing, ensure it doesn't exceed stock
-  //       const newQty = existing.qty + product.qty;
-  //       if (newQty > product.stock) {
-  //         alert(`stock Out`);
-  //         return prevCart;
-  //       }
-  //       return prevCart.map(item => (item._id === product._id ? { ...item, qty: newQty } : item));
-  //     } else {
-  //       return [...prevCart, { ...product, qty: Math.min(product.qty, product.stock) }];
-  //     }
-  //   });
-  // };
   const addToCart = product => {
     setCart(prevCart => {
+      // If 5 unique products already exist
+      const isNewProduct = !prevCart.some(item => item._id === product._id);
+      if (isNewProduct && prevCart.length >= 5) {
+        alert('You can only have 5 different products in your cart!');
+        return prevCart;
+      }
+
       const existing = prevCart.find(item => item._id === product._id);
 
       if (existing) {
