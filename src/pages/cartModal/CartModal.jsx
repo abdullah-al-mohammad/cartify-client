@@ -62,10 +62,10 @@ const CartModal = ({ isOpen, onClose }) => {
                         -
                       </button>
                       <input
-                        type="number"
+                        type=""
                         value={item.qty}
                         readOnly
-                        className="w-12 text-center border rounded"
+                        className="w-10 h-6 text-center border rounded"
                       />
                       <button
                         className="btn btn-xs"
