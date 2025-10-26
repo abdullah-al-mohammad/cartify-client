@@ -7,13 +7,14 @@ export default function Product({ product }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { _id } = product;
+  console.log(product);
 
   const inCart = cart.find(item => item._id === _id);
   const currentQty = inCart?.qty || 0;
 
   const handleQtyChange = newQty => {
-    if (newQty < 1 || newQty > product.stock) return;
-    addToCart({ ...product, qty: newQty, stock: product.stock || 5 });
+    if (newQty < 0 || newQty > product.stockStatus) return;
+    addToCart({ ...product, qty: newQty, stock: product.stockStatus || 5 });
   };
 
   return (
@@ -41,7 +42,7 @@ export default function Product({ product }) {
               <button
                 className="btn btn-sm"
                 onClick={() => handleQtyChange(currentQty - 1)}
-                disabled={currentQty <= 1}
+                disabled={currentQty <= 0}
               >
                 -
               </button>
@@ -54,21 +55,27 @@ export default function Product({ product }) {
               <button
                 className="btn btn-sm"
                 onClick={() => handleQtyChange(currentQty + 1)}
-                disabled={currentQty >= product.stock}
+                disabled={currentQty >= product.stockStatus}
               >
                 +
               </button>
             </div>
 
-            <button
-              className={`btn mt-4 ${inCart ? 'btn-outline' : 'btn-primary'}`}
-              onClick={() => {
-                if (inCart) setIsCartOpen(true);
-                else handleQtyChange(1);
-              }}
-            >
-              {inCart ? 'View Cart' : 'Add to Cart'}
-            </button>
+            {product.stockStatus ? (
+              <button
+                className={`btn mt-4 ${inCart ? 'btn-outline' : 'btn-primary'}`}
+                onClick={() => {
+                  if (inCart) setIsCartOpen(true);
+                  else handleQtyChange(1);
+                }}
+              >
+                {inCart ? 'View Cart' : 'Add to Cart'}
+              </button>
+            ) : (
+              <button className="btn mt-4 btn-disabled text-error cursor-not-allowed opacity-70">
+                Out of Stock
+              </button>
+            )}
           </div>
         </div>
 
