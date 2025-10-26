@@ -9,12 +9,8 @@ export default function Product({ product }) {
   const { _id } = product;
 
   const inCart = cart.find(item => item._id === _id);
-  const currentQty = inCart?.qty || 1;
+  const currentQty = inCart?.qty || 0;
 
-  // const handleQtyChange = newQty => {
-  //   if (newQty < 1 || newQty > product.stock) return;
-  //   addToCart({ ...product, qty: newQty });
-  // };
   const handleQtyChange = newQty => {
     if (newQty < 1 || newQty > product.stock) return;
     addToCart({ ...product, qty: newQty, stock: product.stock || 5 });
