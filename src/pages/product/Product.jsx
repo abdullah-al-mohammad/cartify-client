@@ -3,7 +3,7 @@ import { useCart } from '../../Router/provider/CartProvider';
 import CartModal from '../cartModal/CartModal';
 
 export default function Product({ product }) {
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { _id } = product;
@@ -12,7 +12,16 @@ export default function Product({ product }) {
   const currentQty = inCart?.qty || 0;
 
   const handleQtyChange = newQty => {
-    if (newQty < 0 || newQty > product.stockStatus) return;
+    // Remove item if quantity is 0 or less
+    if (newQty <= 0) {
+      removeFromCart(_id);
+      return;
+    }
+    if (newQty > product.stockStatus) {
+      alert(`only ${product.stockStatus} item available in stock`);
+      return;
+    }
+    // Update cart with new quantity
     addToCart({ ...product, qty: newQty, stock: product.stockStatus || 5 });
   };
 
@@ -28,8 +37,12 @@ export default function Product({ product }) {
             />
           </div>
           <div className="card-body">
-            <h2 className="text-2xl font-bold">{product.name}</h2>
-            <p className="mt-2 line-clamp-2">{product.description}</p>
+            <h2 className="tooltip tooltip-bottom" data-tip={product.name}>
+              <h2 className="text-2xl font-bold line-clamp-1">{product.name}</h2>
+            </h2>
+            <p className="mt-2 tooltip" data-tip={product.description}>
+              <p className="line-clamp-2">{product.description}</p>
+            </p>
             <p className="mt-4 text-xl font-semibold">
               ${product.finalPrice ?? product.price}{' '}
               {product.discount > 0 && (
@@ -49,7 +62,7 @@ export default function Product({ product }) {
                 type=""
                 value={currentQty}
                 readOnly
-                className="w-12 h-7 text-center border rounded"
+                className="w-12 h-8 text-center border rounded"
               />
               <button
                 className="btn btn-sm"
@@ -68,7 +81,7 @@ export default function Product({ product }) {
                   else handleQtyChange(1);
                 }}
               >
-                {inCart ? 'View Cart' : 'Add to Cart'}
+                {currentQty ? 'View Cart' : 'Add to Cart'}
               </button>
             ) : (
               <button className="btn mt-4 btn-disabled text-error cursor-not-allowed opacity-70">
