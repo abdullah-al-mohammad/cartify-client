@@ -47,7 +47,7 @@ const CartModal = ({ isOpen, onClose }) => {
               {cart.map(item => (
                 <li key={item._id} className="flex justify-between items-center border-b py-2">
                   <div>
-                    <p className="font-semibold">{item.name}</p>
+                    <p className="font-semibold">{item.qty}</p>
                     <p className="text-sm text-gray-500">
                       ${(item.finalPrice ?? item.price) * item.qty}
                     </p>
@@ -62,10 +62,9 @@ const CartModal = ({ isOpen, onClose }) => {
                         -
                       </button>
                       <input
-                        type=""
                         value={item.qty}
                         readOnly
-                        className="w-10 h-6 text-center border rounded"
+                        className="w-10 h-5 text-center border rounded"
                       />
                       <button
                         className="btn btn-xs"
@@ -77,7 +76,7 @@ const CartModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {item.qty >= item.stockStatus && (
-                      <p className="text-red-500 text-xs mt-1">Stock Out</p>
+                      <p className="text-red-500 text-xs mt-1">{`${item.stockStatus} items available`}</p>
                     )}
                   </div>
 
