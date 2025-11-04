@@ -1,38 +1,48 @@
-import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAuth from "../../hooks/useAuth";
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 export default function Orders() {
-  const [orders, setOrders] = useState([]);
-  const [filter, setFilter] = useState({ startDate: "", endDate: "" });
-  const axiosSecure = useAxiosSecure()
-  const { user } = useAuth()
+  const [filter, setFilter] = useState({ startDate: '', endDate: '' });
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
-  const fetchOrders = async () => {
-    let query = "";
+  const fetchOrders = async ({ queryKey }) => {
+    const [, filter] = queryKey;
+    let query = '';
     if (filter.startDate || filter.endDate) {
       query = `?startDate=${filter.startDate}&endDate=${filter.endDate}`;
     }
     const res = await axiosSecure.get(`/orders/${query}`);
-    setOrders(res.data);
+    return res.data;
   };
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
+  // useQuery to fetch data
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ['orders', filter],
+    queryFn: fetchOrders,
+  });
+  // Mutation for updating status
+  const mutation = useMutation({
+    mutationFn: ({ id, status }) => axiosSecure.patch(`orders/${id}/status`, { status }),
+    onSuccess: () => {
+      refetch();
+    },
+  });
+  // Mutation for updating status
   const handleStatusChange = async (id, newStatus) => {
-    await axiosSecure.patch(`orders/${id}/status`, { status: newStatus });
-    fetchOrders(); // Refresh list
+    mutation.mutate({ id, status: newStatus });
   };
 
-  const handleFilterChange = (e) => {
+  const handleFilterChange = e => {
     const { name, value } = e.target;
     setFilter({ ...filter, [name]: value });
-  };
-
-  const applyFilter = () => {
-    fetchOrders();
   };
 
   return (
@@ -55,26 +65,32 @@ export default function Orders() {
           onChange={handleFilterChange}
           className="input input-bordered"
         />
-        <button className="btn btn-primary" onClick={applyFilter}>
+        <button className="btn btn-primary" onClick={() => refetch()}>
           Filter
         </button>
       </div>
 
+      {/* Loading Skeleton */}
+      {isLoading && <p>Loading orders...</p>}
+
+      {/* Error State */}
+      {isError && <p className="text-red-500">Failed to fetch orders</p>}
+
       {/* Orders Table */}
-      <table className="table w-full border">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Customer</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.length > 0 ? (
-            orders.map((order, index) => (
+      {!isLoading && orders.length > 0 ? (
+        <table className="table w-full border">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, index) => (
               <tr key={order._id}>
                 <td>{index + 1}</td>
                 <td>{user.displayName}</td>
@@ -84,9 +100,7 @@ export default function Orders() {
                 <td>
                   <select
                     value={order.status}
-                    onChange={(e) =>
-                      handleStatusChange(order._id, e.target.value)
-                    }
+                    onChange={e => handleStatusChange(order._id, e.target.value)}
                     className="select select-bordered"
                   >
                     <option value="pending">Pending</option>
@@ -96,16 +110,12 @@ export default function Orders() {
                   </select>
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" className="text-center">
-                No orders found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        !isLoading && <p>order not found</p>
+      )}
     </div>
   );
 }
