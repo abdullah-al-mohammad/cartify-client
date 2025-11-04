@@ -17,10 +17,11 @@ const Main = () => {
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
+      {/* cart icon  */}
       <button onClick={() => setIsCartOpen(true)}>
-        <div className="float-right indicator fixed right-7 md:right-16 bottom-40 bg-slate-100 p-2 rounded-full">
+        <div className="float-right indicator fixed right-7 bottom-40 bg-slate-100 p-2 rounded-full">
           <img className="max-w-5" src={shopping} alt="" />
-          <span className="indicator-item badge badge-error">{cart.length}</span>
+          <span className="indicator-item badge badge-neutral">{cart.length}</span>
         </div>
       </button>
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
