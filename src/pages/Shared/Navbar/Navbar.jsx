@@ -3,6 +3,7 @@ import 'aos/dist/aos.css';
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/cartify.png';
+import shopping from '../../../assets/shoppingcart.png';
 import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../Router/provider/CartProvider';
 import CartModal from '../../cartModal/CartModal';
@@ -41,13 +42,12 @@ const Navbar = () => {
       </li>
       <li className="indicator mr-5">
         <button onClick={() => setIsCartOpen(true)}>
-          Cart
-          {cart.length > 0 && (
-            <span className="indicator-item badge badge-secondary absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-              {cart.length}
-            </span>
-          )}
+          <div className="indicator">
+            <img className="max-w-5 mr-2" src={shopping} alt="" />
+            <span className="text-red-500 font-bold">{cart.length}</span>
+          </div>
         </button>
+        <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
       </li>
       {user ? (
         ' '
@@ -60,8 +60,8 @@ const Navbar = () => {
   );
   return (
     <div
-      className={`navbar fixed z-50 text-white transition-all duration-700 ${
-        scrolled ? 'shadow-md opacity-100' : 'opacity-70'
+      className={`navbar fixed z-50 transition-all duration-700 ${
+        scrolled ? 'shadow-md opacity-100' : 'opacity-100'
       }`}
       style={{
         background: scrolled ? 'black' : 'transparent',
@@ -94,12 +94,12 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <Link to="/" className="btn bg-transparent border-none shadow-none text-xl">
+          <Link to="/" className="btn bg-transparent border-none shadow-none text-xl text-white">
             <img className="w-10 h-10" src={logo} alt="" />
             <h5>Cartify</h5>
           </Link>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end text-white">
           <div className="hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navLinks}</ul>
           </div>
