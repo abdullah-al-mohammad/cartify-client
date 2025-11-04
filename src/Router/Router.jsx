@@ -11,6 +11,7 @@ import Orders from '../pages/order/Order';
 import OrderSuccess from '../pages/orderSuccess.jsx/OrderSuccess';
 import PaymentPage from '../pages/payment/Payment';
 import PlaceOrderPage from '../pages/placeOrder/PlaceOrder';
+import ProductManage from '../pages/productListManage/ProductManage';
 import Register from '../pages/register/Register';
 import ShippingPage from '../pages/shipping/Shipping';
 import AdminRoute from './AdminRoute';
@@ -67,13 +68,13 @@ export const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <Products></Products>,
+        element: <Products />,
       },
       {
         path: 'cart',
         element: (
           <PrivateRoute>
-            <CartModal></CartModal>
+            <CartModal />
           </PrivateRoute>
         ),
       },
@@ -83,21 +84,25 @@ export const router = createBrowserRouter([
     path: '/',
     element: (
       <AdminRoute>
-        <Dashboard></Dashboard>
+        <Dashboard />
       </AdminRoute>
     ),
     children: [
       {
         path: 'users',
-        element: <Users></Users>,
+        element: <Users />,
       },
       {
-        path: 'product',
-        element: <AddProduct></AddProduct>,
+        path: 'add-product',
+        element: <AddProduct />,
+      },
+      {
+        path: 'manage-products',
+        element: <ProductManage />,
       },
       {
         path: 'orders',
-        element: <Orders></Orders>,
+        element: <Orders />,
       },
     ],
   },
