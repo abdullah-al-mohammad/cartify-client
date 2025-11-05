@@ -1,5 +1,6 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaArrowDown } from 'react-icons/fa';
 import './banner.css';
 AOS.init();
 
@@ -44,6 +45,7 @@ const Banner = ({ ordernow }) => {
               className="btn py-5 px-5 md:px-8 md:py-7  duration-500 transition ease-in-out hover:bg-slate-300 hover:text-cyan-500"
             >
               order now
+              <FaArrowDown />
             </button>
             {/* </Link> */}
           </li>
