@@ -1,10 +1,9 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Link } from 'react-router-dom';
 import './banner.css';
 AOS.init();
 
-const Banner = () => {
+const Banner = ({ ordernow }) => {
   return (
     <div id="banner" className="bannerBg h-screen py-40 lg:pb-0">
       <div className="container mx-auto md:text-start text-white text-wrap text-center p-10">
@@ -37,15 +36,16 @@ const Banner = () => {
           data-aos-once="true"
         >
           <li>
-            <Link to={'productDetails#product-section'}>
-              {' '}
-              <button
-                type="button"
-                className="btn py-5 px-5 md:px-8 md:py-7  duration-500 transition ease-in-out hover:bg-slate-300 hover:text-cyan-500"
-              >
-                order now
-              </button>{' '}
-            </Link>
+            {/* <Link to={'productDetails#product-section'}>
+              {' '} */}
+            <button
+              onClick={ordernow}
+              type="button"
+              className="btn py-5 px-5 md:px-8 md:py-7  duration-500 transition ease-in-out hover:bg-slate-300 hover:text-cyan-500"
+            >
+              order now
+            </button>
+            {/* </Link> */}
           </li>
         </ul>
       </div>
