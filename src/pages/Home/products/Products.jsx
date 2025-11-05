@@ -15,7 +15,6 @@ export default function Products() {
       return res.data;
     },
   });
-  console.log(products);
 
   // Extract unique categories dynamically
   // const categories = useMemo(() => {
