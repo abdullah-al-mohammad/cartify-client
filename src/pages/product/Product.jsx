@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { FaCheck, FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../../Router/provider/CartProvider';
 import CartModal from '../cartModal/CartModal';
 
 export default function Product({ product }) {
   const { cart, addToCart, removeFromCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const { _id } = product;
 
@@ -25,6 +27,16 @@ export default function Product({ product }) {
     addToCart({ ...product, qty: newQty, stock: product.stockStatus || 5 });
   };
 
+  const handleAddToCart = () => {
+    if (!inCart) {
+      handleQtyChange(1);
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 1500); // reset animation after 1.5s
+    } else {
+      setIsCartOpen(true);
+    }
+  };
+
   return (
     <>
       <div className="card bg-base-100 shadow-sm">
@@ -37,12 +49,12 @@ export default function Product({ product }) {
             />
           </div>
           <div className="card-body">
-            <h2 className="tooltip tooltip-bottom" data-tip={product.name}>
+            <span className="tooltip tooltip-bottom" data-tip={product.name}>
               <h2 className="text-2xl font-bold line-clamp-1">{product.name}</h2>
-            </h2>
-            <p className="mt-2 tooltip" data-tip={product.description}>
+            </span>
+            <span className="mt-2 tooltip" data-tip={product.description}>
               <p className="line-clamp-2">{product.description}</p>
-            </p>
+            </span>
             <p className="mt-4 text-xl font-semibold">
               ${product.finalPrice ?? product.price}{' '}
               {product.discount > 0 && (
@@ -75,13 +87,25 @@ export default function Product({ product }) {
 
             {product.stockStatus ? (
               <button
-                className={`btn mt-4 ${inCart ? 'btn-outline' : 'btn-primary'}`}
-                onClick={() => {
-                  if (inCart) setIsCartOpen(true);
-                  else handleQtyChange(1);
-                }}
+                className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
+                  inCart ? 'btn-outline' : 'btn-primary'
+                } ${isAnimating ? 'animating' : ''}`}
+                onClick={handleAddToCart}
               >
-                {currentQty ? 'View Cart' : 'Add to Cart'}
+                {/* Cart Icon */}
+                <span className="cart-icon absolute left-3 transition-transform duration-500">
+                  <FaShoppingCart />
+                </span>
+
+                {/* Text */}
+                <span className="btn-text transition-opacity duration-300">
+                  {currentQty ? 'View Cart' : 'Add to Cart'}
+                </span>
+
+                {/* Tick Icon */}
+                <span className="tick-icon absolute opacity-0 transition-all duration-500">
+                  <FaCheck />
+                </span>
               </button>
             ) : (
               <button className="btn mt-4 btn-disabled text-error cursor-not-allowed opacity-70">
