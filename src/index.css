@@ -38,3 +38,20 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
+.animating .cart-icon {
+  transform: translateX(120%); /* Move toward center */
+  opacity: 0;
+}
+
+.animating .btn-text {
+  opacity: 0;
+}
+
+.animating .tick-icon {
+  opacity: 1;
+  transform: scale(1.2);
+  left: 50%;
+  transform: translateX(-50%) scale(1.2);
+  transition-delay: 0.2s;
+}
