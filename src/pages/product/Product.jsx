@@ -103,7 +103,7 @@ export default function Product({ product }) {
                 </span>
 
                 {/* Tick Icon */}
-                <span className="tick-icon absolute opacity-0 transition-all duration-500">
+                <span className="tick-icon absolute opacity-0 transition-all duration-500 text-success">
                   <FaCheck />
                 </span>
               </button>
