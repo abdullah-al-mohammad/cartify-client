@@ -7,9 +7,9 @@ export default function Orders() {
   const [filter, setFilter] = useState({ startDate: '', endDate: '' });
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  console.log(filter);
 
-  const fetchOrders = async ({ queryKey }) => {
-    const [, filter] = queryKey;
+  const fetchOrders = async () => {
     let query = '';
     if (filter.startDate || filter.endDate) {
       query = `?startDate=${filter.startDate}&endDate=${filter.endDate}`;
@@ -25,7 +25,7 @@ export default function Orders() {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ['orders', filter],
+    queryKey: ['orders'],
     queryFn: fetchOrders,
   });
   // Mutation for updating status
