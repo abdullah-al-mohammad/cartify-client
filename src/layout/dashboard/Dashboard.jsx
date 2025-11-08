@@ -11,7 +11,7 @@ export default function AdminDashboard() {
           <Link
             to="users"
             className={`block p-2 rounded ${
-              location.pathname === '/users' ? 'bg-blue-600 text-white' : 'hover:bg-gray-700'
+              location.pathname === '/users' ? 'bg-primary' : 'hover:bg-gray-700'
             }`}
           >
             Manage Users
@@ -19,7 +19,7 @@ export default function AdminDashboard() {
           <Link
             to="add-product"
             className={`block p-2 rounded ${
-              location.pathname === '/add-product' ? 'bg-blue-600 text-white' : 'hover:bg-gray-700'
+              location.pathname === '/add-product' ? 'bg-primary' : 'hover:bg-gray-700'
             }`}
           >
             Add Products
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
           <Link
             to="manage-products"
             className={`block p-2 rounded ${
-              location.pathname === '/manage-products' ? 'bg-blue-600' : 'hover:bg-gray-700'
+              location.pathname === '/manage-products' ? 'bg-primary' : 'hover:bg-gray-700'
             }`}
           >
             Manage Products
@@ -35,7 +35,7 @@ export default function AdminDashboard() {
           <Link
             to="orders"
             className={`block p-2 rounded ${
-              location.pathname === '/orders' ? 'bg-blue-600' : 'hover:bg-gray-700'
+              location.pathname === '/orders' ? 'bg-primary' : 'hover:bg-gray-700'
             }`}
           >
             Manage Orders
