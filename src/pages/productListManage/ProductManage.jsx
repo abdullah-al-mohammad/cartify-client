@@ -77,6 +77,7 @@ const ProductManage = () => {
     <div>
       {isLoading && <p className="text-gray-500">Loading products...</p>}
       {isError && <p className="text-red-500">Error: {error.message}</p>}
+      <h1 className="text-xl font-bold mb-4">Product Management</h1>
       {/* Product List Table */}
       {!isLoading && !isError && (
         <table className="table w-full border">
