@@ -72,7 +72,7 @@ export default function Products() {
           <p>Upgrade your lifestyle with the latest gadgets at unbeatable prices.</p>
         </div>
         {/*Dynamic Category Buttons */}
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div className="flex flex-wrap gap-3 mb-6 justify-center">
           {categories.map(cat => (
             <button
               key={cat}
