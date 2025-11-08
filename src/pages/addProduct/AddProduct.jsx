@@ -83,7 +83,7 @@ export default function AddProduct() {
   };
   return (
     <div className="p-6">
-      <h2 className="text-xl font-bold mb-4">Product Management</h2>
+      <h2 className="text-xl font-bold mb-4">Add Product</h2>
 
       {/* Add Product Form */}
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 mb-6">
