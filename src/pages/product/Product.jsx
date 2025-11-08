@@ -43,6 +43,7 @@ export default function Product({ product }) {
         <div className="text-center">
           <div className="h-48 bg-base-200">
             <img
+              loading="lazy"
               src={product.photos[0]}
               alt={product.name}
               className="object-contain w-full h-full"
