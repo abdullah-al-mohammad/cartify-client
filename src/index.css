@@ -27,31 +27,13 @@ button {
   --text-color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121212;
-    --text-color: #f0f0f0;
-  }
+.dark {
+  --bg-color: black;
+  --text-color: white;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-}
-
-.animating .cart-icon {
-  transform: translateX(120%); /* Move toward center */
-  opacity: 0;
-}
-
-.animating .btn-text {
-  opacity: 0;
-}
-
-.animating .tick-icon {
-  opacity: 1;
-  transform: scale(1.2);
-  left: 50%;
-  transform: translateX(-50%) scale(1.2);
-  transition-delay: 0.2s;
+  transition: background-color 0.3s, color 0.3s; /* smooth transition */
 }
