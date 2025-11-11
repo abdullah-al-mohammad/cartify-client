@@ -81,7 +81,7 @@ const ProductManage = () => {
       {/* Product List Table */}
       {!isLoading && !isError && (
         <table className="table w-full border">
-          <thead>
+          <thead className="bg-black">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -103,7 +103,7 @@ const ProductManage = () => {
                     <select
                       value={p.status}
                       onChange={e => handleUpdate(p._id, 'status', e.target.value)}
-                      className="select select-bordered select-sm"
+                      className="select select-bordered select-sm border border-slate-300 bg-transparent"
                     >
                       <option value="active">Active</option>
                       <option value="inactive">Inactive</option>
@@ -113,7 +113,7 @@ const ProductManage = () => {
                     <select
                       value={p.stockStatus}
                       onChange={e => handleUpdate(p._id, 'stockStatus', Number(e.target.value))}
-                      className="select select-bordered select-sm"
+                      className="select select-bordered select-sm border border-slate-300 bg-transparent"
                     >
                       {Array.from({ length: 21 }, (_, i) => (
                         <option key={i} value={i}>
