@@ -41,9 +41,9 @@ export const Users = () => {
         {users.length > 0 ? (
           <table className="table">
             {/* head */}
-            <thead>
+            <thead className="bg-black">
               <tr>
-                <th></th>
+                <th>#</th>
                 <th>Name</th>
                 <th>Role</th>
                 <th>Favorite Color</th>
@@ -57,14 +57,19 @@ export const Users = () => {
                   <td>{user.name}</td>
                   <td>
                     <div className="dropdown">
-                      <div tabIndex={0} role="button" className="btn m-1">
+                      <div
+                        tabIndex={0}
+                        className={`m-1 capitalize font-bold ${
+                          user.role === 'admin' ? 'text-green-500' : 'text-red-500'
+                        }`}
+                      >
                         {user.role}
                       </div>
                       <ul
                         tabIndex={0}
-                        className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                        className="dropdown-content menu bg-base-100 text-white rounded-box z-1 w-52 p-2 shadow-sm"
                       >
-                        <li>
+                        <li className="">
                           <button onClick={() => handleUpdateRole(user._id, 'admin', user.name)}>
                             Admin
                           </button>
