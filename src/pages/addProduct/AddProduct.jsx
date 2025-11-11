@@ -92,50 +92,50 @@ export default function AddProduct() {
           value={form.name}
           onChange={handleChange}
           placeholder="Name"
-          className="input input-bordered"
+          className="input input-bordered border border-slate-300 bg-transparent"
         />
         <input
           name="slug"
           value={form.slug}
           onChange={handleChange}
           placeholder="Slug"
-          className="input input-bordered"
+          className="input input-bordered  border border-slate-300 bg-transparent"
         />
         <input
           name="photos"
           onChange={handleChange}
           type="file"
           // accept="image/*"
-          className="file-input input-bordered col-span-2"
+          className="file-input input-bordered border border-slate-300 bg-transparent col-span-2"
         />
         <textarea
           name="description"
           value={form.description}
           onChange={handleChange}
           placeholder="Description"
-          className="textarea textarea-bordered col-span-2"
+          className="textarea textarea-bordered border border-slate-300 bg-transparent col-span-2"
         ></textarea>
         <input
           name="price"
           value={form.price}
           onChange={handleChange}
-          type="number"
+          type=""
           placeholder="Price"
-          className="input input-bordered"
+          className="input input-bordered border border-slate-300 bg-transparent"
         />
         <input
           name="discount"
           value={form.discount}
           onChange={handleChange}
-          type="number"
+          type=""
           placeholder="Discount"
-          className="input input-bordered"
+          className="input input-bordered border border-slate-300 bg-transparent"
         />
         <select
           name="stockStatus"
           value={form.stockStatus}
           onChange={handleChange}
-          className="select select-bordered"
+          className="select select-bordered border border-slate-300 bg-white/70 dark:bg-gray-800/60 text-gray-900 dark:text-white"
         >
           {/* <option value="true">In Stock</option>
           <option value="false">Out of Stock</option> */}
@@ -155,7 +155,7 @@ export default function AddProduct() {
           name="status"
           value={form.status}
           onChange={handleChange}
-          className="select select-bordered"
+          className="select select-bordered border border-slate-300 bg-white/70 dark:bg-gray-800/60 text-gray-900 dark:text-white"
         >
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
@@ -165,7 +165,7 @@ export default function AddProduct() {
           value={form.categories}
           onChange={handleChange}
           placeholder="Categories (comma separated)"
-          className="input input-bordered col-span-2"
+          className="input input-bordered border border-slate-300 bg-transparent col-span-2"
         />
         <button type="submit" className="btn btn-primary col-span-2">
           Add Product
