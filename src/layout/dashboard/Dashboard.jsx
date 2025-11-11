@@ -2,6 +2,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const location = useLocation();
+  console.log(location);
+
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
@@ -11,7 +13,7 @@ export default function AdminDashboard() {
           <Link
             to="users"
             className={`block p-2 rounded ${
-              location.pathname === '/users' ? 'btn-primary' : 'hover:bg-gray-700'
+              location.pathname === 'admin/users' ? 'btn-primary' : 'hover:bg-gray-700'
             }`}
           >
             Manage Users
