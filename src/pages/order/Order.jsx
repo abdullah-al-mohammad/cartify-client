@@ -56,14 +56,14 @@ export default function Orders() {
           name="startDate"
           value={filter.startDate}
           onChange={handleFilterChange}
-          className="input input-bordered"
+          className="input border border-slate-300 bg-transparent"
         />
         <input
           type="date"
           name="endDate"
           value={filter.endDate}
           onChange={handleFilterChange}
-          className="input input-bordered"
+          className="input border border-slate-300 bg-transparent"
         />
         <button className="btn btn-primary" onClick={() => refetch()}>
           Filter
@@ -79,7 +79,7 @@ export default function Orders() {
       {/* Orders Table */}
       {!isLoading && orders.length > 0 ? (
         <table className="table w-full border">
-          <thead>
+          <thead className="bg-black">
             <tr>
               <th>#</th>
               <th>Customer</th>
@@ -101,7 +101,7 @@ export default function Orders() {
                   <select
                     value={order.status}
                     onChange={e => handleStatusChange(order._id, e.target.value)}
-                    className="select select-bordered"
+                    className="select select-bordered border border-slate-300 bg-transparent"
                   >
                     <option value="pending">Pending</option>
                     <option value="shipped">Shipped</option>
