@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaCheck, FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../../Router/provider/CartProvider';
 import CartModal from '../cartModal/CartModal';
 
@@ -39,9 +39,9 @@ export default function Product({ product }) {
 
   return (
     <>
-      <div className="card bg-base-100 shadow-sm">
-        <div className="text-center">
-          <div className="h-48 bg-base-200">
+      <div className="card shadow-md">
+        <div>
+          <div className="h-48">
             <img
               loading="lazy"
               src={product.photos[0]}
@@ -65,9 +65,11 @@ export default function Product({ product }) {
 
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
-                className="btn btn-sm"
+                v
+                className={`btn btn-sm btn-primary ${
+                  currentQty <= 0 ? 'opacity-20 cursor-not-allowed' : ''
+                }`}
                 onClick={() => handleQtyChange(currentQty - 1)}
-                disabled={currentQty <= 0}
               >
                 -
               </button>
@@ -75,12 +77,13 @@ export default function Product({ product }) {
                 type=""
                 value={currentQty}
                 readOnly
-                className="w-12 h-8 text-center border rounded"
+                className="w-12 h-8 text-center border rounded bg-white dark:text-black"
               />
               <button
-                className="btn btn-sm"
+                className={`btn btn-sm btn-primary ${
+                  currentQty >= product.stockStatus ? 'opacity-20 cursor-not-allowed' : ''
+                }`}
                 onClick={() => handleQtyChange(currentQty + 1)}
-                disabled={currentQty >= product.stockStatus}
               >
                 +
               </button>
@@ -89,23 +92,19 @@ export default function Product({ product }) {
             {product.stockStatus ? (
               <button
                 className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
-                  inCart ? 'btn-outline' : 'btn-primary'
-                } ${isAnimating ? 'animating' : ''}`}
+                  inCart ? 'btn-outline text-success' : 'btn-primary'
+                }`}
                 onClick={handleAddToCart}
               >
-                {/* Cart Icon */}
-                <span className="cart-icon absolute left-3 transition-transform duration-500">
-                  <FaShoppingCart />
-                </span>
-
-                {/* Text */}
-                <span className="btn-text transition-opacity duration-300">
-                  {currentQty ? 'View Cart' : 'Add to Cart'}
-                </span>
-
-                {/* Tick Icon */}
-                <span className="tick-icon absolute opacity-0 transition-all duration-500 text-success">
-                  <FaCheck />
+                {/* Add to Cart */}
+                {/* {!currentQty && ( */}
+                <span className={`flex`}>
+                  <FaShoppingCart
+                    className={`text-lg transform transition-all duration-500 ease-in-out ${
+                      inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
+                    }`}
+                  />
+                  {inCart ? 'View cart' : 'Add to Cart'}
                 </span>
               </button>
             ) : (
