@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { FaShoppingCart } from 'react-icons/fa';
+import { BsFillCartCheckFill } from 'react-icons/bs';
 import { useCart } from '../../Router/provider/CartProvider';
 import CartModal from '../cartModal/CartModal';
 
 export default function Product({ product }) {
   const { cart, addToCart, removeFromCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const { _id } = product;
 
@@ -30,8 +29,6 @@ export default function Product({ product }) {
   const handleAddToCart = () => {
     if (!inCart) {
       handleQtyChange(1);
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 1500); // reset animation after 1.5s
     } else {
       setIsCartOpen(true);
     }
@@ -92,15 +89,15 @@ export default function Product({ product }) {
             {product.stockStatus ? (
               <button
                 className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
-                  inCart ? 'btn-outline text-success' : 'btn-primary'
+                  inCart ? 'btn-outline' : 'btn-primary'
                 }`}
                 onClick={handleAddToCart}
               >
                 {/* Add to Cart */}
                 {/* {!currentQty && ( */}
-                <span className={`flex`}>
-                  <FaShoppingCart
-                    className={`text-lg transform transition-all duration-500 ease-in-out ${
+                <span className={`flex gap-2`}>
+                  <BsFillCartCheckFill
+                    className={`text-lg transform transition-all duration-500 ease-in-out text-success ${
                       inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
                     }`}
                   />
