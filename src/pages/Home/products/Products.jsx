@@ -16,53 +16,30 @@ export default function Products() {
     },
   });
 
-  // Extract unique categories dynamically
   // const categories = useMemo(() => {
-  //   const allCategories = products.map(p => p.categories);
-  //   const uniqueCategories = [...new Set(allCategories)];
-  //   return ['All', ...uniqueCategories];
+  // const allCats = products.flatMap(p => (Array.isArray(p.categories) ? p.categories : []));
+  //   const unique = [...new Set(allCats.map(c => c.toLowerCase()))];
+  //   return ['All', ...unique.map(c => c.charAt(0).toUpperCase() + c.slice(1))];
   // }, [products]);
   const categories = useMemo(() => {
-    const allCategories = products
-      .map(p => {
-        const cat = p.categories; // get categories
+    const categoriesArrays = products.map(p => (Array.isArray(p.categories) ? p.categories : []));
+    const allCats = categoriesArrays.flat();
+    console.log(categoriesArrays, allCats);
 
-        // handle different types
-        if (!cat) return ''; // null/undefined → ignore
-        if (typeof cat === 'string') return cat.toLowerCase();
-        if (Array.isArray(cat)) return cat.map(String).join(',').toLowerCase(); // array → join
-        if (typeof cat === 'object') return JSON.stringify(cat).toLowerCase(); // object → stringify
-        return String(cat).toLowerCase(); // number/boolean → string
-      })
-      .filter(Boolean); // remove empty strings
-
-    const uniqueCategories = [...new Set(allCategories)]; // remove duplicates
-
-    // capitalize first letter for display
-    const formattedCategories = uniqueCategories.map(c => c.charAt(0).toUpperCase() + c.slice(1));
-
-    return ['All', ...formattedCategories];
+    const unique = [...new Set(allCats.map(c => c.toLowerCase()))];
+    return ['All', ...unique.map(c => c.charAt(0).toUpperCase() + c.slice(1))];
   }, [products]);
-
-  //Filter products based on selected category
-  // const filteredProducts =
-  //   selectedCategory === 'All' ? products : products.filter(p => p.categories === selectedCategory);
-  // console.log(filteredProducts);
-  const filteredProducts =
-    selectedCategory === 'All'
-      ? products
-      : products.filter(p => {
-          const cat = p.categories;
-          let normCat;
-
-          if (!cat) normCat = '';
-          else if (typeof cat === 'string') normCat = cat.toLowerCase();
-          else if (Array.isArray(cat)) normCat = cat.map(String).join(',').toLowerCase();
-          else if (typeof cat === 'object') normCat = JSON.stringify(cat).toLowerCase();
-          else normCat = String(cat).toLowerCase();
-
-          return normCat === selectedCategory.toLowerCase();
-        });
+  const filtered = useMemo(
+    () =>
+      selectedCategory === 'All'
+        ? products
+        : products.filter(p =>
+            Array.isArray(p.categories)
+              ? p.categories.some(c => c.toLowerCase() === selectedCategory.toLowerCase())
+              : false
+          ),
+    [products, selectedCategory]
+  );
 
   return (
     <>
@@ -89,7 +66,7 @@ export default function Products() {
           <ProductGridSkeleton count={10} /> // skeleton grid
         ) : products.length ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {filteredProducts.map(product => (
+            {filtered.map(product => (
               <Product key={product._id} product={product} />
             ))}
           </div>
