@@ -38,7 +38,7 @@ export default function Product({ product }) {
     <>
       <div className="card shadow-md">
         <div>
-          <div className="h-48">
+          <div className="h-48 bg-slate-400">
             <img
               loading="lazy"
               src={product.photos[0]}
