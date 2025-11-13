@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../assets/auth1.png';
 import useAuth from '../../hooks/useAuth';
 import './login.css';
 
@@ -42,6 +43,7 @@ const Login = () => {
       <div className="hero loginBG min-h-screen pt-20">
         <div className="hero-content flex-col lg:flex-row-reverse gap-20">
           <div className="text-center lg:text-left">
+            <img className="w-28" src={auth} alt="" />
             <h1 className="text-5xl font-bold text-bold_red-0">Login now</h1>
           </div>
           <div className="card border-8 border-rose-900 loginCard w-full max-w-sm shrink-0 shadow-2xl">
@@ -100,7 +102,7 @@ const Login = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-bold_red-0 border-bold_red-0 text-white transition duration-500 ease-in-out hover:bg-white hover:text-bold_red-0 px-8">
+                <button className="btn text-white transition duration-500 ease-in-out hover:bg-white hover:text-black px-8">
                   Login
                 </button>
               </div>
