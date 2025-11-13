@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import shopping from '../assets/shoppingcart.png';
 import CartModal from '../pages/cartModal/CartModal';
 import Footer from '../pages/Shared/Footer/Footer';
@@ -10,11 +10,12 @@ const Main = () => {
   const { cart } = useCart();
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const location = useLocation()
   return (
     <>
       <Navbar></Navbar>
       <div className="min-h-screen">
-        <Outlet></Outlet>
+        {location.pathname === '/login' ? <Outlet></Outlet> : ''}
       </div>
       <Footer></Footer>
       {/* cart icon  */}
