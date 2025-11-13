@@ -39,12 +39,12 @@ const Login = () => {
   };
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen pt-20">
-        <div className="hero-content flex-col">
+      <div className="hero loginBG min-h-screen pt-20">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-20">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold text-bold_red-0">Login now</h1>
           </div>
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl loginBG">
+          <div className="card border-8 border-rose-900 loginCard w-full max-w-sm shrink-0 shadow-2xl">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/* email field */}
               <div className="form-control">
@@ -55,7 +55,7 @@ const Login = () => {
                   type="email"
                   placeholder="email"
                   {...register('email')}
-                  className="input input-bordered"
+                  className="input input-bordered bg-transparent border border-green-400"
                   required
                 />
               </div>
@@ -73,7 +73,7 @@ const Login = () => {
                       maxLength: 20,
                       pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[\W])/,
                     })}
-                    className="input input-bordered"
+                    className="input input-bordered bg-transparent border-green-400"
                     required
                   />
                   <p
