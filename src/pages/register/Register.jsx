@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import auth from '../../assets/auth1.png';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import './register.css';
-// import { ToastContainer, toast } from 'react-toastify';
 
 // image hosting api key
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
@@ -67,13 +67,14 @@ const Register = () => {
   };
   // <ToastContainer />
   return (
-    <div className="pt-20">
+    <div className="">
       <div className="hero registerBG min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse gap-20">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold text-bold_red-0">Register now</h1>
+            <img className="w-28" src={auth} alt="" />
+            <h1 className="text-5xl font-bold">Register now</h1>
           </div>
-          <div className="card registerCard w-full max-w-screen-md shrink-0 shadow-2xl registerBG">
+          <div className="card registerCard shrink-0 shadow-2xl registerBG">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/* name field */}
               <div className="form-control">
