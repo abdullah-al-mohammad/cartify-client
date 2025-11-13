@@ -68,12 +68,12 @@ const Register = () => {
   // <ToastContainer />
   return (
     <div className="pt-20">
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content flex-col">
+      <div className="hero registerBG min-h-screen">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-20">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold text-bold_red-0">Register now</h1>
           </div>
-          <div className="card bg-base-100 w-full max-w-screen-md shrink-0 shadow-2xl registerBG">
+          <div className="card registerCard w-full max-w-screen-md shrink-0 shadow-2xl registerBG">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/* name field */}
               <div className="form-control">
@@ -84,7 +84,7 @@ const Register = () => {
                   type="name"
                   placeholder="Your ame"
                   {...register('name', { required: true })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full bg-transparent"
                   required
                 />
               </div>
@@ -97,7 +97,7 @@ const Register = () => {
                   type="email"
                   placeholder="email"
                   {...register('email', { required: true })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full bg-transparent"
                   required
                 />
               </div>
@@ -109,7 +109,7 @@ const Register = () => {
                 <input
                   type="file"
                   {...register('image', { required: true })}
-                  className="file-input w-full max-w-xs"
+                  className="file-input w-full max-w-xs bg-transparent"
                 />
               </div>
               {/* password field */}
@@ -131,7 +131,7 @@ const Register = () => {
                           'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character, and be 6-20 characters long.',
                       },
                     })}
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-transparent"
                     required
                   />
                   <p
@@ -166,7 +166,7 @@ const Register = () => {
                   type="password"
                   placeholder="confirm password"
                   {...register('confirmPassword', { required: true })}
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full bg-transparent"
                   required
                 />
                 {errors.confirmPassword && (
@@ -180,7 +180,7 @@ const Register = () => {
               </div>
               {<p className="text-red-500">{error ? error : ''}</p>}
               <div className="form-control mt-6">
-                <button className="btn bg-bold_red-0 border-bold_red-0 transition duration-500 ease-in-out hover:bg-white hover:text-bold_red-0 px-8">
+                <button className="btn bg-bold_red-0 border-bold_red-0 transition duration-500 ease-in-out hover:bg-white hover:text-black px-8">
                   Register
                 </button>
               </div>
