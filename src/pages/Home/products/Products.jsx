@@ -16,11 +16,6 @@ export default function Products() {
     },
   });
 
-  // const categories = useMemo(() => {
-  // const allCats = products.flatMap(p => (Array.isArray(p.categories) ? p.categories : []));
-  //   const unique = [...new Set(allCats.map(c => c.toLowerCase()))];
-  //   return ['All', ...unique.map(c => c.charAt(0).toUpperCase() + c.slice(1))];
-  // }, [products]);
   const categories = useMemo(() => {
     const categoriesArrays = products.map(p => (Array.isArray(p.categories) ? p.categories : []));
     const allCats = categoriesArrays.flat();
