@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../assets/auth1.png';
 import useAuth from '../../hooks/useAuth';
@@ -19,10 +19,11 @@ const Register = () => {
     control,
     formState: { errors },
   } = useForm();
-  const { registerUser, updateUserProfile } = useAuth();
+  const { registerUser, updateUserProfile, user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState();
+  const navigate = useNavigate();
 
   const onSubmit = async data => {
     const email = data.email;
@@ -65,7 +66,12 @@ const Register = () => {
         console.error(error);
       });
   };
-  // <ToastContainer />
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  });
   return (
     <div className="">
       <div className="hero registerBG min-h-screen">
@@ -188,7 +194,7 @@ const Register = () => {
             </form>
             <p className="p-5">
               Already have an account?{' '}
-              <Link className="text-success" to={'/login'}>
+              <Link className="text-lime-400" to={'/login'}>
                 Login
               </Link>{' '}
             </p>
