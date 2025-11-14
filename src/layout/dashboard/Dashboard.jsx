@@ -2,7 +2,6 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const location = useLocation();
-  console.log(location);
 
   return (
     <div className="flex min-h-screen">
@@ -10,6 +9,14 @@ export default function AdminDashboard() {
       <aside className="w-64 bg-gray-800 text-white p-4">
         <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
         <nav className="space-y-2">
+          <Link
+            to="/"
+            className={`block p-2 rounded ${
+              location.pathname === '/' ? 'btn-primary' : 'hover:bg-gray-700'
+            }`}
+          >
+            Home
+          </Link>
           <Link
             to="users"
             className={`block p-2 rounded ${
