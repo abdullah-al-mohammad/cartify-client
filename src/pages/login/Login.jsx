@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -13,16 +13,12 @@ const Login = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const { loginUser, loading } = useAuth();
+  const { loginUser } = useAuth();
   const [showPassword, setShowPassword] = useState();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const { user } = useAuth();
   const from = location.state?.from || '/';
-
-  // if (loading) {
-  //   return <span>loading....</span>;
-  // }
 
   const onSubmit = async data => {
     const email = data.email;
@@ -38,6 +34,11 @@ const Login = () => {
         console.error(error);
       });
   };
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  });
   return (
     <div>
       <div className="hero loginBG min-h-screen pt-20">
@@ -109,7 +110,7 @@ const Login = () => {
             </form>
             <p className="p-5">
               Don't have an account?{' '}
-              <Link className="text-success" to={'/register'}>
+              <Link className="text-lime-400" to={'/register'}>
                 Register
               </Link>
             </p>
