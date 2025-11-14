@@ -9,18 +9,13 @@ export default function AdminDashboard() {
       <aside className="w-64 bg-gray-800 text-white p-4">
         <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
         <nav className="space-y-2">
-          <Link
-            to="/"
-            className={`block p-2 rounded ${
-              location.pathname === '/' ? 'btn-primary' : 'hover:bg-gray-700'
-            }`}
-          >
+          <Link to="/" className={`block p-2 rounded`}>
             Home
           </Link>
           <Link
             to="users"
             className={`block p-2 rounded ${
-              location.pathname === 'admin/users' ? 'btn-primary' : 'hover:bg-gray-700'
+              location.pathname.includes('users') ? 'text-red-700' : 'hover:bg-gray-700'
             }`}
           >
             Manage Users
@@ -28,7 +23,7 @@ export default function AdminDashboard() {
           <Link
             to="add-product"
             className={`block p-2 rounded ${
-              location.pathname === '/add-product' ? 'btn-primary' : 'hover:bg-gray-700'
+              location.pathname.includes('add-product') ? 'text-red-700' : 'hover:bg-gray-700'
             }`}
           >
             Add Products
@@ -36,7 +31,9 @@ export default function AdminDashboard() {
           <Link
             to="manage-products"
             className={`block p-2 rounded ${
-              location.pathname === '/manage-products' ? 'btn-primary' : 'hover:bg-gray-700'
+              location.pathname.includes('manage-products')
+                ? 'btn-primary text-red-700'
+                : 'hover:bg-gray-700'
             }`}
           >
             Manage Products
@@ -44,7 +41,9 @@ export default function AdminDashboard() {
           <Link
             to="orders"
             className={`block p-2 rounded ${
-              location.pathname === '/orders' ? 'btn-primary' : 'hover:bg-gray-700'
+              location.pathname.includes('orders')
+                ? 'btn-primary text-red-700'
+                : 'hover:bg-gray-700'
             }`}
           >
             Manage Orders
