@@ -1,8 +1,18 @@
-.loginBG{
-  background:linear-gradient(90deg, rgba(126, 126, 211, 0.733), rgba(80, 199, 80, 0.658), rgb(51, 174, 190));
+.loginBG {
+  background: linear-gradient(
+    90deg,
+    rgba(126, 126, 211, 0.733),
+    rgba(29, 93, 29, 0.658),
+    rgb(51, 174, 190)
+  );
 }
-.loginCard{
-  background:linear-gradient(60deg, rgba(0, 0, 255, 0.24), rgba(0, 128, 0, 0.315), rgba(128, 0, 128, 0.514));
+.loginCard {
+  background: linear-gradient(
+    60deg,
+    rgba(0, 0, 255, 0.24),
+    rgba(0, 128, 0, 0.315),
+    rgba(128, 0, 128, 0.514)
+  );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* for Safari support */
   border-radius: 16px;
