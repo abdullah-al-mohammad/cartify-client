@@ -56,7 +56,7 @@ export const Users = () => {
                   <th>#</th>
                   <th>Name</th>
                   <th>Role</th>
-                  <th>Favorite Color</th>
+                  <th>Id</th>
                 </tr>
               </thead>
               <tbody>
