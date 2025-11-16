@@ -2,12 +2,12 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Pagination from '../components/Pagination';
 
 export default function Orders() {
   const [filter, setFilter] = useState({ startDate: '', endDate: '' });
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  console.log(filter);
 
   const fetchOrders = async () => {
     let query = '';
@@ -44,6 +44,13 @@ export default function Orders() {
     const { name, value } = e.target;
     setFilter({ ...filter, [name]: value });
   };
+  // pagination page
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+
+  const currentItems = orders.slice(indexOfFirst, indexOfLast);
 
   return (
     <div className="p-6">
@@ -78,44 +85,54 @@ export default function Orders() {
 
       {/* Orders Table */}
       {!isLoading && orders.length > 0 ? (
-        <table className="table w-full border">
-          <thead className="bg-black">
-            <tr>
-              <th>#</th>
-              <th>Customer</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Date</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={order._id}>
-                <td>{index + 1}</td>
-                <td>{user.displayName}</td>
-                <td>${order.total}</td>
-                <td>{order.status}</td>
-                <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                <td>
-                  <select
-                    value={order.status}
-                    onChange={e => handleStatusChange(order._id, e.target.value)}
-                    className="select select-bordered border border-slate-300 bg-transparent"
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="canceled">Canceled</option>
-                  </select>
-                </td>
+        <div className="flex-col overflow-auto h-screen">
+          <table className="table w-full border">
+            <thead className="bg-black">
+              <tr>
+                <th>#</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentItems.map((order, index) => (
+                <tr key={order._id}>
+                  <td>{index + 1}</td>
+                  <td>{user.displayName}</td>
+                  <td>${order.total}</td>
+                  <td>{order.status}</td>
+                  <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                  <td>
+                    <select
+                      value={order.status}
+                      onChange={e => handleStatusChange(order._id, e.target.value)}
+                      className="select select-bordered border border-slate-300 bg-transparent"
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="delivered">Delivered</option>
+                      <option value="canceled">Canceled</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         !isLoading && <p>order not found</p>
       )}
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          totalItems={orders.length}
+          onPageChange={page => setCurrentPage(page)}
+        ></Pagination>
+      </div>
     </div>
   );
 }
