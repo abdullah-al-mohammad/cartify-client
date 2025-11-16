@@ -81,6 +81,7 @@ const ProductManage = () => {
   const indexOfFirst = indexOfLast - itemsPerPage;
 
   const currentItems = products.slice(indexOfFirst, indexOfLast);
+
   return (
     <div>
       {isLoading && <p className="text-gray-500">Loading products...</p>}
