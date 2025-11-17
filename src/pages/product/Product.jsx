@@ -63,8 +63,8 @@ export default function Product({ product }) {
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
                 v
-                className={`btn btn-sm btn-primary ${
-                  currentQty <= 0 ? 'opacity-20 cursor-not-allowed' : ''
+                className={`btn btn-sm bg-green-600 ${
+                  currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
                 }`}
                 onClick={() => handleQtyChange(currentQty - 1)}
               >
@@ -77,7 +77,7 @@ export default function Product({ product }) {
                 className="w-12 h-8 text-center border rounded bg-white dark:text-black"
               />
               <button
-                className={`btn btn-sm btn-primary ${
+                className={`btn btn-sm bg-green-600 ${
                   currentQty >= product.stockStatus ? 'opacity-20 cursor-not-allowed' : ''
                 }`}
                 onClick={() => handleQtyChange(currentQty + 1)}
@@ -89,7 +89,7 @@ export default function Product({ product }) {
             {product.stockStatus ? (
               <button
                 className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
-                  inCart ? 'btn-outline' : 'btn-primary'
+                  inCart ? 'btn-outline' : 'bg-green-600'
                 }`}
                 onClick={handleAddToCart}
               >
