@@ -7,7 +7,7 @@ AOS.init();
 
 const Footer = () => {
   return (
-    <footer className="p-10 border-t border-blue-500">
+    <footer className="p-10 border-t border-green-600">
       <div className="container mx-auto footer footer-horizontal footer-center ">
         <aside>
           <div className="flip-container">
@@ -25,7 +25,7 @@ const Footer = () => {
           <p>Contact Us: cartify@.org | +880-1234-567890</p>
         </aside>
         <nav id="social">
-          <h5 className="text-bold_red-0">Follow us for the latest updates, offers, and trends</h5>
+          <h5>Follow us for the latest updates, offers, and trends</h5>
           <div className="grid grid-flow-col gap-4 items-center">
             <a>
               <svg
