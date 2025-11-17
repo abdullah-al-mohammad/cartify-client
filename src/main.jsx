@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import AuthProvider from './Router/provider/AuthProvider';
 import { CartProvider } from './Router/provider/CartProvider';
-import ThemeProvider from './Router/provider/ThemeProvider';
+import { ThemeProvider } from './Router/provider/ThemeProvider';
 import { router } from './Router/Router';
 const queryClient = new QueryClient();
 
