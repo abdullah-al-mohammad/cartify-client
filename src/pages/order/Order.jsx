@@ -72,7 +72,7 @@ export default function Orders() {
           onChange={handleFilterChange}
           className="input border border-slate-300 bg-transparent"
         />
-        <button className="btn btn-primary" onClick={() => refetch()}>
+        <button className="btn bg-green-600" onClick={() => refetch()}>
           Filter
         </button>
       </div>
