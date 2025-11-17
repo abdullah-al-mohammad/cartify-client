@@ -37,17 +37,14 @@ const Banner = ({ ordernow }) => {
           data-aos-once="true"
         >
           <li>
-            {/* <Link to={'productDetails#product-section'}>
-              {' '} */}
             <button
               onClick={ordernow}
               type="button"
-              className="btn py-5 px-5 md:px-8 md:py-7  duration-500 transition ease-in-out hover:bg-slate-300 hover:text-cyan-500"
+              className="btn py-5 px-5 md:px-10 md:py-8 md:text-xl duration-500 transition ease-in-out bg-green-600 text-white rounded-xl"
             >
               order now
               <FaArrowDown />
             </button>
-            {/* </Link> */}
           </li>
         </ul>
       </div>
