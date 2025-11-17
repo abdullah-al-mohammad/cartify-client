@@ -24,6 +24,6 @@
   -o-border-radius: 100%;
 }
 #social a:hover svg {
-  color: #629dff;
+  color: rgba(21, 227, 21, 0.795);
   transition: all 0.5s ease-in-out;
 }
