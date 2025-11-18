@@ -40,9 +40,15 @@ const Banner = ({ ordernow }) => {
             <button
               onClick={ordernow}
               type="button"
-              className="btn py-5 px-5 md:px-10 md:py-8 md:text-xl duration-500 transition ease-in-out bg-green-600 text-white rounded-xl"
+              className="flex items-center gap-2 py-5 px-5 md:px-10 md:py-8 md:text-xl 
+                  rounded-xl font-semibold
+                  bg-white text-black
+                  dark:bg-black dark:text-white
+                  transition-all duration-500
+                  hover:bg-slate-300 hover:text-green-400
+                  dark:hover:bg-gray-800 dark:hover:text-green-500  "
             >
-              order now
+              Order Now
               <FaArrowDown />
             </button>
           </li>
