@@ -31,7 +31,7 @@ const CartModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-      <div className="bg-base-100 text-white w-96 p-6 rounded-xl shadow-lg">
+      <div className="dark:bg-black dark:text-white bg-white text-black w-96 p-6 rounded-xl shadow-lg">
         <div className="flex justify-between">
           <h2 className="text-lg font-bold mb-4">Your Cart</h2>
           <button className="btn btn-error" onClick={onClose}>
@@ -64,7 +64,7 @@ const CartModal = ({ isOpen, onClose }) => {
                       <input
                         value={item.qty}
                         readOnly
-                        className="w-10 h-5 text-center border rounded"
+                        className="w-10 h-5 text-center border rounded bg-transparent"
                       />
                       <button
                         className="btn btn-xs"
