@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/cartify.png';
 import shopping from '../../../assets/shoppingcart.png';
-import ThemeToggle from '../../../components/theme/ThemeToggle';
 import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../Router/provider/CartProvider';
 import CartModal from '../../cartModal/CartModal';
+import ThemeToggle from '../../components/theme/ThemeToggle';
 // ..
 AOS.init();
 
@@ -36,6 +36,9 @@ const Navbar = () => {
   };
   const navLinks = (
     <>
+      <li>
+        <ThemeToggle />
+      </li>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
@@ -105,10 +108,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              {navLinks}
-              <ThemeToggle />
-            </ul>
+            <ul className="menu menu-horizontal px-1">{navLinks}</ul>
           </div>
           {user ? (
             <div className="dropdown dropdown-end">
