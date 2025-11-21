@@ -52,7 +52,6 @@ const Navbar = () => {
             <span className="text-red-500 font-bold">{cart.length}</span>
           </div>
         </button>
-        <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
       </li>
       {user ? (
         ' '
