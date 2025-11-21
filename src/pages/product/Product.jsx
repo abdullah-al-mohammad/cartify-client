@@ -78,7 +78,7 @@ export default function Product({ product }) {
               />
               <button
                 className={`btn btn-sm bg-green-600 ${
-                  currentQty >= product.stockStatus ? 'opacity-20 cursor-not-allowed' : ''
+                  currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
                 }`}
                 onClick={() => handleQtyChange(currentQty + 1)}
               >
