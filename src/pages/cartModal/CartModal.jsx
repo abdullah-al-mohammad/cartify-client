@@ -1,3 +1,4 @@
+import { LuTrash } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useCart } from '../../Router/provider/CartProvider';
@@ -31,7 +32,7 @@ const CartModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
-      <div className="dark:bg-black dark:text-white bg-white text-black w-96 p-6 rounded-xl shadow-lg">
+      <div className="dark:bg-black dark:text-white bg-white text-black w-auto p-6 rounded-xl shadow-lg">
         <div className="flex justify-between">
           <h2 className="text-lg font-bold mb-4">Your Cart</h2>
           <button className="btn btn-error" onClick={onClose}>
@@ -44,60 +45,62 @@ const CartModal = ({ isOpen, onClose }) => {
         ) : (
           <>
             <ul className="space-y-3">
-              {cart.map(item => (
-                <li key={item._id} className="flex justify-between items-center border-b py-2">
-                  <div>
-                    <p className="font-semibold">{item.qty}</p>
-                    <p className="text-sm text-gray-500">
-                      ${(item.finalPrice ?? item.price) * item.qty}
-                    </p>
+              {cart.map((item, index) => (
+                <li
+                  key={item._id}
+                  className={`flex justify-between items-center gap-x-5 py-5 ${
+                    index !== cart.length - 1 ? 'border-b' : ''
+                  }`}
+                >
+                  <img className="w-12" src={item.photos} alt="" />
+                  <p className="text-sm">{item.name}</p>
 
-                    {/* Quantity Controls */}
-                    <div className="flex items-center mt-1 space-x-2">
-                      <button
-                        className="btn btn-xs"
-                        onClick={() => decrement(item._id)}
-                        disabled={item.qty <= 0}
-                      >
-                        -
-                      </button>
-                      <input
-                        value={item.qty}
-                        readOnly
-                        className="w-10 h-5 text-center border rounded bg-transparent"
-                      />
-                      <button
-                        className="btn btn-xs"
-                        onClick={() => increment(item._id, item.stock)}
-                        disabled={item.qty >= item.stock}
-                      >
-                        +
-                      </button>
-                    </div>
-
-                    {item.qty >= item.stockStatus && (
-                      <p className="text-red-500 text-xs mt-1">{`${item.stockStatus} items available`}</p>
-                    )}
+                  {/* Quantity Controls */}
+                  <div className="flex items-center mt-1 space-x-2">
+                    <button
+                      className="btn btn-xs"
+                      onClick={() => decrement(item._id)}
+                      disabled={item.qty <= 0}
+                    >
+                      -
+                    </button>
+                    <input
+                      value={item.qty}
+                      readOnly
+                      className="w-10 h-6 text-center border rounded bg-transparent"
+                    />
+                    <button
+                      className="btn btn-xs"
+                      onClick={() => increment(item._id, item.stock)}
+                      disabled={item.qty >= item.stock}
+                    >
+                      +
+                    </button>
                   </div>
-
-                  <button className="btn btn-xs btn-error" onClick={() => removeFromCart(item._id)}>
-                    ✕
+                  <p className="text-xl text-gray-500 font-semibold">
+                    ${(item.finalPrice ?? item.price) * item.qty}
+                  </p>
+                  <button className="text-error text-xl" onClick={() => removeFromCart(item._id)}>
+                    <LuTrash></LuTrash>
                   </button>
                 </li>
               ))}
             </ul>
 
             {/*Cart Summary */}
-            <div className="mt-6 pt-4">
-              <p className="flex justify-between text-sm">
-                <span>Subtotal:</span>
-                <span>${subtotal.toFixed(2)}</span>
-              </p>
-              <p className="flex justify-between text-sm">
-                <span>Shipping:</span>
-                <span>${shipping.toFixed(2)}</span>
-              </p>
-              <p className="flex justify-between font-bold text-lg mt-2">
+            <div className="p-4 my-4 bg-slate-50 text-black border border-gray-200 rounded-md">
+              <h1 className="font-bold pb-3">Order Summary</h1>
+              <div className="mb-2">
+                <p className="flex justify-between text-sm">
+                  <span>Subtotal:</span>
+                  <span>${subtotal.toFixed(2)}</span>
+                </p>
+                <p className="flex justify-between text-sm">
+                  <span>Shipping:</span>
+                  <span>${shipping.toFixed(2)}</span>
+                </p>
+              </div>
+              <p className="flex justify-between font-bold text-lg border-t">
                 <span>Total:</span>
                 <span>${total.toFixed(2)}</span>
               </p>
@@ -106,12 +109,12 @@ const CartModal = ({ isOpen, onClose }) => {
         )}
 
         {/* Buttons */}
-        <div className="mt-4 flex justify-between">
+        <div className="flex justify-between border-t pt-4">
           <button className="btn" onClick={onClose}>
             Close
           </button>
           {cart.length > 0 && (
-            <button className="btn btn-primary" onClick={handleCheckout}>
+            <button className="btn bg-green-600" onClick={handleCheckout}>
               Checkout
             </button>
           )}
