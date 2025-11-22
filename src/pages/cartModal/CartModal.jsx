@@ -22,7 +22,7 @@ const CartModal = ({ isOpen, onClose }) => {
   const handleCheckout = () => {
     if (user) {
       //if logged in  shipping send to shipping
-      navigate('shipping');
+      navigate('/shipping');
     } else {
       // if dont  logged in then send to login page
       navigate('/login', { state: { from: '/shipping' } });
