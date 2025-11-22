@@ -78,7 +78,7 @@ export default function PlaceOrderPage() {
       <div className="mb-4 border p-3 rounded">
         <h3 className="font-semibold mb-2">Payment Method</h3>
         <select
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent"
           value={paymentMethod}
           onChange={e => setPaymentMethod(e.target.value)}
         >
