@@ -11,6 +11,8 @@ import Orders from '../pages/order/Order';
 import OrderSuccess from '../pages/orderSuccess.jsx/OrderSuccess';
 import PaymentPage from '../pages/payment/Payment';
 import PlaceOrderPage from '../pages/placeOrder/PlaceOrder';
+import DiscountProducts from '../pages/product/DiscountProducts/DiscountProducts';
+import ProductDetails from '../pages/product/productDetails/ProductDetails';
 import ProductManage from '../pages/productListManage/ProductManage';
 import Register from '../pages/register/Register';
 import ShippingPage from '../pages/shipping/Shipping';
@@ -69,6 +71,14 @@ export const router = createBrowserRouter([
       {
         path: 'products',
         element: <Products />,
+      },
+      {
+        path: 'discount-products',
+        element: <DiscountProducts />,
+      },
+      {
+        path: 'products/:id',
+        element: <ProductDetails />,
       },
       {
         path: 'cart',
