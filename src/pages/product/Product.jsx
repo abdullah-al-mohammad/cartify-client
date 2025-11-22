@@ -47,12 +47,8 @@ export default function Product({ product }) {
             />
           </div>
           <div className="card-body">
-            <span className="tooltip tooltip-bottom" data-tip={product.name}>
-              <h2 className="text-2xl font-bold line-clamp-1">{product.name}</h2>
-            </span>
-            <span className="mt-2 tooltip" data-tip={product.description}>
-              <p className="line-clamp-2">{product.description}</p>
-            </span>
+            <h2 className="text-2xl font-bold line-clamp-1">{product.name}</h2>
+            <p className="line-clamp-2">{product.description}</p>
             <p className="mt-4 text-xl font-semibold">
               ${product.finalPrice ?? product.price}{' '}
               {product.discount > 0 && (
