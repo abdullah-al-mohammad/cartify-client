@@ -36,7 +36,7 @@ export default function ShippingPage() {
           value={form.fullName}
           onChange={handleChange}
           placeholder="Full Name"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent border border-slate-400"
           required
         />
         <input
@@ -45,7 +45,7 @@ export default function ShippingPage() {
           value={form.address}
           onChange={handleChange}
           placeholder="Address"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent border border-slate-400"
           required
         />
         <input
@@ -54,7 +54,7 @@ export default function ShippingPage() {
           value={form.city}
           onChange={handleChange}
           placeholder="City"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent border border-slate-400"
           required
         />
         <input
@@ -63,7 +63,7 @@ export default function ShippingPage() {
           value={form.postalCode}
           onChange={handleChange}
           placeholder="Postal Code"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent border border-slate-400"
           required
         />
         <input
@@ -72,11 +72,11 @@ export default function ShippingPage() {
           value={form.country}
           onChange={handleChange}
           placeholder="Country"
-          className="input input-bordered w-full"
+          className="input input-bordered w-full bg-transparent border border-slate-400"
           required
         />
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn bg-green-600 w-full">
           Continue to Payment
         </button>
       </form>
