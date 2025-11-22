@@ -48,8 +48,8 @@ const ProductDetails = () => {
   };
   return (
     <div className="container mx-auto">
-      <div className="card pt-40">
-        <div className="h-60 w-60 bg-slate-400 mx-auto">
+      <div className="pt-40 flex items-center gap-x-10">
+        <div className="bg-slate-400">
           <img
             loading="lazy"
             src={product.photos}
@@ -59,12 +59,18 @@ const ProductDetails = () => {
         </div>
         <div className="card-body">
           <h2 className="text-2xl font-bold line-clamp-1">{product.name}</h2>
-          <p className="line-clamp-2">{product.description}</p>
+          <p className="line-clamp-4">{product.description}</p>
           <p className="mt-4 text-xl font-semibold">
             ${product.finalPrice ?? product.price}{' '}
             {product.discount > 0 && (
               <span className="line-through text-gray-500 ml-2">${product.price}</span>
             )}
+            <span className="ml-2 bg-red-600 py-1 px-3 rounded-xl text-xs text-white">
+              {product.discount}% OFF
+            </span>
+          </p>
+          <p>
+            status: <span className="text-success">{product.status}</span>
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-4">
