@@ -94,7 +94,6 @@ export default function Product({ product }) {
                 onClick={handleAddToCart}
               >
                 {/* Add to Cart */}
-                {/* {!currentQty && ( */}
                 <span className={`flex gap-2`}>
                   <BsFillCartCheckFill
                     className={`text-lg transform transition-all duration-500 ease-in-out text-success ${
