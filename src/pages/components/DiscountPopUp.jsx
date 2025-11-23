@@ -21,8 +21,6 @@ const DiscountPopUp = () => {
 
   const getRandomProduct = () => {
     const randomIndex = Math.floor(Math.random() * discountProducts.length);
-    console.log(randomIndex);
-
     return discountProducts[randomIndex];
   };
 
@@ -44,6 +42,7 @@ const DiscountPopUp = () => {
       imageAlt: 'Custom image',
       showConfirmButton: false,
       timer: 3000,
+      scrollbarPadding: false,
       customClass: {
         popup: 'discount-popup',
       },
@@ -67,6 +66,7 @@ const DiscountPopUp = () => {
         imageHeight: 50,
         imageAlt: 'Custom image',
         showConfirmButton: false,
+        scrollbarPadding: false,
         timer: 4000,
         customClass: {
           popup: 'my-swal-height',
