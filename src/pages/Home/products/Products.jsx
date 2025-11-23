@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import DiscountPopUp from '../../components/DiscountPopUp';
 import Product from '../../product/Product';
 import ProductGridSkeleton from '../skeleton/productSkeleton';
 
@@ -37,7 +36,6 @@ export default function Products() {
 
   return (
     <>
-      <DiscountPopUp></DiscountPopUp>
       <div id="product-section" className="py-20">
         <div className="text-center mb-5">
           <h1 className="text-5xl mb-4">Top Tech Deals</h1>
@@ -71,6 +69,7 @@ export default function Products() {
           <p className="text-center text-gray-500">No products available.</p>
         )}
       </div>
+      {/* <DiscountPopUp></DiscountPopUp> */}
     </>
   );
 }
