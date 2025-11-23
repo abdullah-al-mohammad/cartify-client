@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import shopping from '../assets/shoppingcart.png';
 import CartModal from '../pages/cartModal/CartModal';
+import DiscountPopUp from '../pages/components/DiscountPopUp';
 import Footer from '../pages/Shared/Footer/Footer';
 import Navbar from '../pages/Shared/Navbar/Navbar';
 import { useCart } from '../Router/provider/CartProvider';
@@ -12,11 +13,11 @@ const Main = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
   const hideHeaderFooter = location.pathname === '/login' || location.pathname === '/register';
-  console.log(hideHeaderFooter);
 
   return (
     <>
       {hideHeaderFooter || <Navbar />}
+      {hideHeaderFooter || <DiscountPopUp />}
       <div className="min-h-screen">
         <Outlet />
       </div>
