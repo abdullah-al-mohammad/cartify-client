@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
@@ -7,9 +7,10 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 const DiscountPopUp = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const popUpShown = useRef(false);
 
   const { data: products = [] } = useQuery({
-    queryKey: 'products',
+    queryKey: ['products'],
     queryFn: async () => {
       const res = await axiosPublic.get(`/products`);
       return res.data;
@@ -19,19 +20,22 @@ const DiscountPopUp = () => {
   const discountProducts = products.filter(p => p.discount > 0);
 
   const getRandomProduct = () => {
-    const randonIndex = Math.floor(Math.random() * discountProducts.length);
-    return discountProducts[randonIndex];
+    const randomIndex = Math.floor(Math.random() * discountProducts.length);
+    console.log(randomIndex);
+
+    return discountProducts[randomIndex];
   };
 
   useEffect(() => {
+    if (popUpShown.current) return;
     // Wait until products are loaded
     if (discountProducts.length === 0) return;
-
+    popUpShown.current = true;
     const firstProduct = getRandomProduct();
-    console.log(firstProduct._id);
 
     //FIRST POPUP — Center of the screen
     Swal.fire({
+      position: 'center',
       title: `${firstProduct.discount}% discount on`,
       text: firstProduct.name,
       imageUrl: firstProduct.photos,
@@ -40,8 +44,11 @@ const DiscountPopUp = () => {
       imageAlt: 'Custom image',
       showConfirmButton: false,
       timer: 3000,
+      customClass: {
+        popup: 'discount-popup',
+      },
       didOpen: popup => {
-        popup.addEventListener('click', id => {
+        popup.addEventListener('click', () => {
           navigate(`/discount-products`);
         });
       },
