@@ -50,7 +50,7 @@ export default function Product({ product }) {
             <h2 className="text-2xl font-bold line-clamp-1 min-h-6 text-ellipsis">
               {product.name}
             </h2>
-            <p className="line-clamp-2 min-h-14 leading-tight text-ellipsis">
+            <p className="line-clamp-2 min-h-14 leading-loose text-ellipsis">
               {product.description}
             </p>
             <p className="mt-4 text-xl font-semibold">
