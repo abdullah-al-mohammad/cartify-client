@@ -69,7 +69,6 @@ export default function Products() {
           <p className="text-center text-gray-500">No products available.</p>
         )}
       </div>
-      {/* <DiscountPopUp></DiscountPopUp> */}
     </>
   );
 }
