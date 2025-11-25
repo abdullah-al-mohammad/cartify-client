@@ -40,7 +40,7 @@ const Banner = ({ ordernow }) => {
             <button
               onClick={ordernow}
               type="button"
-              className="flex items-center gap-2 py-5 px-5 md:px-10 md:py-5 md:text-xl 
+              className="flex items-center mx-auto md:mx-0 gap-2 py-5 px-5 md:px-10 md:py-5 md:text-xl 
                   rounded-xl font-semibold
                   bg-white text-black
                   dark:bg-black dark:text-white
