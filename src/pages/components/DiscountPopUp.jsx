@@ -29,14 +29,13 @@ const DiscountPopUp = () => {
     // Wait until products are loaded
     if (discountProducts.length === 0) return;
     popUpShown.current = true;
-    const firstProduct = getRandomProduct();
 
     //Function for repeated toast popups
     const showPopup = () => {
       const randomProduct = getRandomProduct();
       Swal.fire({
         toast: true,
-        position: 'bottom-end', // bottom-right corner
+        position: 'bottom-end',
         title: `${randomProduct.discount}% discount on`,
         text: randomProduct.name,
         imageUrl: randomProduct.photos,
@@ -46,6 +45,7 @@ const DiscountPopUp = () => {
         showConfirmButton: false,
         scrollbarPadding: false,
         timer: 4000,
+        theme: 'auto',
         customClass: {
           popup: 'my-swal-height',
         },
