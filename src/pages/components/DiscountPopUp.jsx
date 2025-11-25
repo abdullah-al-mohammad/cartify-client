@@ -31,28 +31,6 @@ const DiscountPopUp = () => {
     popUpShown.current = true;
     const firstProduct = getRandomProduct();
 
-    //FIRST POPUP — Center of the screen
-    Swal.fire({
-      position: 'center',
-      title: `${firstProduct.discount}% discount on`,
-      text: firstProduct.name,
-      imageUrl: firstProduct.photos,
-      imageWidth: 100,
-      imageHeight: 80,
-      imageAlt: 'Custom image',
-      showConfirmButton: false,
-      timer: 3000,
-      scrollbarPadding: false,
-      customClass: {
-        popup: 'discount-popup',
-      },
-      didOpen: popup => {
-        popup.addEventListener('click', () => {
-          navigate(`/discount-products`);
-        });
-      },
-    });
-
     //Function for repeated toast popups
     const showPopup = () => {
       const randomProduct = getRandomProduct();
