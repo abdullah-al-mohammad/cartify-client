@@ -1,5 +1,6 @@
 import { LuTrash } from 'react-icons/lu';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import empty from '../../assets/empty.png';
 import useAuth from '../../hooks/useAuth';
 import { useCart } from '../../Router/provider/CartProvider';
 
@@ -33,15 +34,18 @@ const CartModal = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
       <div className="dark:bg-black dark:text-white bg-white text-black w-auto p-6 rounded-xl shadow-lg">
-        <div className="flex justify-between">
+        <div className="flex justify-between h-16 w-full">
           <h2 className="text-lg font-bold mb-4">Your Cart</h2>
-          <button className="btn btn-error" onClick={onClose}>
+          <button className="btn text-error" onClick={onClose}>
             ✕
           </button>
         </div>
 
         {cart.length === 0 ? (
-          <p className="text-gray-500">Cart is empty</p>
+          <>
+            <img className="w-20 h-20 mx-auto mb-10" src={empty} alt="" />
+            <p className="text-gray-500 mb-5">You have not placed any order yet</p>
+          </>
         ) : (
           <>
             <ul className="space-y-3">
@@ -88,7 +92,7 @@ const CartModal = ({ isOpen, onClose }) => {
             </ul>
 
             {/*Cart Summary */}
-            <div className="p-4 my-4 bg-slate-50 text-black border border-gray-200 rounded-md">
+            <div className="p-4 my-4 border border-gray-200 rounded-md">
               <h1 className="font-bold pb-3">Order Summary</h1>
               <div className="mb-2">
                 <p className="flex justify-between text-sm">
@@ -109,12 +113,13 @@ const CartModal = ({ isOpen, onClose }) => {
         )}
 
         {/* Buttons */}
-        <div className="flex justify-between border-t pt-4">
-          <button className="btn" onClick={onClose}>
-            Close
-          </button>
+        <div className="flex justify-between items-center gap-4 border-t pt-4 mt-4">
+          <Link to="/products" onClick={() => onClose()} className="btn btn-outline w-full">
+            Shop now
+          </Link>
+
           {cart.length > 0 && (
-            <button className="btn bg-green-600" onClick={handleCheckout}>
+            <button className="btn bg-green-600 w-full" onClick={handleCheckout}>
               Checkout
             </button>
           )}
