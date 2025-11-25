@@ -37,9 +37,6 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <ThemeToggle />
-      </li>
-      <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
@@ -107,7 +104,12 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+            <ul className="menu menu-horizontal px-1">
+              <li>
+                <ThemeToggle />
+              </li>
+              {navLinks}
+            </ul>
           </div>
           {user ? (
             <div className="dropdown dropdown-end">
