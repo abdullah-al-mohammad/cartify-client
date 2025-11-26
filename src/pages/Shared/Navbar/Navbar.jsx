@@ -63,7 +63,7 @@ const Navbar = () => {
     <div
       className={`navbar fixed z-50 transition-all duration-700 text-white ${
         scrolled
-          ? 'shadow-md opacity-100 bg-black text-white dark:bg-white dark:text-black'
+          ? 'shadow-md opacity-100 bg-black/80 text-white dark:bg-white/80 dark:text-black'
           : 'bg-transparent opacity-100'
       }`}
       // style={{
