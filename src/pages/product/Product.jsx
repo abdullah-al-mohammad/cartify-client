@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsFillCartCheckFill } from 'react-icons/bs';
-import { useCart } from '../../Router/provider/CartProvider';
-import CartModal from '../cartModal/CartModal';
+import CartModal from '../../components/cartModal/CartModal';
+import { useCart } from '../../provider/CartProvider';
 
 export default function Product({ product }) {
   const { cart, addToCart, removeFromCart } = useCart();

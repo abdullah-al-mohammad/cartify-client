@@ -3,9 +3,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import './index.css';
-import AuthProvider from './Router/provider/AuthProvider';
-import { CartProvider } from './Router/provider/CartProvider';
-import { ThemeProvider } from './Router/provider/ThemeProvider';
+import AuthProvider from './provider/AuthProvider';
+import { CartProvider } from './provider/CartProvider';
+import { ThemeProvider } from './provider/ThemeProvider';
 import { router } from './Router/Router';
 const queryClient = new QueryClient();
 

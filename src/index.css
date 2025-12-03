@@ -37,3 +37,70 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s; /* smooth transition */
 }
+
+/* SweetAlert Custom Popup Design */
+.my-swal-height {
+  width: 320px !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 12px !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease-in-out !important;
+}
+/* LIGHT THEME */
+.light .my-swal-height {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #e5e5e5;
+}
+
+/* DARK THEME */
+.dark .my-swal-height {
+  background: #1f1f1f;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+/* Hover animation */
+.my-swal-height:hover {
+  transform: translateY(-4px) !important;
+}
+
+/* Image styling */
+.my-swal-height img {
+  border-radius: 8px !important;
+  background-color: darkcyan;
+}
+
+/* Title styling */
+.swal2-title {
+  font-size: 16px !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+/* Text styling */
+.swal2-html-container {
+  font-size: 13px !important;
+  opacity: 0.8 !important;
+  margin-top: -4px !important;
+  text-align: left !important;
+}
+
+/* MOBILE Responsive */
+@media (min-width: 480px) {
+  .my-swal-height {
+    max-width: 200px !important;
+  }
+}
+@media (min-width: 768px) {
+  .my-swal-height {
+    max-width: 500px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .my-swal-height {
+    max-width: 900px !important;
+  }
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu';
-import { useTheme } from '../../Router/provider/ThemeProvider';
+import { useTheme } from '../../provider/ThemeProvider';
 
 export default function ThemeToggle() {
   const { theme, switchTheme } = useTheme();
@@ -17,7 +17,7 @@ export default function ThemeToggle() {
       {/* Dropdown Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm"
+        className="flex items-center gap-1 px-3 rounded-lg text-sm"
       >
         {items.find(i => i.id === theme)?.icon}
         {items.find(i => i.id === theme)?.label}

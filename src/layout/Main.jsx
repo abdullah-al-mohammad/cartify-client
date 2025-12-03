@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import shopping from '../assets/shoppingcart.png';
-import CartModal from '../pages/cartModal/CartModal';
-import DiscountPopUp from '../pages/components/DiscountPopUp';
-import Footer from '../pages/Shared/Footer/Footer';
-import Navbar from '../pages/Shared/Navbar/Navbar';
-import { useCart } from '../Router/provider/CartProvider';
+import CartModal from '../components/cartModal/CartModal';
+import DiscountPopUp from '../components/DiscountPopUp';
+import Footer from '../components/Shared/Footer/Footer';
+import Navbar from '../components/Shared/Navbar/Navbar';
+import { useCart } from '../provider/CartProvider';
 
 const Main = () => {
   const { cart } = useCart();

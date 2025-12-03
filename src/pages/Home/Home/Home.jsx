@@ -1,6 +1,6 @@
 import { useRef } from 'react';
+import Products from '../../product/products/Products';
 import Banner from '../Banner/Banner';
-import Products from '../products/Products';
 
 const Home = () => {
   const productRef = useRef(null);

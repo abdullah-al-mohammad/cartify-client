@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { BsFillCartCheckFill } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
+import CartModal from '../../../components/cartModal/CartModal';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import { useCart } from '../../../Router/provider/CartProvider';
-import CartModal from '../../cartModal/CartModal';
+import { useCart } from '../../../provider/CartProvider';
+// import { useCart } from '../../../Router/provider/CartProvider';
 
 const ProductDetails = () => {
   const { id } = useParams();

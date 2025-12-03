@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import Pagination from '../../components/Pagination';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Pagination from '../components/Pagination';
 
 export const Users = () => {
   const axiosSecure = useAxiosSecure();

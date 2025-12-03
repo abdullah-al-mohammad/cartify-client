@@ -1,0 +1,29 @@
+.flip-container {
+  perspective: 1000px;
+}
+
+.flip-image {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-container:hover .flip-image {
+  transform: rotateY(360deg);
+  -webkit-transform: rotateY(360deg);
+  -moz-transform: rotateY(360deg);
+  -ms-transform: rotateY(360deg);
+  -o-transform: rotateY(360deg);
+}
+#social a {
+  background-color: #ffffff1c;
+  padding: 10px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+#social a:hover svg {
+  color: rgba(21, 227, 21, 0.795);
+  transition: all 0.5s ease-in-out;
+}
