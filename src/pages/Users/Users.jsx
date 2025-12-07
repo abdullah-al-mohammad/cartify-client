@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Pagination from '../../components/Pagination';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import UserNotFound from '../Error/UserNotFound';
 
 export const Users = () => {
   const axiosSecure = useAxiosSecure();
@@ -46,7 +47,7 @@ export const Users = () => {
     <div>
       <div className="overflow-x-auto">
         {isLoading && <p>users is loading</p>}
-        {isError && <p>Error:{error.message}</p>}
+        {isError && <UserNotFound/>}
         {users.length > 0 ? (
           <div className="flex-col h-screen overflow-auto">
             <table className="table">
