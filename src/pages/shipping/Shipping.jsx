@@ -26,7 +26,7 @@ export default function ShippingPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-lg mx-auto py-40 px-20">
       <h2 className="text-2xl font-bold mb-4">Shipping Information</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
