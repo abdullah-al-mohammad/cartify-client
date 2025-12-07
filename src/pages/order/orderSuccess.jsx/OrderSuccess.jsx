@@ -18,7 +18,7 @@ export default function OrderSuccess() {
   if (!order) return <p className="p-6">Loading order details...</p>;
 
   return (
-    <div className="max-w-lg mx-auto p-6 text-center">
+    <div className="max-w-lg mx-auto text-center py-40 px-20">
       <h2 className="text-2xl font-bold mb-4">Thank you for your order!</h2>
       <p className="mb-2">Order ID: <span className="font-semibold">{order.id}</span></p>
       <p className="mb-4">We’ve received your order and it’s being processed.</p>
