@@ -9,10 +9,7 @@ export default function Products() {
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => {
-      const res = await getAllProducts();
-      return res.data;
-    },
+    queryFn: getAllProducts
   });
 
   const categories = useMemo(() => {
