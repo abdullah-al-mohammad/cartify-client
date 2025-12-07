@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { addProduct } from '../../api/productApi';
 
 export default function AddProduct() {
   const axiosSecure = useAxiosSecure();
@@ -49,11 +50,9 @@ export default function AddProduct() {
       headers: { 'X-Api-Key': remove_bg_key },
       body: data,
     });
-    console.log(bgRes);
 
     if (!bgRes.ok) throw new Error('Background removal failed');
     const blob = await bgRes.blob();
-    console.log(blob);
 
     // step-2 upload image to imgbb after remove bg
     const formdata = new FormData();
@@ -76,7 +75,7 @@ export default function AddProduct() {
       discount: Number(form.discount),
       stockStatus: form.stockStatus === 'true',
     };
-    await axiosSecure.post('/products', newProduct);
+    await addProduct( newProduct);
 
     // fetchProducts();
     setForm(defaultFrom);
