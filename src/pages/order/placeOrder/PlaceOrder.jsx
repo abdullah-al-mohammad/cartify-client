@@ -57,7 +57,7 @@ export default function PlaceOrderPage() {
   if (!shippingInfo) return <p className="p-6">Loading shipping info...</p>;
 
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-lg mx-auto py-40 px-20">
       <h2 className="text-2xl font-bold mb-4">Confirm Your Order</h2>
 
       {/* Shipping Info */}
