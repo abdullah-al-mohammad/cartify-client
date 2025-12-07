@@ -10,7 +10,7 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6">
+    <div className="max-w-lg mx-auto py-40 px-20">
       <h2 className="text-2xl font-bold mb-4">Payment Method</h2>
 
       <form onSubmit={handlePaymentSubmit} className="space-y-4">
