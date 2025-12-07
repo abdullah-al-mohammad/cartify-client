@@ -1,12 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import { getAllProducts, updateProduct } from '../../../api/productApi';
+import { deleteProduct, getAllProducts, updateProduct } from '../../../api/productApi';
 import Pagination from '../../../components/Pagination';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import ProductNotFound from '../../Error/ProductNotFound';
 
 const ProductManage = () => {
-  const axiosSecure = useAxiosSecure();
   const [deletingId, setDeletingId] = useState(null);
 
   const {
@@ -37,7 +36,7 @@ const ProductManage = () => {
   const deleteMutation = useMutation({
     mutationFn: async id => {
       setDeletingId(id);
-      await axiosSecure.delete(`/products/${id}`);
+      await deleteProduct(id);
     },
     onSuccess: () => {
       setDeletingId(null);
@@ -80,7 +79,7 @@ const ProductManage = () => {
   return (
     <div>
       {isLoading && <p className="text-gray-500">Loading products...</p>}
-      {isError && <p className="text-red-500">Error: {error.message}</p>}
+      {isError && <ProductNotFound/>}
       <h1 className="text-xl font-bold mb-4">Product Management</h1>
       {/* Product List Table */}
       {!isLoading && !isError && (
