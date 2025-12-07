@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import { getAllProducts } from '../../../api/productApi';
 
 const DiscountProducts = () => {
-  const axiosPublic = useAxiosPublic();
 
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/products');
+      const res = await getAllProducts();
       return res.data;
     },
   });
