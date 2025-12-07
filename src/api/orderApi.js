@@ -8,10 +8,11 @@ export const placeOrder = async orderData => {
 };
 
 // Get all orders of a user
-export const getUserOrders = async userId => {
-  const res = await axiosSecure.get(`/orders/user/${userId}`);
+export const getAllOrders = async (query = "") => {
+  const res = await axiosSecure.get(`/orders${query}`);
   return res.data;
 };
+
 
 // Get a specific order
 export const getSingleOrder = async orderId => {
@@ -20,7 +21,7 @@ export const getSingleOrder = async orderId => {
 };
 
 // Update order status (Admin)
-export const updateOrderStatus = async (orderId, status) => {
-  const res = await axiosSecure.patch(`/orders/${orderId}`, { status });
+export const updateOrderStatus = async (id, status) => {
+  const res = await axiosSecure.patch(`orders/${id}/status`, { status });
   return res.data;
 };
