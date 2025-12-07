@@ -2,21 +2,23 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Pagination from '../../components/Pagination';
 import useAuth from '../../hooks/useAuth';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { getAllOrders, updateOrderStatus } from '../../api/orderApi';
 
 export default function Orders() {
   const [filter, setFilter] = useState({ startDate: '', endDate: '' });
-  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
   const fetchOrders = async () => {
-    let query = '';
-    if (filter.startDate || filter.endDate) {
-      query = `?startDate=${filter.startDate}&endDate=${filter.endDate}`;
-    }
-    const res = await axiosSecure.get(`/orders/${query}`);
-    return res.data;
-  };
+  let query = "";
+
+  if (filter.startDate || filter.endDate) {
+    query = `?startDate=${filter.startDate || ""}&endDate=${filter.endDate || ""}`;
+  }
+
+  const data = await getAllOrders(query);
+  return data;
+};
+
 
   // useQuery to fetch data
   const {
@@ -30,7 +32,7 @@ export default function Orders() {
   });
   // Mutation for updating status
   const mutation = useMutation({
-    mutationFn: ({ id, status }) => axiosSecure.patch(`orders/${id}/status`, { status }),
+    mutationFn: ({ id, status }) =>updateOrderStatus(id,status),
     onSuccess: () => {
       refetch();
     },
