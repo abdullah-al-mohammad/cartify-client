@@ -16,7 +16,7 @@ const DiscountProducts = () => {
 
   return (
     <div className="px-6 py-40 container mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">🔥 Discount Products</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">Discount Products</h2>
 
       <div className="grid md:grid-cols-3 gap-6">
         {discountProducts.map(product => (
