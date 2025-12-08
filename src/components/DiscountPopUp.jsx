@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../hooks/useAxiosPublic';
+import { getAllProducts } from '../api/productApi';
 
 const DiscountPopUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -11,10 +12,7 @@ const DiscountPopUp = () => {
 
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/products`);
-      return res.data;
-    },
+    queryFn: getAllProducts
   });
 
   const discountProducts = products.filter(p => p.discount > 0);
@@ -37,7 +35,9 @@ const DiscountPopUp = () => {
         toast: true,
         position: 'bottom-end',
         title: `${randomProduct.discount}% discount on`,
-        text: randomProduct.name,
+        text:randomProduct.name.length > 50
+          ? randomProduct.name.slice(0, 50) + '...'
+          : randomProduct.name,
         imageUrl: randomProduct.photos,
         imageWidth: 80,
         imageHeight: 50,
