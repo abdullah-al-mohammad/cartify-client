@@ -7,7 +7,7 @@ AOS.init();
 const Banner = ({ ordernow }) => {
   return (
     <div id="banner" className="bannerBg h-screen py-40 lg:pb-0">
-      <div className="container mx-auto md:text-start text-white text-wrap text-center p-10">
+      <div className="container mx-auto md:text-start text-white text-wrap text-center md:p-10">
         <h1
           className="text-4xl md:text-6xl"
           data-aos="fade-in"
@@ -43,7 +43,7 @@ const Banner = ({ ordernow }) => {
               className="flex items-center mx-auto md:mx-0 gap-2 py-5 px-5 md:px-10 md:py-5 md:text-xl 
                   rounded-xl font-semibold
                   bg-white text-black
-                  dark:bg-black dark:text-white
+                  dark:bg-gray-700 dark:text-white
                   transition-all duration-500
                   hover:bg-slate-300 hover:text-green-400
                   dark:hover:bg-gray-800 dark:hover:text-green-500  "
