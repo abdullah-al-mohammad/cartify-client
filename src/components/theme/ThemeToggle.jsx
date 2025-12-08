@@ -13,7 +13,7 @@ export default function ThemeToggle() {
   ];
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative text-left">
       {/* Dropdown Button */}
       <button
         onClick={() => setOpen(!open)}
