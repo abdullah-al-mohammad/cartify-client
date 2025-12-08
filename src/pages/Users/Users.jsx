@@ -5,7 +5,7 @@ import Pagination from '../../components/Pagination';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import UserNotFound from '../Error/UserNotFound';
 
-export const Users = () => {
+ const Users = () => {
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -113,3 +113,4 @@ export const Users = () => {
     </div>
   );
 };
+export default Users
