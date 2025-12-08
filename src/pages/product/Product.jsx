@@ -62,7 +62,6 @@ export default function Product({ product }) {
 
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
-                v
                 className={`btn btn-sm bg-green-600 ${
                   currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
                 }`}
@@ -71,7 +70,6 @@ export default function Product({ product }) {
                 -
               </button>
               <input
-                type=""
                 value={currentQty}
                 readOnly
                 className="w-12 h-8 text-center border rounded bg-white dark:text-black"
