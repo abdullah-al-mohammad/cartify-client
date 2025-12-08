@@ -1,89 +1,84 @@
+/* ------------------------------
+    Tailwind Base Setup
+------------------------------ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------
+    Typography
+------------------------------ */
 * {
   font-family: 'Inter', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
 }
 
-p,
-span,
-a,
-li,
-button {
+p, span, a, li, button {
   font-family: 'Roboto', sans-serif;
 }
 
+/* ------------------------------
+    Theme Colors (Light & Dark)
+------------------------------ */
 :root {
   --bg-color: white;
-  --text-color: black;
+  --text-color: rgb(42, 40, 40);
 }
 
 .dark {
-  --bg-color: black;
+  --bg-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));;
   --text-color: white;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-  /* smooth transition */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* SweetAlert Custom Popup Design */
+/* ------------------------------
+    SweetAlert Custom Styling
+------------------------------ */
 .my-swal-height {
   width: 320px !important;
   border-radius: 16px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 0 12px !important;
+  gap: 12px !important;
   cursor: pointer !important;
   transition: transform 0.2s ease-in-out !important;
 }
 
-/* LIGHT THEME */
 .light .my-swal-height {
   background: #ffffff;
   color: #000000;
   border: 1px solid #e5e5e5;
 }
 
-/* DARK THEME */
 .dark .my-swal-height {
   background: #1f1f1f;
   color: #ffffff;
   border: 1px solid #333;
 }
 
-/* Hover animation */
 .my-swal-height:hover {
   transform: translateY(-4px) !important;
 }
 
-/* Image styling */
 .my-swal-height img {
   border-radius: 8px !important;
-  background-color: darkcyan;
 }
 
-/* Title styling */
+/* Text styles inside SweetAlert */
 .swal2-title {
   font-size: 16px !important;
   margin: 0 !important;
   text-align: left !important;
 }
 
-/* Text styling */
 .swal2-html-container {
   font-size: 13px !important;
   opacity: 0.8 !important;
@@ -91,7 +86,9 @@ body {
   text-align: left !important;
 }
 
-/* MOBILE Responsive */
+/* ------------------------------
+    Responsive SweetAlert Width
+------------------------------ */
 @media (min-width: 480px) {
   .my-swal-height {
     max-width: 200px !important;
