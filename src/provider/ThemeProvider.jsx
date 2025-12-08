@@ -25,7 +25,7 @@ const ThemeProvider = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // 🔥 Listen to system theme change (Fix!)
+  // Listen to system theme change (Fix!)
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
 
