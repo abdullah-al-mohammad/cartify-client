@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function ProductNotFound() {
+const ProductNotFound = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-6">
       <img
@@ -16,7 +16,7 @@ export default function ProductNotFound() {
         The product you're looking for doesn't exist or has been removed.
       </p>
       <p className="text-gray-500 mt-2 text-center">
-       {error.message}
+        {error.message}
       </p>
 
       <Link
@@ -28,3 +28,5 @@ export default function ProductNotFound() {
     </div>
   );
 }
+
+export default ProductNotFound;

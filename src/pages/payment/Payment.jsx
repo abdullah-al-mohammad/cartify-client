@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export default function PaymentPage() {
+const PaymentPage = () => {
   const navigate = useNavigate();
 
   const handlePaymentSubmit = (e) => {
@@ -29,7 +29,6 @@ export default function PaymentPage() {
           </label>
         </fieldset>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="btn btn-primary w-full py-2 text-lg font-semibold transition duration-300 hover:bg-green-700"
@@ -40,3 +39,5 @@ export default function PaymentPage() {
     </div>
   );
 }
+
+export default PaymentPage;

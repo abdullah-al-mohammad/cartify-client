@@ -2,36 +2,22 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext();
 
-/** ---------------------------
- * Cart Provider
- * --------------------------- */
-export const CartProvider = ({ children }) => {
-  /** Load cart from localStorage on first render */
+const CartProvider = ({ children }) => {
+  // Load cart from localStorage on first render
   const [cart, setCart] = useState(() => {
     const stored = localStorage.getItem("cart");
     return stored ? JSON.parse(stored) : [];
   });
 
-  /** Sync cart to localStorage */
+  // Sync cart to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  /** ---------------------------
-   * Add product to cart
-   * --------------------------- */
   const addToCart = (product) => {
     setCart((prev) => {
       const existing = prev.find((item) => item._id === product._id);
-      const isNew = !existing;
 
-      // Limit: Max 5 UNIQUE products
-      if (isNew && prev.length >= 5) {
-        alert("You can only add 5 unique products to your cart.");
-        return prev;
-      }
-
-      // If product already exists → update quantity
       if (existing) {
         const finalQty = product.qty;
 
@@ -48,14 +34,20 @@ export const CartProvider = ({ children }) => {
         );
       }
 
-      // Add new product (minimum between qty and stock)
-      return [...prev, { ...product, qty: Math.min(product.qty, product.stock) }];
+      // if product is new + cart doesn't have space
+      // Limit: Max 5 UNIQUE products
+      if (!existing && prev.length >= 5) {
+        alert("You can only add 5 unique products to your cart.");
+        return prev;
+      }
+
+      // if product is new + cart has space
+      return [...prev,
+      { ...product, qty: Math.min(product.qty, product.stock) }
+      ];
     });
   };
 
-  /** ---------------------------
-   * Increase quantity
-   * --------------------------- */
   const increment = (id, stock) => {
     setCart((prev) =>
       prev.map((item) =>
@@ -66,9 +58,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  /** ---------------------------
-   * Decrease quantity
-   * --------------------------- */
   const decrement = (id) => {
     setCart((prev) =>
       prev
@@ -81,16 +70,10 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  /** ---------------------------
-   * Remove product completely
-   * --------------------------- */
   const removeFromCart = (id) => {
     setCart((prev) => prev.filter((item) => item._id !== id));
   };
 
-  /** ---------------------------
-   * Clear whole cart
-   * --------------------------- */
   const clearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
@@ -112,5 +95,6 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-/** Custom hook for using cart */
+export default CartProvider;
+
 export const useCart = () => useContext(CartContext);

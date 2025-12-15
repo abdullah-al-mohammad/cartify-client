@@ -1,11 +1,13 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { getAllOrders, updateOrderStatus } from '../../api/orderApi';
 import Pagination from '../../components/Pagination';
 import useAuth from '../../hooks/useAuth';
-import { getAllOrders, updateOrderStatus } from '../../api/orderApi';
 
-export default function Orders() {
+const Orders = () => {
   const [filter, setFilter] = useState({ startDate: '', endDate: '' });
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { user } = useAuth();
 
   const fetchOrders = async () => {
@@ -19,8 +21,6 @@ export default function Orders() {
     return data;
   };
 
-
-  // useQuery to fetch data
   const {
     data: orders = [],
     isLoading,
@@ -30,14 +30,14 @@ export default function Orders() {
     queryKey: ['orders'],
     queryFn: fetchOrders,
   });
-  // Mutation for updating status
+
   const mutation = useMutation({
     mutationFn: ({ id, status }) => updateOrderStatus(id, status),
     onSuccess: () => {
       refetch();
     },
   });
-  // Mutation for updating status
+
   const handleStatusChange = async (id, newStatus) => {
     mutation.mutate({ id, status: newStatus });
   };
@@ -46,19 +46,27 @@ export default function Orders() {
     const { name, value } = e.target;
     setFilter({ ...filter, [name]: value });
   };
-  // pagination page
-  const [currentPage, setCurrentPage] = useState(1);
+
   const itemsPerPage = 10;
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
-
   const currentItems = orders.slice(indexOfFirst, indexOfLast);
+
+  if (isLoading) {
+    return <p className="text-center text-gray-500 col-span-8">Loading orders...</p>;
+  }
+
+  if (isError) {
+    return <p className="text-center text-red-500 col-span-8">Failed to fetch orders</p>;
+  }
+
+  if (!orders?.length) {
+    return <p className="text-center text-gray-500 col-span-8">Order not found</p>;
+  }
 
   return (
     <div className="p-6">
       <h2 className="text-xl font-bold mb-4">Orders Management</h2>
-
-      {/* Date Filter */}
       <div className="flex gap-2 mb-4">
         <input
           type="date"
@@ -78,59 +86,47 @@ export default function Orders() {
           Filter
         </button>
       </div>
-
-      {/* Loading Skeleton */}
-      {isLoading && <p>Loading orders...</p>}
-
-      {/* Error State */}
-      {isError && <p className="text-red-500">Failed to fetch orders</p>}
-
-      {/* Orders Table */}
-      {!isLoading && orders.length > 0 ? (
-        <div className="flex-col overflow-auto h-screen">
-          <table className="table w-full border">
-            <thead className="bg-black">
-              <tr>
-                <th>#</th>
-                <th>Customer</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentItems.map((order, index) => (
-                <tr key={order._id}>
-                  <td>{index + 1}</td>
-                  <td>{user.displayName}</td>
-                  <td>${order.total}</td>
-                  <td className={`font-semibold px-2 py-1 rounded ${order.status === 'delivered' ? "text-green-500" : order.status === 'canceled' ? "text-red-500" : "text-yellow-500"}`}>{order.status}</td>
-                  <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                  <td>
-                    <select
-                      value={order.status}
-                      onChange={e => handleStatusChange(order._id, e.target.value)}
-                      className={`select select-bordered border border-slate-300 text-white
+      <div className="flex-col overflow-auto h-screen">
+        <table className="table w-full border">
+          <thead className="bg-black">
+            <tr>
+              <th>#</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.map((order, index) => (
+              <tr key={order._id}>
+                <td>{index + 1}</td>
+                <td>{user.displayName}</td>
+                <td>${order.total}</td>
+                <td className={`font-semibold px-2 py-1 rounded ${order.status === 'delivered' ? "text-green-500" : order.status === 'canceled' ? "text-red-500" : "text-yellow-500"}`}>{order.status}</td>
+                <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                <td>
+                  <select
+                    value={order.status}
+                    onChange={e => handleStatusChange(order._id, e.target.value)}
+                    className={`select select-bordered border border-slate-300 text-white
                           ${order.status === 'delivered' ? 'bg-green-500' :
-                          order.status === 'canceled' ? 'bg-red-500' :
-                            'bg-yellow-500'
-                        }`}
-                    >
-                      <option value="pending" className="text-yellow-500 font-semibold">Pending</option>
-                      <option value="shipped" className="text-yellow-500 font-semibold">Shipped</option>
-                      <option value="delivered" className="text-green-500 font-semibold">Delivered</option>
-                      <option value="canceled" className="text-red-500 font-semibold">Canceled</option>
-                    </select>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        !isLoading && <p>order not found</p>
-      )}
+                        order.status === 'canceled' ? 'bg-red-500' :
+                          'bg-yellow-500'
+                      }`}
+                  >
+                    <option value="pending" className="text-yellow-500 font-semibold">Pending</option>
+                    <option value="shipped" className="text-yellow-500 font-semibold">Shipped</option>
+                    <option value="delivered" className="text-green-500 font-semibold">Delivered</option>
+                    <option value="canceled" className="text-red-500 font-semibold">Canceled</option>
+                  </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div>
         <Pagination
           currentPage={currentPage}
@@ -142,3 +138,5 @@ export default function Orders() {
     </div>
   );
 }
+
+export default Orders;

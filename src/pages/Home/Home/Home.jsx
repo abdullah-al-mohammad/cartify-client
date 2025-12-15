@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Products from '../../product/products/Products';
+import ProductHeading from '../../products/ProductHeading';
 import Banner from '../Banner/Banner';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <Banner ordernow={scrollToProduct}></Banner>
       <div className="max-w-screen-xl mx-auto" ref={productRef}>
-        <Products></Products>
+        <ProductHeading />
       </div>
     </>
   );

@@ -1,10 +1,15 @@
 const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
   if (totalPages === 1) return null;
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
+
   return (
     <div className="flex items-center justify-center gap-2 mt-2">
-      {/* previous button */}
+
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -12,20 +17,18 @@ const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => 
       >
         Prev
       </button>
-      {/* page button */}
+
       {pages.map(page => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border rounded ${
-            currentPage === page ? 'bg-blue-600 text-white' : ''
-          }`}
+          className={`px-3 py-1 border rounded ${currentPage === page ? 'bg-blue-600 text-white' : ''
+            }`}
         >
           {page}
         </button>
       ))}
 
-      {/* next button */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -33,6 +36,7 @@ const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => 
       >
         Next
       </button>
+
     </div>
   );
 };

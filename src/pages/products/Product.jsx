@@ -3,10 +3,13 @@ import { BsFillCartCheckFill } from 'react-icons/bs';
 import CartModal from '../../components/cartModal/CartModal';
 import { useCart } from '../../provider/CartProvider';
 
-export default function Product({ product }) {
-  const { cart, addToCart, removeFromCart } = useCart();
+const Product = ({ product }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cart, addToCart, removeFromCart } = useCart();
 
+  if (!product) {
+    return <p className='text-center text-gray-500 col-span-8'>Product Not Available...</p>
+  }
   const { _id } = product;
 
   const inCart = cart.find(item => item._id === _id);
@@ -62,9 +65,8 @@ export default function Product({ product }) {
 
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
-                className={`btn btn-sm bg-green-600 ${
-                  currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
-                }`}
+                className={`btn btn-sm bg-green-600 ${currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
+                  }`}
                 onClick={() => handleQtyChange(currentQty - 1)}
               >
                 -
@@ -75,37 +77,31 @@ export default function Product({ product }) {
                 className="w-12 h-8 text-center border rounded bg-white dark:text-black"
               />
               <button
-                className={`btn btn-sm bg-green-600 ${
-                  currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
-                }`}
+                className={`btn btn-sm bg-green-600 ${currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
+                  }`}
                 onClick={() => handleQtyChange(currentQty + 1)}
               >
                 +
               </button>
             </div>
-
-            {product.stockStatus ? (
-              <button
-                className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
-                  inCart ? 'btn-outline' : 'bg-green-600'
+            <button
+              disabled={product.stockStatus <= 0}
+              className={`btn mt-4 ${product.stockStatus <= 0
+                ? "btn-disabled text-error cursor-not-allowed opacity-70"
+                : "bg-green-600"
                 }`}
-                onClick={handleAddToCart}
-              >
-                {/* Add to Cart */}
-                <span className={`flex gap-2`}>
-                  <BsFillCartCheckFill
-                    className={`text-lg transform transition-all duration-500 ease-in-out text-success ${
-                      inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
+              onClick={handleAddToCart}
+            >
+              {/* Add to Cart */}
+              <span className={`flex gap-2`}>
+                <BsFillCartCheckFill
+                  className={`text-lg transform transition-all duration-500 ease-in-out text-success
+                     ${inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
                     }`}
-                  />
-                  {inCart ? 'View cart' : 'Add to Cart'}
-                </span>
-              </button>
-            ) : (
-              <button className="btn mt-4 btn-disabled text-error cursor-not-allowed opacity-70">
-                Out of Stock
-              </button>
-            )}
+                />
+                {product.stockStatus <= 0 ? 'Out of Stock' : inCart ? 'View cart' : 'Add to Cart'}
+              </span>
+            </button>
           </div>
         </div>
 
@@ -114,3 +110,5 @@ export default function Product({ product }) {
     </>
   );
 }
+
+export default Product;

@@ -3,14 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { placeOrder } from '../../../api/orderApi';
 import { useCart } from '../../../provider/CartProvider';
 
-export default function PlaceOrderPage() {
-  const { cart, removeFromCart } = useCart();
-
-  const navigate = useNavigate();
-
+const PlaceOrderPage = () => {
   const [shippingInfo, setShippingInfo] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [loading, setLoading] = useState(false);
+  const { cart, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const info = localStorage.getItem('shippingInfo');
@@ -103,3 +101,5 @@ export default function PlaceOrderPage() {
     </div>
   );
 }
+
+export default PlaceOrderPage;

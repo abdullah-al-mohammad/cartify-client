@@ -1,6 +1,5 @@
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-// ..
+import 'aos/dist/aos.css';
 import logo from '../../../assets/cartify.png';
 import './footer.css';
 AOS.init();

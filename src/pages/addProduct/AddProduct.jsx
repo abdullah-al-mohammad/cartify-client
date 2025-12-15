@@ -1,19 +1,14 @@
 import { useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { addProduct } from "../../api/productApi";
 
-export default function AddProduct() {
-  const axiosSecure = useAxiosSecure();
+const AddProduct = () => {
   const [loading, setLoading] = useState(false);
 
-  // ENV KEYS
   const BG_REMOVE_API = import.meta.env.VITE_BGREMOVE_API_KEY;
   const IMAGE_UPLOAD_API = import.meta.env.VITE_IMAGE_API_KEY;
-
   const REMOVE_BG_URL = "https://api.remove.bg/v1.0/removebg";
   const IMAGE_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${IMAGE_UPLOAD_API}`;
 
-  // Form state
   const defaultForm = {
     name: "",
     slug: "",
@@ -28,7 +23,6 @@ export default function AddProduct() {
 
   const [form, setForm] = useState(defaultForm);
 
-  // Handle form input
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
 
@@ -39,7 +33,6 @@ export default function AddProduct() {
     }
   };
 
-  // Remove image background
   const removeBackground = async (file) => {
     const data = new FormData();
     data.append("size", "auto");
@@ -55,7 +48,6 @@ export default function AddProduct() {
     return res.blob();
   };
 
-  // Upload image to imgbb
   const uploadImage = async (blob) => {
     const formData = new FormData();
     formData.append("image", blob);
@@ -71,7 +63,6 @@ export default function AddProduct() {
     return data.data.display_url;
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.photos) return alert("Please select an image");
@@ -79,13 +70,9 @@ export default function AddProduct() {
     try {
       setLoading(true);
 
-      // STEP 1 → Remove BG
       const cleanedImage = await removeBackground(form.photos);
-
-      // STEP 2 → Upload cleaned image
       const imageUrl = await uploadImage(cleanedImage);
 
-      // STEP 3 → Prepare final product object
       const newProduct = {
         ...form,
         photos: [imageUrl],
@@ -101,7 +88,6 @@ export default function AddProduct() {
       alert("Product added successfully!");
 
     } catch (error) {
-      console.error(error);
       alert(error.message || "Something went wrong");
     } finally {
       setLoading(false);
@@ -204,3 +190,5 @@ export default function AddProduct() {
     </div>
   );
 }
+
+export default AddProduct;

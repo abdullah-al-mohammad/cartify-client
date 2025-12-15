@@ -11,13 +11,10 @@ const CartModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  //Subtotal
   const subtotal = cart.reduce((acc, item) => acc + (item.finalPrice ?? item.price) * item.qty, 0);
 
-  //Shipping charge
   const shipping = cart.length > 0 ? 10 : 0;
 
-  // Grand Total
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
@@ -31,9 +28,7 @@ const CartModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center">
-      {/* MODAL BOX */}
       <div className="dark:bg-black dark:text-white bg-white text-black w-auto max-w-md p-6 rounded-xl shadow-lg max-h-[80vh] overflow-hidden">
-        {/* TOP BAR */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-bold">Your Cart</h2>
           <button className="btn text-error" onClick={onClose}>
@@ -41,7 +36,6 @@ const CartModal = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* EMPTY CART */}
         {cart.length === 0 ? (
           <>
             <img className="w-20 h-20 mx-auto mb-4" src={empty} alt="" />
@@ -49,19 +43,17 @@ const CartModal = ({ isOpen, onClose }) => {
           </>
         ) : (
           <>
-            {/* CART ITEMS WITH SCROLL */}
             <ul className="space-y-3 max-h-60 overflow-y-auto pr-2">
               {cart.map((item, index) => (
                 <li
                   key={item._id}
-                  className={`flex justify-between items-center gap-x-5 py-4 
+                  className={`flex justify-between items-center gap-x-5 py-4
                  ${index !== cart.length - 1 ? 'border-b' : ''}`}
                 >
                   <img className="w-12" src={item.photos} alt="" />
 
                   <p className="text-sm flex-1">{item.name}</p>
 
-                  {/* Quantity Buttons */}
                   <div className="flex items-center space-x-2">
                     <button
                       className="btn btn-xs"
@@ -97,7 +89,6 @@ const CartModal = ({ isOpen, onClose }) => {
               ))}
             </ul>
 
-            {/* SUMMARY */}
             <div className="p-4 my-4 border rounded-md">
               <h1 className="font-bold pb-3">Order Summary</h1>
 
@@ -119,7 +110,6 @@ const CartModal = ({ isOpen, onClose }) => {
           </>
         )}
 
-        {/* BOTTOM BUTTON */}
         <div className="border-t pt-4">
           {cart.length > 0 ? (
             <button className="btn bg-green-600 w-full" onClick={handleCheckout}>

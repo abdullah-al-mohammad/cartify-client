@@ -2,7 +2,7 @@
 
 import Skeleton from './skeleton';
 
-export default function ProductGridSkeleton({ count = 10 }) {
+const ProductGridSkeleton = ({ count = 10 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {Array(count)
@@ -13,3 +13,5 @@ export default function ProductGridSkeleton({ count = 10 }) {
     </div>
   );
 }
+
+export default ProductGridSkeleton;

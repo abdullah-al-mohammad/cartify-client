@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
-export default function ShippingPage() {
+const ShippingPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -83,3 +83,5 @@ export default function ShippingPage() {
     </div>
   );
 }
+
+export default ShippingPage;

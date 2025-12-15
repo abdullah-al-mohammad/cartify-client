@@ -1,35 +1,36 @@
-/* ------------------------------
-    Tailwind Base Setup
------------------------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------
-    Typography
------------------------------- */
-* {
+------------------------------ */ * {
   font-family: 'Inter', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Poppins', sans-serif;
 }
 
-p, span, a, li, button {
+p,
+span,
+a,
+li,
+button {
   font-family: 'Roboto', sans-serif;
 }
 
-/* ------------------------------
-    Theme Colors (Light & Dark)
------------------------------- */
 :root {
   --bg-color: white;
   --text-color: rgb(42, 40, 40);
 }
 
 .dark {
-  --bg-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));;
+  --bg-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
+  ;
   --text-color: white;
 }
 
@@ -39,9 +40,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ------------------------------
-    SweetAlert Custom Styling
------------------------------- */
 .my-swal-height {
   width: 320px !important;
   border-radius: 16px !important;
@@ -72,7 +70,6 @@ body {
   border-radius: 8px !important;
 }
 
-/* Text styles inside SweetAlert */
 .swal2-title {
   font-size: 16px !important;
   margin: 0 !important;
@@ -86,9 +83,6 @@ body {
   text-align: left !important;
 }
 
-/* ------------------------------
-    Responsive SweetAlert Width
------------------------------- */
 @media (min-width: 480px) {
   .my-swal-height {
     max-width: 200px !important;

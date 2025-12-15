@@ -1,4 +1,4 @@
-export default function Skeleton() {
+const Skeleton = () => {
   return (
     <div className="card bg-base-100 shadow-sm animate-pulse">
       {/* Image placeholder */}
@@ -29,3 +29,5 @@ export default function Skeleton() {
     </div>
   );
 }
+
+export default Skeleton;

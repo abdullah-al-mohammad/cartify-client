@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function OrderSuccess() {
-  const navigate = useNavigate();
+const OrderSuccess = () => {
   const [order, setOrder] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedOrder = localStorage.getItem("order");
     if (savedOrder) setOrder(JSON.parse(savedOrder));
-
-    // Cleanup: component unmount হলে shipping info remove
     return () => {
       localStorage.removeItem("order");
     };
@@ -45,3 +43,4 @@ export default function OrderSuccess() {
     </div>
   );
 }
+export default OrderSuccess;

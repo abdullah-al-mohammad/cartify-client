@@ -21,7 +21,6 @@ const Register = () => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Redirect if user is already logged in
   useEffect(() => {
     if (user) navigate('/');
   }, [user, navigate]);
@@ -36,10 +35,7 @@ const Register = () => {
     setError('');
 
     try {
-      // Register user
       const result = await registerUser(email, password);
-
-      // Upload profile image
       const formData = new FormData();
       formData.append('image', image[0]);
       const res = await axiosPublic.post(image_hosting_api, formData, {
@@ -48,11 +44,8 @@ const Register = () => {
 
       if (res.data.success) {
         const imageUrl = res.data.data.display_url;
-
-        // Update profile
         await updateUserProfile(name, imageUrl);
 
-        // Success alert
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -61,29 +54,22 @@ const Register = () => {
           timer: 1500,
         });
 
-        // Save user info to DB
         await axiosPublic.post('/users', { name, email, image: imageUrl });
       }
     } catch (err) {
-      console.error(err);
-      setError('Registration failed. Please try again.');
+      setError('Registration failed. Please try again.', err);
     }
   };
 
   return (
     <div className="hero registerBG min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse gap-20">
-        {/* Left Side - Image and Title */}
         <div className="text-center lg:text-left">
           <img className="w-28 mb-4" src={auth} alt="Auth" />
           <h1 className="text-5xl font-bold">Register now</h1>
         </div>
-
-        {/* Registration Form */}
         <div className="card registerCard shrink-0 shadow-2xl registerBG">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-
-            {/* Name */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -95,8 +81,6 @@ const Register = () => {
                 className="input input-bordered w-full bg-transparent"
               />
             </div>
-
-            {/* Email */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -108,8 +92,6 @@ const Register = () => {
                 className="input input-bordered w-full bg-transparent"
               />
             </div>
-
-            {/* Profile Image Upload */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Upload Profile</span>
@@ -120,8 +102,6 @@ const Register = () => {
                 className="file-input w-full max-w-xs bg-transparent"
               />
             </div>
-
-            {/* Password */}
             <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -151,8 +131,6 @@ const Register = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
               )}
             </div>
-
-            {/* Confirm Password */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Confirm Password</span>
@@ -167,19 +145,13 @@ const Register = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
               )}
             </div>
-
-            {/* Error Message */}
             {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-
-            {/* Submit Button */}
             <div className="form-control mt-6">
               <button className="btn bg-bold_red-0 border-bold_red-0 transition duration-500 hover:bg-white hover:text-black w-full">
                 Register
               </button>
             </div>
           </form>
-
-          {/* Redirect to Login */}
           <p className="p-5 text-center">
             Already have an account?{' '}
             <Link className="text-primary font-semibold" to="/login">

@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { getAllProducts } from '../../../api/productApi';
+import getAllProducts from '../../api/productApi';
 
 const DiscountProducts = () => {
 
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
-    queryFn: async () => {
-      const res = await getAllProducts();
-      return res.data;
-    },
+    queryFn: getAllProducts
   });
 
   const discountProducts = products.filter(p => p.discount);

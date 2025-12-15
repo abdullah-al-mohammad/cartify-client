@@ -2,11 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import useAxiosPublic from '../hooks/useAxiosPublic';
-import { getAllProducts } from '../api/productApi';
+import getAllProducts from '../api/productApi';
 
 const DiscountPopUp = () => {
-  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const popUpShown = useRef(false);
 
@@ -24,18 +22,16 @@ const DiscountPopUp = () => {
 
   useEffect(() => {
     if (popUpShown.current) return;
-    // Wait until products are loaded
     if (discountProducts.length === 0) return;
     popUpShown.current = true;
 
-    //Function for repeated toast popups
     const showPopup = () => {
       const randomProduct = getRandomProduct();
       Swal.fire({
         toast: true,
         position: 'bottom-end',
         title: `${randomProduct.discount}% discount on`,
-        text:randomProduct.name.length > 50
+        text: randomProduct.name.length > 50
           ? randomProduct.name.slice(0, 50) + '...'
           : randomProduct.name,
         imageUrl: randomProduct.photos,
@@ -57,7 +53,6 @@ const DiscountPopUp = () => {
       });
     };
 
-    // repeat every 10 seconds
     const interval = setInterval(showPopup, 10000);
 
     return () => clearInterval(interval);

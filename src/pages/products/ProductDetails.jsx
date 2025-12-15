@@ -2,9 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { BsFillCartCheckFill } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
-import CartModal from '../../../components/cartModal/CartModal';
-import { useCart } from '../../../provider/CartProvider';
-import { getSingleProduct } from '../../../api/productApi';
+import { getSingleProduct } from '../../api/productApi';
+import CartModal from '../../components/cartModal/CartModal';
+import { useCart } from '../../provider/CartProvider';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const { data: product = {} } = useQuery({
     queryKey: ["product", id],
     queryFn: () => getSingleProduct(id),
-    enabled: !!id, // prevents calling API before id is available
+    enabled: !!id,
   });
 
   const { cart, addToCart, removeFromCart } = useCart();
@@ -44,6 +44,7 @@ const ProductDetails = () => {
       setIsCartOpen(true);
     }
   };
+
   return (
     <div className="container mx-auto">
       <div className="py-40 flex items-center gap-x-10 card">

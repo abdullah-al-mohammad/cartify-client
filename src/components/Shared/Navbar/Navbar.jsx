@@ -1,11 +1,9 @@
-import { useEffect, useState, useCallback } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import { useCallback, useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/cartify.png';
 import shopping from '../../../assets/shoppingcart.png';
-
 import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../provider/CartProvider';
 import CartModal from '../../cartModal/CartModal';
@@ -14,30 +12,26 @@ import ThemeToggle from '../../theme/ThemeToggle';
 AOS.init();
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { user, logout, loading } = useAuth();
   const { cart } = useCart();
 
-  const [scrolled, setScrolled] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  // Handle logout
   const handleLogout = useCallback(() => {
     logout().catch(err => console.error(err));
   }, [logout]);
 
-  // Scroll handler
   useEffect(() => {
     const handleScroll = () => {
       const bannerHeight = document.getElementById('banner')?.offsetHeight || 0;
       setScrolled(window.scrollY > bannerHeight - 65);
     };
 
-    handleScroll(); // initialize on mount
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Navbar links
   const navLinks = (
     <>
       <li>
@@ -71,26 +65,20 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-        scrolled
-          ? 'bg-black/80 shadow-md text-white dark:bg-white/80 dark:text-black'
-          : 'bg-transparent text-white dark:text-white'
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled
+        ? 'bg-black/80 shadow-md text-white dark:bg-white/80 dark:text-black'
+        : 'bg-transparent text-white dark:text-white'
+        }`}
     >
       <div className="container mx-auto flex items-center justify-between py-2 px-4">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Cartify Logo" className="w-10 h-10" />
           <h1 className="font-bold text-lg">Cartify</h1>
         </Link>
-
-        {/* Desktop Links */}
         <ul className="hidden lg:flex items-center gap-4 ml-auto">
           <li><ThemeToggle /></li>
           {navLinks}
         </ul>
-
-        {/* Mobile Dropdown */}
         <div className="lg:hidden dropdown">
           <label tabIndex={0} className="btn btn-ghost p-0">
             <svg
@@ -111,7 +99,6 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* User Avatar */}
         {user && (
           <div className="dropdown dropdown-end ml-4">
             <label tabIndex={0} className="cursor-pointer">
@@ -133,7 +120,6 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Cart Modal */}
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </nav>
   );

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function UserNotFound() {
+const UserNotFound = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-6">
       <h1 className="text-4xl font-semibold text-gray-800">User Not Found</h1>
@@ -27,3 +27,5 @@ export default function UserNotFound() {
     </div>
   );
 }
+
+export default UserNotFound;

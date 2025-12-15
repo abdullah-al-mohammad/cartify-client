@@ -29,25 +29,19 @@ const Login = () => {
         navigate(from, { replace: true });
       }
     } catch (err) {
-      console.error(err);
+      setError('Login failed. Please try again.', err);
     }
   };
 
   return (
     <div className="hero loginBG min-h-screen pt-20">
       <div className="hero-content flex-col lg:flex-row-reverse gap-20">
-
-        {/* Left Side: Logo and Title */}
         <div className="text-center lg:text-left">
           <img className="w-28 mb-4" src={auth} alt="Auth" />
           <h1 className="text-5xl font-bold text-bold_red-0">Login now</h1>
         </div>
-
-        {/* Login Form */}
         <div className="card border-8 border-rose-900 loginCard w-full max-w-sm shrink-0 shadow-2xl">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-
-            {/* Email Field */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -62,8 +56,6 @@ const Login = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
               )}
             </div>
-
-            {/* Password Field */}
             <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -93,16 +85,12 @@ const Login = () => {
                 <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
               )}
             </div>
-
-            {/* Submit Button */}
             <div className="form-control mt-6">
               <button className="btn text-white transition duration-500 ease-in-out hover:bg-white hover:text-black w-full">
                 Login
               </button>
             </div>
           </form>
-
-          {/* Redirect to Register */}
           <p className="p-5 text-center">
             Don't have an account?{' '}
             <Link className="text-primary font-semibold" to="/register">

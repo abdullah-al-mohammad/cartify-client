@@ -1,7 +1,7 @@
 import useAxiosSecure from '../hooks/useAxiosSecure';
 const axiosSecure = useAxiosSecure();
 // Get all products
-export const getAllProducts = async () => {
+const getAllProducts = async () => {
   const res = await axiosSecure.get('/products');
   return res.data;
 };
@@ -29,3 +29,5 @@ export const deleteProduct = async id => {
   const res = await axiosSecure.delete(`/products/${id}`);
   return res.data;
 };
+
+export default getAllProducts;
