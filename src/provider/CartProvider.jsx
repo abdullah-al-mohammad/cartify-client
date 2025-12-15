@@ -9,7 +9,6 @@ const CartProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  // Sync cart to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -21,7 +20,6 @@ const CartProvider = ({ children }) => {
       if (existing) {
         const finalQty = product.qty;
 
-        // Prevent stock overflow
         if (finalQty > product.stock) {
           alert(`Only ${product.stock} items available.`);
           return prev;
@@ -34,14 +32,11 @@ const CartProvider = ({ children }) => {
         );
       }
 
-      // if product is new + cart doesn't have space
-      // Limit: Max 5 UNIQUE products
       if (!existing && prev.length >= 5) {
         alert("You can only add 5 unique products to your cart.");
         return prev;
       }
 
-      // if product is new + cart has space
       return [...prev,
       { ...product, qty: Math.min(product.qty, product.stock) }
       ];

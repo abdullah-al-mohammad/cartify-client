@@ -15,4 +15,4 @@ const useUsersProfile = () => {
     return [users, loading, refetch]
 }
 
-export default useUsersProfile
+export default useUsersProfile;
