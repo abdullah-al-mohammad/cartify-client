@@ -1,8 +1,9 @@
+import { LuHouse, LuLayoutDashboard, LuMonitor, LuShoppingCart, LuUser } from 'react-icons/lu';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const activeClass = ({ isActive }) =>
-    `block p-2 rounded ${isActive ? 'text-green-600 bg-gray-700' : 'hover:bg-gray-700'
+    `flex items-center gap-2 block p-2 rounded ${isActive ? 'text-green-600 bg-gray-700' : 'hover:bg-gray-700'
     }`;
 
   return (
@@ -16,6 +17,7 @@ const AdminDashboard = () => {
             end
             className={activeClass}
           >
+            <LuHouse />
             Home
           </NavLink>
 
@@ -23,6 +25,7 @@ const AdminDashboard = () => {
             to="users"
             className={activeClass}
           >
+            <LuUser />
             Manage Users
           </NavLink>
 
@@ -30,6 +33,7 @@ const AdminDashboard = () => {
             to="add-product"
             className={activeClass}
           >
+            <LuShoppingCart />
             Add Products
           </NavLink>
 
@@ -37,6 +41,7 @@ const AdminDashboard = () => {
             to="manage-products"
             className={activeClass}
           >
+            <LuLayoutDashboard />
             Manage Products
           </NavLink>
 
@@ -44,6 +49,7 @@ const AdminDashboard = () => {
             to="orders"
             className={activeClass}
           >
+            <LuMonitor />
             Manage Orders
           </NavLink>
         </nav>
