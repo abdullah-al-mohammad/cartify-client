@@ -9,7 +9,6 @@ const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => 
 
   return (
     <div className="flex items-center justify-center gap-2 mt-2">
-
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -22,8 +21,9 @@ const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => 
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-1 border rounded ${currentPage === page ? 'bg-blue-600 text-white' : ''
-            }`}
+          className={`px-3 py-1 border rounded ${
+            currentPage === page ? 'bg-blue-600 text-white' : ''
+          }`}
         >
           {page}
         </button>
@@ -36,7 +36,6 @@ const Pagination = ({ totalItems, onPageChange, currentPage, itemsPerPage }) => 
       >
         Next
       </button>
-
     </div>
   );
 };

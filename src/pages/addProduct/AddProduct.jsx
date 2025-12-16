@@ -1,71 +1,71 @@
-import { useState } from "react";
-import { addProduct } from "../../api/productApi";
+import { useState } from 'react';
+import { addProduct } from '../../api/productApi';
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
 
   const BG_REMOVE_API = import.meta.env.VITE_BGREMOVE_API_KEY;
   const IMAGE_UPLOAD_API = import.meta.env.VITE_IMAGE_API_KEY;
-  const REMOVE_BG_URL = "https://api.remove.bg/v1.0/removebg";
+  const REMOVE_BG_URL = 'https://api.remove.bg/v1.0/removebg';
   const IMAGE_UPLOAD_URL = `https://api.imgbb.com/1/upload?key=${IMAGE_UPLOAD_API}`;
 
   const defaultForm = {
-    name: "",
-    slug: "",
+    name: '',
+    slug: '',
     photos: null,
-    description: "",
-    price: "",
+    description: '',
+    price: '',
     discount: 0,
     stockStatus: true,
-    status: "active",
-    categories: "",
+    status: 'active',
+    categories: '',
   };
 
   const [form, setForm] = useState(defaultForm);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value, type, files } = e.target;
 
-    if (type === "file") {
+    if (type === 'file') {
       setForm({ ...form, photos: files[0] });
     } else {
       setForm({ ...form, [name]: value });
     }
   };
 
-  const removeBackground = async (file) => {
+  const removeBackground = async file => {
     const data = new FormData();
-    data.append("size", "auto");
-    data.append("image_file", file);
+    data.append('size', 'auto');
+    data.append('image_file', file);
 
     const res = await fetch(REMOVE_BG_URL, {
-      method: "POST",
-      headers: { "X-Api-Key": BG_REMOVE_API },
+      method: 'POST',
+      headers: { 'X-Api-Key': BG_REMOVE_API },
       body: data,
     });
 
-    if (!res.ok) throw new Error("Background removal failed");
+    if (!res.ok) throw new Error('Background removal failed');
     return res.blob();
   };
 
-  const uploadImage = async (blob) => {
+  const uploadImage = async blob => {
     const formData = new FormData();
-    formData.append("image", blob);
+    formData.append('image', blob);
 
     const res = await fetch(IMAGE_UPLOAD_URL, {
-      method: "POST",
+      method: 'POST',
       body: formData,
     });
 
     const data = await res.json();
-    if (!data.success) throw new Error("Image upload failed");
+    if (!data.success) throw new Error('Image upload failed');
 
     return data.data.display_url;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    if (!form.photos) return alert("Please select an image");
+    if (!form.photos) return alert('Please select an image');
 
     try {
       setLoading(true);
@@ -76,7 +76,7 @@ const AddProduct = () => {
       const newProduct = {
         ...form,
         photos: [imageUrl],
-        categories: form.categories.split(",").map((c) => c.trim()),
+        categories: form.categories.split(',').map(c => c.trim()),
         price: Number(form.price),
         discount: Number(form.discount),
         stockStatus: Number(form.stockStatus),
@@ -85,10 +85,9 @@ const AddProduct = () => {
       await addProduct(newProduct);
       setForm(defaultForm);
 
-      alert("Product added successfully!");
-
+      alert('Product added successfully!');
     } catch (error) {
-      alert(error.message || "Something went wrong");
+      alert(error.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -99,7 +98,6 @@ const AddProduct = () => {
       <h2 className="text-xl font-bold mb-4">Add Product</h2>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 mb-6">
-
         <input
           name="name"
           value={form.name}
@@ -155,7 +153,7 @@ const AddProduct = () => {
         >
           {Array.from({ length: 21 }, (_, i) => (
             <option key={i} value={i}>
-              {i === 0 ? "Out of Stock" : `${i} in Stock`}
+              {i === 0 ? 'Out of Stock' : `${i} in Stock`}
             </option>
           ))}
         </select>
@@ -178,17 +176,12 @@ const AddProduct = () => {
           className="input input-bordered border border-slate-300 bg-transparent col-span-2"
         />
 
-        <button
-          type="submit"
-          className="btn btn-primary col-span-2"
-          disabled={loading}
-        >
-          {loading ? "Uploading..." : "Add Product"}
+        <button type="submit" className="btn btn-primary col-span-2" disabled={loading}>
+          {loading ? 'Uploading...' : 'Add Product'}
         </button>
-
       </form>
     </div>
   );
-}
+};
 
 export default AddProduct;

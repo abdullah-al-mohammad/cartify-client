@@ -10,7 +10,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   const { data: product = {} } = useQuery({
-    queryKey: ["product", id],
+    queryKey: ['product', id],
     queryFn: () => getSingleProduct(id),
     enabled: !!id,
   });
@@ -71,17 +71,15 @@ const ProductDetails = () => {
           <p>
             status:
             <span className="text-success ml-2">
-              {product.stockStatus === "true"
-                ? product.status
-                : 'Inactive'}
+              {product.stockStatus === 'true' ? product.status : 'Inactive'}
             </span>
-
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-4">
             <button
-              className={`btn btn-sm bg-green-600 ${currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
-                }`}
+              className={`btn btn-sm bg-green-600 ${
+                currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
+              }`}
               onClick={() => handleQtyChange(currentQty - 1)}
             >
               -
@@ -93,8 +91,9 @@ const ProductDetails = () => {
               className="w-12 h-8 text-center border rounded bg-white dark:text-black"
             />
             <button
-              className={`btn btn-sm bg-green-600 ${currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
-                }`}
+              className={`btn btn-sm bg-green-600 ${
+                currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
+              }`}
               onClick={() => handleQtyChange(currentQty + 1)}
             >
               +
@@ -103,15 +102,17 @@ const ProductDetails = () => {
 
           {product.stockStatus ? (
             <button
-              className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${inCart ? 'btn-outline' : 'bg-green-600'
-                }`}
+              className={`relative btn mt-4 overflow-hidden transition-all duration-300 ${
+                inCart ? 'btn-outline' : 'bg-green-600'
+              }`}
               onClick={handleAddToCart}
             >
               {/* Add to Cart */}
               <span className={`flex gap-2`}>
                 <BsFillCartCheckFill
-                  className={`text-lg transform transition-all duration-500 ease-in-out text-success ${inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
-                    }`}
+                  className={`text-lg transform transition-all duration-500 ease-in-out text-success ${
+                    inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
+                  }`}
                 />
                 {inCart ? 'View cart' : 'Add to Cart'}
               </span>

@@ -1,11 +1,11 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
 
 const Auth = () => {
   return (
     <>
-        <Outlet/>
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default Auth
+export default Auth;

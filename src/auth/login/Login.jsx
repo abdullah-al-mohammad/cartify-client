@@ -8,7 +8,12 @@ import useAuth from '../../hooks/useAuth';
 import './login.css';
 
 const Login = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const { loginUser, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,7 +25,7 @@ const Login = () => {
     if (user) navigate('/');
   }, [user, navigate]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const { email, password } = data;
     try {
       const result = await loginUser(email, password);
@@ -52,9 +57,7 @@ const Login = () => {
                 {...register('email', { required: 'Email is required' })}
                 className="input input-bordered bg-transparent border border-green-400"
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
             <div className="form-control relative">
               <label className="label">

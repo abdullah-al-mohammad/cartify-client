@@ -12,6 +12,6 @@ const ProductGridSkeleton = ({ count = 10 }) => {
         ))}
     </div>
   );
-}
+};
 
 export default ProductGridSkeleton;

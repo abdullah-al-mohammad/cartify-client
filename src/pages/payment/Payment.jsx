@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const PaymentPage = () => {
   const navigate = useNavigate();
 
-  const handlePaymentSubmit = (e) => {
+  const handlePaymentSubmit = e => {
     e.preventDefault();
     // TODO: Implement payment logic (COD / Card)
-    navigate("placeorder");
+    navigate('placeorder');
   };
 
   return (
@@ -38,6 +38,6 @@ const PaymentPage = () => {
       </form>
     </div>
   );
-}
+};
 
 export default PaymentPage;

@@ -57,8 +57,6 @@ const PlaceOrderPage = () => {
   return (
     <div className="max-w-lg mx-auto py-40 px-20">
       <h2 className="text-2xl font-bold mb-4">Confirm Your Order</h2>
-
-      {/* Shipping Info */}
       <div className="mb-4 border p-3 rounded">
         <h3 className="font-semibold mb-2">Shipping Information</h3>
         <p>{shippingInfo.fullName}</p>
@@ -69,8 +67,6 @@ const PlaceOrderPage = () => {
           {shippingInfo.postalCode}, {shippingInfo.country}
         </p>
       </div>
-
-      {/* Payment Method */}
       <div className="mb-4 border p-3 rounded">
         <h3 className="font-semibold mb-2">Payment Method</h3>
         <select
@@ -82,8 +78,6 @@ const PlaceOrderPage = () => {
           <option value="card">Credit / Debit Card</option>
         </select>
       </div>
-
-      {/* Order Summary */}
       <div className="mb-4 border p-3 rounded">
         <h3 className="font-semibold mb-2">Order Summary</h3>
         <p>Items: ${subtotal.toFixed(2)}</p>
@@ -100,6 +94,6 @@ const PlaceOrderPage = () => {
       </button>
     </div>
   );
-}
+};
 
 export default PlaceOrderPage;

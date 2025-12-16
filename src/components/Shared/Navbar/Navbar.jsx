@@ -35,16 +35,17 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/" className="hover:text-green-500 transition-colors">Home</NavLink>
+        <NavLink to="/" className="hover:text-green-500 transition-colors">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/about" className="hover:text-green-500 transition-colors">About</NavLink>
+        <NavLink to="/about" className="hover:text-green-500 transition-colors">
+          About
+        </NavLink>
       </li>
       <li className="indicator">
-        <button
-          onClick={() => setIsCartOpen(true)}
-          className="relative focus:outline-none"
-        >
+        <button onClick={() => setIsCartOpen(true)} className="relative focus:outline-none">
           <img src={shopping} alt="cart" className="w-6 h-6" />
           {cart.length > 0 && (
             <span className="absolute -top-1 -right-2 bg-red-600 text-white rounded-full px-1 text-xs font-bold">
@@ -65,10 +66,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled
-        ? 'bg-black/80 shadow-md text-white dark:bg-white/80 dark:text-black'
-        : 'bg-transparent text-white dark:text-white'
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+        scrolled
+          ? 'bg-black/80 shadow-md text-white dark:bg-white/80 dark:text-black'
+          : 'bg-transparent text-white dark:text-white'
+      }`}
     >
       <div className="container mx-auto flex items-center justify-between py-2 px-4">
         <Link to="/" className="flex items-center gap-2">
@@ -76,7 +78,9 @@ const Navbar = () => {
           <h1 className="font-bold text-lg">Cartify</h1>
         </Link>
         <ul className="hidden lg:flex items-center gap-4 ml-auto">
-          <li><ThemeToggle /></li>
+          <li>
+            <ThemeToggle />
+          </li>
           {navLinks}
         </ul>
         <div className="lg:hidden dropdown">
@@ -88,7 +92,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
             </svg>
           </label>
           <ul
@@ -102,11 +111,7 @@ const Navbar = () => {
         {user && (
           <div className="dropdown dropdown-end ml-4">
             <label tabIndex={0} className="cursor-pointer">
-              <img
-                src={user.photoURL}
-                alt="user avatar"
-                className="w-8 h-8 rounded-full"
-              />
+              <img src={user.photoURL} alt="user avatar" className="w-8 h-8 rounded-full" />
             </label>
             <ul className="menu dropdown-content mt-4 w-52 p-2 shadow bg-white text-black dark:bg-black dark:text-white rounded-b">
               <li>

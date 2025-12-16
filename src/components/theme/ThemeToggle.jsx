@@ -34,9 +34,10 @@ const ThemeToggle = () => {
                   setOpen(false);
                 }}
                 className={`flex items-center gap-2 w-full px-4 py-2 text-sm text-left transition
-                  ${theme === item.id
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ${
+                    theme === item.id
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }`}
               >
                 {item.icon}
@@ -48,6 +49,6 @@ const ThemeToggle = () => {
       )}
     </div>
   );
-}
+};
 
 export default ThemeToggle;

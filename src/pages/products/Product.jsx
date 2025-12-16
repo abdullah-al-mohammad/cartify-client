@@ -8,7 +8,7 @@ const Product = ({ product }) => {
   const { cart, addToCart, removeFromCart } = useCart();
 
   if (!product) {
-    return <p className='text-center text-gray-500 col-span-8'>Product Not Available...</p>
+    return <p className="text-center text-gray-500 col-span-8">Product Not Available...</p>;
   }
   const { _id } = product;
 
@@ -65,8 +65,9 @@ const Product = ({ product }) => {
 
             <div className="flex items-center justify-center gap-2 mt-4">
               <button
-                className={`btn btn-sm bg-green-600 ${currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
-                  }`}
+                className={`btn btn-sm bg-green-600 ${
+                  currentQty <= 0 ? 'opacity-45 cursor-not-allowed' : ''
+                }`}
                 onClick={() => handleQtyChange(currentQty - 1)}
               >
                 -
@@ -77,8 +78,9 @@ const Product = ({ product }) => {
                 className="w-12 h-8 text-center border rounded bg-white dark:text-black"
               />
               <button
-                className={`btn btn-sm bg-green-600 ${currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
-                  }`}
+                className={`btn btn-sm bg-green-600 ${
+                  currentQty >= product.stockStatus ? 'opacity-45 cursor-not-allowed' : ''
+                }`}
                 onClick={() => handleQtyChange(currentQty + 1)}
               >
                 +
@@ -86,18 +88,18 @@ const Product = ({ product }) => {
             </div>
             <button
               disabled={product.stockStatus <= 0}
-              className={`btn mt-4 ${product.stockStatus <= 0
-                ? "btn-disabled text-error cursor-not-allowed opacity-70"
-                : "bg-green-600"
-                }`}
+              className={`btn mt-4 ${
+                product.stockStatus <= 0
+                  ? 'btn-disabled text-error cursor-not-allowed opacity-70'
+                  : 'bg-green-600'
+              }`}
               onClick={handleAddToCart}
             >
               {/* Add to Cart */}
               <span className={`flex gap-2`}>
                 <BsFillCartCheckFill
                   className={`text-lg transform transition-all duration-500 ease-in-out text-success
-                     ${inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'
-                    }`}
+                     ${inCart ? 'translate-x-0 visible' : '-translate-x-[100px] invisible'}`}
                 />
                 {product.stockStatus <= 0 ? 'Out of Stock' : inCart ? 'View cart' : 'Add to Cart'}
               </span>
@@ -109,6 +111,6 @@ const Product = ({ product }) => {
       </div>
     </>
   );
-}
+};
 
 export default Product;

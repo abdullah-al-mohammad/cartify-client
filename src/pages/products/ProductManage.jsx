@@ -74,15 +74,15 @@ const ProductManage = () => {
   };
 
   if (isLoading) {
-    return <p className="text-gray-500 col-span-8">Loading products...</p>
+    return <p className="text-gray-500 col-span-8">Loading products...</p>;
   }
 
   if (isError) {
-    return <ProductNotFound />
+    return <ProductNotFound />;
   }
 
   if (products.length === 0) {
-    return <p className='text-center text-gray-500 col-span-8'>No Product avilable..</p>
+    return <p className="text-center text-gray-500 col-span-8">No Product avilable..</p>;
   }
 
   return (
@@ -103,55 +103,54 @@ const ProductManage = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              currentItems.map((p, index) => (
-                <tr key={p._id}>
-                  <td>{index + 1}</td>
-                  <td>{p.name}</td>
-                  <td>
-                    <select
-                      value={p.status}
-                      onChange={e => handleUpdate(p._id, 'status', e.target.value)}
-                      className="select select-bordered select-sm border border-slate-300 bg-transparent"
-                    >
-                      <option value="active">Active</option>
-                      <option value="inactive">Inactive</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select
-                      value={p.stockStatus}
-                      onChange={e => handleUpdate(p._id, 'stockStatus', Number(e.target.value))}
-                      className="select select-bordered select-sm border border-slate-300 bg-transparent"
-                    >
-                      {Array.from({ length: 21 }, (_, i) => (
-                        <option key={i} value={i}>
-                          {i === 0 ? 'Out of Stock' : `${i} in Stock`}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>
-                    ${p.price}
-                    {p.discount > 0 && (
-                      <span className="text-green-600 ml-2">
-                        (After {p.discount}%: ${p.finalPrice})
-                      </span>
-                    )}
-                  </td>
-                  <td>{p.discount}%</td>
-                  <td>{p.categories.join(', ')}</td>
-                  <td>
-                    <button
-                      className="btn btn-error btn-sm"
-                      onClick={() => handleDelete(p._id)}
-                      disabled={deletingId === p._id}
-                    >
-                      {deletingId === p._id ? 'Deleting' : 'Delete'}
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {currentItems.map((p, index) => (
+              <tr key={p._id}>
+                <td>{index + 1}</td>
+                <td>{p.name}</td>
+                <td>
+                  <select
+                    value={p.status}
+                    onChange={e => handleUpdate(p._id, 'status', e.target.value)}
+                    className="select select-bordered select-sm border border-slate-300 bg-transparent"
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
+                <td>
+                  <select
+                    value={p.stockStatus}
+                    onChange={e => handleUpdate(p._id, 'stockStatus', Number(e.target.value))}
+                    className="select select-bordered select-sm border border-slate-300 bg-transparent"
+                  >
+                    {Array.from({ length: 21 }, (_, i) => (
+                      <option key={i} value={i}>
+                        {i === 0 ? 'Out of Stock' : `${i} in Stock`}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td>
+                  ${p.price}
+                  {p.discount > 0 && (
+                    <span className="text-green-600 ml-2">
+                      (After {p.discount}%: ${p.finalPrice})
+                    </span>
+                  )}
+                </td>
+                <td>{p.discount}%</td>
+                <td>{p.categories.join(', ')}</td>
+                <td>
+                  <button
+                    className="btn btn-error btn-sm"
+                    onClick={() => handleDelete(p._id)}
+                    disabled={deletingId === p._id}
+                  >
+                    {deletingId === p._id ? 'Deleting' : 'Delete'}
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

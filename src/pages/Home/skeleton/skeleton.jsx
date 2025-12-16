@@ -3,9 +3,7 @@ const Skeleton = () => {
     <div className="card bg-base-100 shadow-sm animate-pulse py-40">
       <div className="text-center mb-5">
         <h1 className="text-5xl mb-4 font-bold"></h1>
-        <p className="text-gray-600">
-
-        </p>
+        <p className="text-gray-600"></p>
       </div>
       <div className="h-48 bg-gray-300 rounded-t-lg w-full"></div>
       <div className="card-body flex flex-col items-center gap-2">
@@ -26,6 +24,6 @@ const Skeleton = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Skeleton;

@@ -39,9 +39,7 @@ const ThemeProvider = ({ children }) => {
 
   const switchTheme = newTheme => setTheme(newTheme);
 
-  return <ThemeContext.Provider value={{ theme, switchTheme }}>
-    {children}
-  </ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ theme, switchTheme }}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => useContext(ThemeContext);

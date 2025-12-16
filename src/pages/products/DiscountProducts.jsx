@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import getAllProducts from '../../api/productApi';
 
 const DiscountProducts = () => {
-
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
-    queryFn: getAllProducts
+    queryFn: getAllProducts,
   });
 
   const discountProducts = products.filter(p => p.discount);

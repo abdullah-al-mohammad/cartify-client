@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const UserNotFound = () => {
   return (
@@ -11,12 +11,8 @@ const UserNotFound = () => {
         alt="user not found"
       />
 
-      <p className="text-gray-500 mt-3">
-        We couldn’t find the user you are looking for.
-      </p>
-      <p className="text-gray-500 mt-3">
-       {error.message}
-      </p>
+      <p className="text-gray-500 mt-3">We couldn’t find the user you are looking for.</p>
+      <p className="text-gray-500 mt-3">{error.message}</p>
 
       <Link
         to="/login"
@@ -26,6 +22,6 @@ const UserNotFound = () => {
       </Link>
     </div>
   );
-}
+};
 
 export default UserNotFound;

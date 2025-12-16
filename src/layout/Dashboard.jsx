@@ -3,7 +3,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const activeClass = ({ isActive }) =>
-    `flex items-center gap-2 block p-2 rounded ${isActive ? 'text-green-600 bg-gray-700' : 'hover:bg-gray-700'
+    `flex items-center gap-2 block p-2 rounded ${
+      isActive ? 'text-green-600 bg-gray-700' : 'hover:bg-gray-700'
     }`;
 
   return (
@@ -12,43 +13,27 @@ const AdminDashboard = () => {
         <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
 
         <nav className="space-y-2">
-          <NavLink
-            to="/"
-            end
-            className={activeClass}
-          >
+          <NavLink to="/" end className={activeClass}>
             <LuHouse />
             Home
           </NavLink>
 
-          <NavLink
-            to="users"
-            className={activeClass}
-          >
+          <NavLink to="users" className={activeClass}>
             <LuUser />
             Manage Users
           </NavLink>
 
-          <NavLink
-            to="add-product"
-            className={activeClass}
-          >
+          <NavLink to="add-product" className={activeClass}>
             <LuShoppingCart />
             Add Products
           </NavLink>
 
-          <NavLink
-            to="manage-products"
-            className={activeClass}
-          >
+          <NavLink to="manage-products" className={activeClass}>
             <LuLayoutDashboard />
             Manage Products
           </NavLink>
 
-          <NavLink
-            to="orders"
-            className={activeClass}
-          >
+          <NavLink to="orders" className={activeClass}>
             <LuMonitor />
             Manage Orders
           </NavLink>
@@ -59,6 +44,6 @@ const AdminDashboard = () => {
       </main>
     </div>
   );
-}
+};
 
 export default AdminDashboard;

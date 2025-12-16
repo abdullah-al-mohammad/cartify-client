@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const ProductNotFound = () => {
   return (
@@ -9,15 +9,11 @@ const ProductNotFound = () => {
         alt=""
       />
 
-      <h2 className="text-3xl font-semibold text-gray-800 mt-4">
-        Product Not Found
-      </h2>
+      <h2 className="text-3xl font-semibold text-gray-800 mt-4">Product Not Found</h2>
       <p className="text-gray-500 mt-2 text-center">
         The product you're looking for doesn't exist or has been removed.
       </p>
-      <p className="text-gray-500 mt-2 text-center">
-        {error.message}
-      </p>
+      <p className="text-gray-500 mt-2 text-center">{error.message}</p>
 
       <Link
         to="/products"
@@ -27,6 +23,6 @@ const ProductNotFound = () => {
       </Link>
     </div>
   );
-}
+};
 
 export default ProductNotFound;

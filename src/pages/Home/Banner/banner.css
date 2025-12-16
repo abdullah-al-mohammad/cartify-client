@@ -1,6 +1,6 @@
 /* Banner background with overlay */
 .bannerBg {
-  background: 
+  background:
     linear-gradient(rgba(0, 0, 0, 0.534), rgba(41, 40, 40, 0.534)),
     url("../../../assets/banner.jpeg");
   background-repeat: no-repeat;

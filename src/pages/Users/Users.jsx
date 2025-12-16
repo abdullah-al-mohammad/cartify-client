@@ -45,7 +45,6 @@ const Users = () => {
         text: message,
         icon: 'error',
       });
-
     }
   };
 
@@ -54,17 +53,16 @@ const Users = () => {
   const indexOfFirst = indxOfLast - itemsPerPage;
   const currentUsers = users.slice(indexOfFirst, indxOfLast);
 
-
   if (isLoading) {
-    return <p>users is loading</p>
+    return <p>users is loading</p>;
   }
 
   if (isError) {
-    <UserNotFound />
+    <UserNotFound />;
   }
 
   if (!users) {
-    return <p>users not found</p>
+    return <p>users not found</p>;
   }
 
   return (
@@ -91,8 +89,9 @@ const Users = () => {
                     <div className="dropdown border w-24 px-6">
                       <div
                         tabIndex={0}
-                        className={`m-1 capitalize font-bold ${user.role === 'admin' ? 'text-green-500' : 'text-red-500'
-                          }`}
+                        className={`m-1 capitalize font-bold ${
+                          user.role === 'admin' ? 'text-green-500' : 'text-red-500'
+                        }`}
                       >
                         {user.role}
                       </div>
@@ -130,4 +129,4 @@ const Users = () => {
   );
 };
 
-export default Users
+export default Users;

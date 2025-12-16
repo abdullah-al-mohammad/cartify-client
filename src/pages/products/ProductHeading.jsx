@@ -18,22 +18,21 @@ const ProductHeading = () => {
       .map(c => c.toLowerCase());
 
     const uniqueCategories = [...new Set(allCategories)];
-    return ['All', ...uniqueCategories.map(c => c.charAt(0).toLowerCase() + c.slice(1))]
+    return ['All', ...uniqueCategories.map(c => c.charAt(0).toLowerCase() + c.slice(1))];
   }, [products]);
 
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product =>
-      product.categories?.includes(selectedCategory)
-    );
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? products
+      : products.filter(product => product.categories?.includes(selectedCategory));
 
   if (isLoading) {
-    return <ProductGridSkeleton count={10} />
+    return <ProductGridSkeleton count={10} />;
   }
 
   if (!filteredProducts) {
-    <p className="text-center text-gray-500">No products available.</p>
-    return
+    <p className="text-center text-gray-500">No products available.</p>;
+    return;
   }
 
   return (
@@ -50,10 +49,11 @@ const ProductHeading = () => {
           <button
             key={category}
             onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-2 rounded transition-colors duration-300 ${selectedCategory === category
-              ? 'bg-green-600 border border-black text-white'
-              : 'bg-gray-200 text-black hover:bg-gray-300'
-              }`}
+            className={`px-4 py-2 rounded transition-colors duration-300 ${
+              selectedCategory === category
+                ? 'bg-green-600 border border-black text-white'
+                : 'bg-gray-200 text-black hover:bg-gray-300'
+            }`}
           >
             {category}
           </button>
@@ -66,6 +66,6 @@ const ProductHeading = () => {
       </div>
     </section>
   );
-}
+};
 
 export default ProductHeading;

@@ -13,7 +13,11 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { registerUser, updateUserProfile, user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -25,7 +29,7 @@ const Register = () => {
     if (user) navigate('/');
   }, [user, navigate]);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const { name, email, password, confirmPassword, image } = data;
 
     if (password !== confirmPassword) {

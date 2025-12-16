@@ -11,10 +11,10 @@ const Orders = () => {
   const { user } = useAuth();
 
   const fetchOrders = async () => {
-    let query = "";
+    let query = '';
 
     if (filter.startDate || filter.endDate) {
-      query = `?startDate=${filter.startDate || ""}&endDate=${filter.endDate || ""}`;
+      query = `?startDate=${filter.startDate || ''}&endDate=${filter.endDate || ''}`;
     }
 
     const data = await getAllOrders(query);
@@ -104,22 +104,43 @@ const Orders = () => {
                 <td>{index + 1}</td>
                 <td>{user.displayName}</td>
                 <td>${order.total}</td>
-                <td className={`font-semibold px-2 py-1 rounded ${order.status === 'delivered' ? "text-green-500" : order.status === 'canceled' ? "text-red-500" : "text-yellow-500"}`}>{order.status}</td>
+                <td
+                  className={`font-semibold px-2 py-1 rounded ${
+                    order.status === 'delivered'
+                      ? 'text-green-500'
+                      : order.status === 'canceled'
+                      ? 'text-red-500'
+                      : 'text-yellow-500'
+                  }`}
+                >
+                  {order.status}
+                </td>
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td>
                   <select
                     value={order.status}
                     onChange={e => handleStatusChange(order._id, e.target.value)}
                     className={`select select-bordered border border-slate-300 text-white
-                          ${order.status === 'delivered' ? 'bg-green-500' :
-                        order.status === 'canceled' ? 'bg-red-500' :
-                          'bg-yellow-500'
-                      }`}
+                          ${
+                            order.status === 'delivered'
+                              ? 'bg-green-500'
+                              : order.status === 'canceled'
+                              ? 'bg-red-500'
+                              : 'bg-yellow-500'
+                          }`}
                   >
-                    <option value="pending" className="text-yellow-500 font-semibold">Pending</option>
-                    <option value="shipped" className="text-yellow-500 font-semibold">Shipped</option>
-                    <option value="delivered" className="text-green-500 font-semibold">Delivered</option>
-                    <option value="canceled" className="text-red-500 font-semibold">Canceled</option>
+                    <option value="pending" className="text-yellow-500 font-semibold">
+                      Pending
+                    </option>
+                    <option value="shipped" className="text-yellow-500 font-semibold">
+                      Shipped
+                    </option>
+                    <option value="delivered" className="text-green-500 font-semibold">
+                      Delivered
+                    </option>
+                    <option value="canceled" className="text-red-500 font-semibold">
+                      Canceled
+                    </option>
                   </select>
                 </td>
               </tr>
@@ -137,6 +158,6 @@ const Orders = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Orders;

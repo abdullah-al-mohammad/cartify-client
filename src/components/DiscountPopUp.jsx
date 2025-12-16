@@ -10,7 +10,7 @@ const DiscountPopUp = () => {
 
   const { data: products = [] } = useQuery({
     queryKey: ['products'],
-    queryFn: getAllProducts
+    queryFn: getAllProducts,
   });
 
   const discountProducts = products.filter(p => p.discount > 0);
@@ -31,9 +31,10 @@ const DiscountPopUp = () => {
         toast: true,
         position: 'bottom-end',
         title: `${randomProduct.discount}% discount on`,
-        text: randomProduct.name.length > 50
-          ? randomProduct.name.slice(0, 50) + '...'
-          : randomProduct.name,
+        text:
+          randomProduct.name.length > 50
+            ? randomProduct.name.slice(0, 50) + '...'
+            : randomProduct.name,
         imageUrl: randomProduct.photos,
         imageWidth: 80,
         imageHeight: 50,
