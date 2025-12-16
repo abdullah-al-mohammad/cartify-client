@@ -29,7 +29,7 @@ button {
 }
 
 .dark {
-  --bg-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
+  --bg-color: bg-gray-800;
   ;
   --text-color: white;
 }

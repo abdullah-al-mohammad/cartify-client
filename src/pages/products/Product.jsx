@@ -39,7 +39,7 @@ const Product = ({ product }) => {
 
   return (
     <>
-      <div className="card shadow-md">
+      <div className="card shadow-md dark:bg-gray-600">
         <div>
           <div className="h-48 bg-slate-400">
             <img
