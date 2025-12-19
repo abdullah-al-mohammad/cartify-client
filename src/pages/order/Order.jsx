@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { getAllOrders, updateOrderStatus } from '../../api/orderApi';
-import Pagination from '../../components/Pagination';
+import Pagination from '../../components/Shared/Pagination';
 import useAuth from '../../hooks/useAuth';
 
 const Orders = () => {

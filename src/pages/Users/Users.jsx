@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import Pagination from '../../components/Pagination';
+import Pagination from '../../components/Shared/Pagination';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import UserNotFound from '../NotFound/UserNotFound';
 

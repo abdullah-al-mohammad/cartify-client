@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsFillCartCheckFill } from 'react-icons/bs';
-import CartModal from '../../components/cartModal/CartModal';
 import { useCart } from '../../provider/CartProvider';
+import CartModal from '../cartModal/CartModal';
 
 const Product = ({ product }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);

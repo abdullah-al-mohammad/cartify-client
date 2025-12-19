@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import getAllProducts from '../../api/productApi';
-import ProductGridSkeleton from '../../components/Skeleton/ProductSkeleton';
+import ProductSkeleton from '../Skeleton/ProductSkeleton';
 import Product from './Product';
 
-const ProductHeading = () => {
+const Products = ({ ref }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
@@ -27,7 +27,7 @@ const ProductHeading = () => {
       : products.filter(product => product.categories?.includes(selectedCategory));
 
   if (isLoading) {
-    return <ProductGridSkeleton count={10} />;
+    return <ProductSkeleton count={10} />;
   }
 
   if (!filteredProducts) {
@@ -36,7 +36,7 @@ const ProductHeading = () => {
   }
 
   return (
-    <section id="product-section" className="py-20">
+    <section id="product-section" className="py-20 max-w-screen-xl mx-auto" ref={ref}>
       <div className="text-center mb-5">
         <h1 className="text-4xl mb-4">Top Tech Deals</h1>
         <p className="text-gray-600">
@@ -68,4 +68,4 @@ const ProductHeading = () => {
   );
 };
 
-export default ProductHeading;
+export default Products;

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Banner from '../../components/Banner/Banner';
-import ProductHeading from '../products/ProductHeading';
+import Products from '../../components/Products/Products';
 
 const Home = () => {
   const productRef = useRef(null);
@@ -10,10 +10,8 @@ const Home = () => {
 
   return (
     <>
-      <Banner ordernow={scrollToProduct}></Banner>
-      <div className="max-w-screen-xl mx-auto" ref={productRef}>
-        <ProductHeading />
-      </div>
+      <Banner ordernow={scrollToProduct} />
+      <Products ref={productRef} />
     </>
   );
 };

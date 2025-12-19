@@ -2,8 +2,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import getAllProducts, { deleteProduct, updateProduct } from '../../api/productApi';
-import Pagination from '../../components/Pagination';
-import ProductNotFound from '../NotFound/ProductNotFound';
+import ProductNotFound from '../../pages/NotFound/ProductNotFound';
+import Pagination from '../Shared/Pagination';
 
 const ProductManage = () => {
   const [deletingId, setDeletingId] = useState(null);
