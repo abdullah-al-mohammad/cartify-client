@@ -1,11 +1,11 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import Login from '../auth/login/Login';
-import Register from '../auth/register/Register';
+import Login from '../auth/Login';
+import Register from '../auth/Register';
 import CartModal from '../components/cartModal/CartModal';
 import Dashboard from '../layout/Dashboard';
 import Main from '../layout/Public';
 import AddProduct from '../pages/addProduct/AddProduct';
-import Home from '../pages/Home/Home/Home';
+import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
 import Orders from '../pages/order/Order';
 import OrderSuccess from '../pages/order/OrderSuccess/OrderSuccess';

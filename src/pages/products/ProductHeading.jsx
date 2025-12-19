@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import getAllProducts from '../../api/productApi';
-import ProductGridSkeleton from '../home/skeleton/productSkeleton';
+import ProductGridSkeleton from '../../components/Skeleton/ProductSkeleton';
 import Product from './Product';
 
 const ProductHeading = () => {

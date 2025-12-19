@@ -3,10 +3,9 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-
-import auth from '../../assets/auth1.png';
-import useAuth from '../../hooks/useAuth';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+import authLogo from '../assets/auth.png';
+import useAuth from '../hooks/useAuth';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 import './register.css';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
@@ -69,7 +68,7 @@ const Register = () => {
     <div className="hero registerBG min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse gap-20">
         <div className="text-center lg:text-left">
-          <img className="w-28 mb-4" src={auth} alt="Auth" />
+          <img className="w-28 mb-4" src={authLogo} alt="authLogo" />
           <h1 className="text-5xl font-bold">Register now</h1>
         </div>
         <div className="card registerCard shrink-0 shadow-2xl registerBG">

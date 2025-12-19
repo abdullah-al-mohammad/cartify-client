@@ -1,6 +1,4 @@
-// src/components/Skeleton/ProductGridSkeleton.jsx
-
-import Skeleton from './skeleton';
+import Skeleton from './Skeleton';
 
 const ProductGridSkeleton = ({ count = 10 }) => {
   return (
