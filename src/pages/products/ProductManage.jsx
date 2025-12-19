@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import getAllProducts, { deleteProduct, updateProduct } from '../../api/productApi';
 import Pagination from '../../components/Pagination';
-import ProductNotFound from '../Error/ProductNotFound';
+import ProductNotFound from '../NotFound/ProductNotFound';
 
 const ProductManage = () => {
   const [deletingId, setDeletingId] = useState(null);

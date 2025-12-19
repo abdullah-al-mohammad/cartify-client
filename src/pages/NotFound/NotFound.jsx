@@ -1,4 +1,6 @@
-const Error = ({ message }) => {
+import { Link } from 'react-router-dom';
+
+const NotFound = ({ message }) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center px-6">
       <img src="https://cdn-icons-png.flaticon.com/512/755/755014.png" className="w-40" />
@@ -9,14 +11,14 @@ const Error = ({ message }) => {
         {message || "We couldn't load this page. Please try again."}
       </p>
 
-      <a
-        href="/"
+      <Link
+        to="/"
         className="mt-6 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-900 transition"
       >
         Go Home
-      </a>
+      </Link>
     </div>
   );
 };
 
-export default Error;
+export default NotFound;

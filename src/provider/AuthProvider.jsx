@@ -15,29 +15,25 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const axiosPublic = useAxiosPublic();
 
-  // Register
   const registerUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // Update profile
   const updateUserProfile = (name, photo) => {
     setLoading(true);
     return updateProfile(auth.currentUser, { displayName: name, photoURL: photo });
   };
 
-  // Login
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // Logout
   const logout = () => signOut(auth);
 
   // Check auth state

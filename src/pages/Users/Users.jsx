@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Pagination from '../../components/Pagination';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import UserNotFound from '../Error/UserNotFound';
+import UserNotFound from '../NotFound/UserNotFound';
 
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
