@@ -7,7 +7,7 @@ import ProductDetails from '../components/Products/ProductDetails';
 import ProductManage from '../components/Products/ProductManage';
 import Products from '../components/Products/Products';
 import Dashboard from '../layout/Dashboard';
-import Main from '../layout/Public';
+import Public from '../layout/Public';
 import AddProduct from '../pages/addProduct/AddProduct';
 import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
@@ -22,7 +22,7 @@ import PrivateRoute from './PrivateRoute';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
+    element: <Public />,
     errorElement: <NotFound />,
     children: [
       { path: '/', element: <Home /> },

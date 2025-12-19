@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import shopping from '../assets/shoppingcart.png';
 import CartModal from '../components/cartModal/CartModal';
-import DiscountPopUp from '../components/DiscountPopUp';
+import DiscountPopUp from '../components/Shared/DiscountPopUp';
 import Footer from '../components/Shared/Footer/Footer';
 import Navbar from '../components/Shared/Navbar/Navbar';
 import { useCart } from '../provider/CartProvider';
 
-const Main = () => {
+const Public = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cart } = useCart();
 
@@ -30,4 +30,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Public;

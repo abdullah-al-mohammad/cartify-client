@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import getAllProducts from '../api/productApi';
+import getAllProducts from '../../api/productApi';
 
 const DiscountPopUp = () => {
   const navigate = useNavigate();
