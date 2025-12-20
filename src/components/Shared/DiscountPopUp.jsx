@@ -48,7 +48,7 @@ const DiscountPopUp = () => {
         },
         didOpen: toast => {
           toast.addEventListener('click', () => {
-            navigate(`/discount-products`);
+            navigate(`products/${randomProduct._id}`);
           });
         },
       });

@@ -6,7 +6,7 @@ import './main.css';
 import AuthProvider from './provider/AuthProvider';
 import CartProvider from './provider/CartProvider';
 import ThemeProvider from './provider/ThemeProvider';
-import router from './Router/Router';
+import Router from './Router/Router';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <CartProvider>
           <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
+            <RouterProvider router={Router} />
           </QueryClientProvider>
         </CartProvider>
       </AuthProvider>

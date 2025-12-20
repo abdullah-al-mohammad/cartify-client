@@ -81,12 +81,12 @@ const ProductManage = () => {
     return <ProductNotFound />;
   }
 
-  if (products.length === 0) {
-    return <p className="text-center text-gray-500 col-span-8">No Product avilable..</p>;
+  if (!products.length) {
+    return <p className="text-center text-gray-500 col-span-8">No Product available..</p>;
   }
 
   return (
-    <div>
+    <>
       <h1 className="text-xl font-bold mb-4">Product Management</h1>
       <div className="flex flex-col h-screen overflow-auto">
         <table className="table w-full border">
@@ -154,15 +154,13 @@ const ProductManage = () => {
           </tbody>
         </table>
       </div>
-      <div>
-        <Pagination
-          currentPage={currentPage}
-          totalItems={products.length}
-          itemsPerPage={itemsPerPage}
-          onPageChange={page => setCurrentPage(page)}
-        />
-      </div>
-    </div>
+      <Pagination
+        currentPage={currentPage}
+        totalItems={products.length}
+        itemsPerPage={itemsPerPage}
+        onPageChange={page => setCurrentPage(page)}
+      />
+    </>
   );
 };
 

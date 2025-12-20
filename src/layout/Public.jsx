@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import shopping from '../assets/shoppingcart.png';
-import CartModal from '../components/cartModal/CartModal';
+import CartModal from '../components/CartModal/CartModal';
 import DiscountPopUp from '../components/Shared/DiscountPopUp';
 import Footer from '../components/Shared/Footer/Footer';
 import Navbar from '../components/Shared/Navbar/Navbar';

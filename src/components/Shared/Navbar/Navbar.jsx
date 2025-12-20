@@ -6,8 +6,8 @@ import logo from '../../../assets/cartify.png';
 import shopping from '../../../assets/shoppingcart.png';
 import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../provider/CartProvider';
-import CartModal from '../../cartModal/CartModal';
-import ThemeToggle from '../../theme/ThemeToggle';
+import CartModal from '../../CartModal/CartModal';
+import ThemeToggle from '../../Theme/ThemeToggle';
 
 AOS.init();
 

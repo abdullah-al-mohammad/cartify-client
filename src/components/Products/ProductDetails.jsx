@@ -4,7 +4,7 @@ import { BsFillCartCheckFill } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
 import { getSingleProduct } from '../../api/productApi';
 import { useCart } from '../../provider/CartProvider';
-import CartModal from '../cartModal/CartModal';
+import CartModal from '../CartModal/CartModal';
 
 const ProductDetails = () => {
   const { id } = useParams();

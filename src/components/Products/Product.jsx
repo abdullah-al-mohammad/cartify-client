@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { BsFillCartCheckFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 import { useCart } from '../../provider/CartProvider';
-import CartModal from '../cartModal/CartModal';
+import CartModal from '../CartModal/CartModal';
 
 const Product = ({ product }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -41,13 +42,19 @@ const Product = ({ product }) => {
     <>
       <div className="card shadow-md dark:bg-gray-600">
         <div>
-          <div className="h-48 bg-slate-400">
+          <div className="h-48 bg-slate-400 relative group">
             <img
               loading="lazy"
               src={product.photos[0]}
               alt={product.name}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full group-hover:bg-black group-hover:opacity-75 transition-all ease-in-out duration-1000"
             />
+            <Link
+              to={`products/${_id}`}
+              className="absolute top-20 right-40 py-2 px-3 rounded text-white bg-black opacity-80 invisible group-hover:visible transition-all ease-in-out duration-100"
+            >
+              View
+            </Link>
           </div>
           <div className="card-body">
             <h2 className="text-2xl font-bold line-clamp-1 min-h-6 text-ellipsis">
