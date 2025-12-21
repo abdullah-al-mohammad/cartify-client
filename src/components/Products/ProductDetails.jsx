@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { getSingleProduct } from '../../api/productApi';
 import { useCart } from '../../provider/CartProvider';
 import CartModal from '../CartModal/CartModal';
+import DiscountProducts from './DiscountProducts';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -126,6 +127,7 @@ const ProductDetails = () => {
       </div>
 
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <DiscountProducts />
     </div>
   );
 };

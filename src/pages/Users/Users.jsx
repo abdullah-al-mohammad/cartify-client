@@ -124,7 +124,7 @@ const Users = () => {
         currentPage={currentPage}
         totalItems={users.length}
         onPageChange={page => setCurrentPage(page)}
-      ></Pagination>
+      />
     </div>
   );
 };

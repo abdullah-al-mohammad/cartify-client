@@ -10,9 +10,9 @@ import Public from '../layout/Public';
 import AddProduct from '../pages/AddProduct/AddProduct';
 import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
-import Orders from '../pages/order/Order';
-import OrderSuccess from '../pages/order/OrderSuccess/OrderSuccess';
-import PlaceOrderPage from '../pages/order/PlaceOrder/PlaceOrder';
+import Orders from '../pages/Order/Orders';
+import OrderSuccess from '../pages/Order/OrderSuccess/OrderSuccess';
+import PlaceOrder from '../pages/Order/PlaceOrder/PlaceOrder';
 import PaymentPage from '../pages/Payment/Payment';
 import ShippingPage from '../pages/Shipping/Shipping';
 import Users from '../pages/Users/Users';
@@ -30,7 +30,7 @@ const Router = createBrowserRouter([
       { path: 'discount-products', element: <DiscountProducts /> },
       { path: 'shipping', element: <ShippingPage /> },
       { path: 'shipping/payment', element: <PaymentPage /> },
-      { path: 'shipping/payment/placeorder', element: <PlaceOrderPage /> },
+      { path: 'shipping/payment/placeorder', element: <PlaceOrder /> },
       {
         path: 'shipping/payment/placeorder/success',
         element: <OrderSuccess />,

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const OrderSuccess = () => {
   const [order, setOrder] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const savedOrder = localStorage.getItem('order');
@@ -41,9 +40,9 @@ const OrderSuccess = () => {
         </div>
       </div>
 
-      <button className="btn btn-primary" onClick={() => navigate('/')}>
+      <Link to={'/'} className="btn btn-primary">
         Go to Home
-      </button>
+      </Link>
     </div>
   );
 };

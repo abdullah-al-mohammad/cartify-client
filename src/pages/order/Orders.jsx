@@ -17,7 +17,9 @@ const Orders = () => {
       query = `?startDate=${filter.startDate || ''}&endDate=${filter.endDate || ''}`;
     }
 
+    console.log(query);
     const data = await getAllOrders(query);
+
     return data;
   };
 
@@ -148,14 +150,12 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
-      <div>
-        <Pagination
-          currentPage={currentPage}
-          itemsPerPage={itemsPerPage}
-          totalItems={orders.length}
-          onPageChange={page => setCurrentPage(page)}
-        ></Pagination>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        totalItems={orders.length}
+        onPageChange={page => setCurrentPage(page)}
+      />
     </div>
   );
 };

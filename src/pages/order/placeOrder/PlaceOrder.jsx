@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { placeOrder } from '../../../api/orderApi';
 import { useCart } from '../../../provider/CartProvider';
 
-const PlaceOrderPage = () => {
+const PlaceOrder = () => {
   const [shippingInfo, setShippingInfo] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [loading, setLoading] = useState(false);
@@ -96,4 +96,4 @@ const PlaceOrderPage = () => {
   );
 };
 
-export default PlaceOrderPage;
+export default PlaceOrder;

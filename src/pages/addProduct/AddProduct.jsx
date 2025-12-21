@@ -69,7 +69,6 @@ const AddProduct = () => {
 
     try {
       setLoading(true);
-
       const cleanedImage = await removeBackground(form.photos);
       const imageUrl = await uploadImage(cleanedImage);
 
