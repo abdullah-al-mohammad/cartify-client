@@ -8,6 +8,7 @@ import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../provider/CartProvider';
 import CartModal from '../../CartModal/CartModal';
 import ThemeToggle from '../../Theme/ThemeToggle';
+import Button from '../CartButton/Button';
 
 AOS.init();
 
@@ -45,7 +46,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className="indicator">
-        <button onClick={() => setIsCartOpen(true)} className="relative focus:outline-none">
+        <button onClick={() => setIsCartOpen(true)} className="relative">
           <img src={shopping} alt="cart" className="w-6 h-6" />
           {cart.length > 0 && (
             <span className="absolute -top-1 -right-2 bg-red-600 text-white rounded-full px-1 text-xs font-bold">
@@ -53,6 +54,7 @@ const Navbar = () => {
             </span>
           )}
         </button>
+        <Button />
       </li>
       {!loading && !user && (
         <li>

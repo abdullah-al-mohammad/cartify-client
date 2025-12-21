@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import shopping from '../assets/shoppingcart.png';
-import CartModal from '../components/CartModal/CartModal';
+import Button from '../components/Shared/CartButton/Button';
 import DiscountPopUp from '../components/Shared/DiscountPopUp';
 import Footer from '../components/Shared/Footer/Footer';
 import Navbar from '../components/Shared/Navbar/Navbar';
@@ -17,13 +16,7 @@ const Public = () => {
       <div className="min-h-screen">
         <Outlet />
       </div>
-      <button onClick={() => setIsCartOpen(true)}>
-        <div className="float-right indicator fixed right-7 bottom-40 bg-slate-100 p-2 rounded-full">
-          <img className="max-w-5" src={shopping} alt="" />
-          <span className="indicator-item badge bg-red-600">{cart.length}</span>
-        </div>
-      </button>
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)}></CartModal>
+      <Button />
       <DiscountPopUp />
       <Footer />
     </>

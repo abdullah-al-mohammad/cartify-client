@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { placeOrder } from '../../../api/orderApi';
-import { useCart } from '../../../provider/CartProvider';
+import { placeOrder } from '../../api/orderApi';
+import { useCart } from '../../provider/CartProvider';
 
 const PlaceOrder = () => {
   const [shippingInfo, setShippingInfo] = useState(null);

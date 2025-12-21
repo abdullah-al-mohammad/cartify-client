@@ -7,15 +7,15 @@ import ProductManage from '../components/Products/ProductManage';
 import Products from '../components/Products/Products';
 import Dashboard from '../layout/Dashboard';
 import Public from '../layout/Public';
-import AddProduct from '../pages/AddProduct/AddProduct';
+import AddProduct from '../pages/Dashboard/AddProduct';
+import Orders from '../pages/Dashboard/Orders';
+import OrderSuccess from '../pages/Dashboard/OrderSuccess';
+import PaymentPage from '../pages/Dashboard/Payment';
+import PlaceOrder from '../pages/Dashboard/PlaceOrder';
+import ShippingPage from '../pages/Dashboard/Shipping';
+import Users from '../pages/Dashboard/Users';
 import Home from '../pages/Home/Home';
 import NotFound from '../pages/NotFound/NotFound';
-import Orders from '../pages/Order/Orders';
-import OrderSuccess from '../pages/Order/OrderSuccess/OrderSuccess';
-import PlaceOrder from '../pages/Order/PlaceOrder/PlaceOrder';
-import PaymentPage from '../pages/Payment/Payment';
-import ShippingPage from '../pages/Shipping/Shipping';
-import Users from '../pages/Users/Users';
 import PrivateRoute from './PrivateRoute';
 
 const Router = createBrowserRouter([

@@ -1,18 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import getAllProducts from '../../api/productApi';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-
-// import './styles.css';
-
-// import required modules
 import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import getAllProducts from '../../api/productApi';
 
 const DiscountProducts = () => {
   const { data: products = [] } = useQuery({
@@ -36,13 +29,18 @@ const DiscountProducts = () => {
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 4,
+          slidesPerView: 3,
           spaceBetween: 40,
         },
         1024: {
-          slidesPerView: 5,
+          slidesPerView: 3,
           spaceBetween: 50,
         },
+      }}
+      centeredSlides={true}
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
       }}
       modules={[FreeMode, Pagination, Autoplay]}
       className="mySwiper"
