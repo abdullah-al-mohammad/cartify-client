@@ -5,16 +5,14 @@ import useAuth from '../../hooks/useAuth';
 import { useCart } from '../../provider/CartProvider';
 
 const CartModal = ({ isOpen, onClose }) => {
+  const { cart, increment, decrement, removeFromCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { cart, increment, decrement, removeFromCart } = useCart();
 
   if (!isOpen) return null;
 
   const subtotal = cart.reduce((acc, item) => acc + (item.finalPrice ?? item.price) * item.qty, 0);
-
   const shipping = cart.length > 0 ? 10 : 0;
-
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
@@ -51,9 +49,7 @@ const CartModal = ({ isOpen, onClose }) => {
                  ${index !== cart.length - 1 ? 'border-b' : ''}`}
                 >
                   <img className="w-12" src={item.photos} alt="" />
-
                   <p className="text-sm flex-1">{item.name}</p>
-
                   <div className="flex items-center space-x-2">
                     <button
                       className="btn btn-xs"
@@ -62,13 +58,11 @@ const CartModal = ({ isOpen, onClose }) => {
                     >
                       -
                     </button>
-
                     <input
                       value={item.qty}
                       readOnly
                       className="w-10 h-6 text-center border rounded bg-transparent"
                     />
-
                     <button
                       className="btn btn-xs"
                       onClick={() => increment(item._id, item.stock)}
@@ -77,31 +71,25 @@ const CartModal = ({ isOpen, onClose }) => {
                       +
                     </button>
                   </div>
-
                   <p className="text-lg text-gray-500 font-semibold">
                     ${(item.finalPrice ?? item.price) * item.qty}
                   </p>
-
                   <button className="text-error text-xl" onClick={() => removeFromCart(item._id)}>
                     <LuTrash />
                   </button>
                 </li>
               ))}
             </ul>
-
             <div className="p-4 my-4 border rounded-md">
               <h1 className="font-bold pb-3">Order Summary</h1>
-
               <p className="flex justify-between text-sm">
                 <span>Subtotal:</span>
                 <span>${subtotal.toFixed(2)}</span>
               </p>
-
               <p className="flex justify-between text-sm">
                 <span>Shipping:</span>
                 <span>${shipping.toFixed(2)}</span>
               </p>
-
               <p className="flex justify-between font-bold text-lg border-t pt-2">
                 <span>Total:</span>
                 <span>${total.toFixed(2)}</span>
@@ -109,7 +97,6 @@ const CartModal = ({ isOpen, onClose }) => {
             </div>
           </>
         )}
-
         <div className="border-t pt-4">
           {cart.length > 0 ? (
             <button className="btn bg-green-600 w-full" onClick={handleCheckout}>

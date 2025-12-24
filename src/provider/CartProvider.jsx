@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  // Load cart from localStorage on first render
   const [cart, setCart] = useState(() => {
     const stored = localStorage.getItem('cart');
     return stored ? JSON.parse(stored) : [];

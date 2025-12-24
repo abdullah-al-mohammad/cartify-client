@@ -12,17 +12,16 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const { registerUser, updateUserProfile, user } = useAuth();
+  const [error, setError] = useState('');
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { registerUser, updateUserProfile, user } = useAuth();
-  const axiosPublic = useAxiosPublic();
-  const navigate = useNavigate();
-
-  const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (user) navigate('/');
@@ -48,7 +47,6 @@ const Register = () => {
       if (res.data.success) {
         const imageUrl = res.data.data.display_url;
         await updateUserProfile(name, imageUrl);
-
         Swal.fire({
           position: 'center',
           icon: 'success',

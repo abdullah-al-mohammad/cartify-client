@@ -12,7 +12,7 @@ const AdminDashboard = () => {
       <aside className="w-64 bg-gray-800 text-white p-4">
         <h2 className="text-xl font-bold mb-6">Admin Dashboard</h2>
         <nav className="space-y-2">
-          <NavLink to="/" end className={activeClass}>
+          <NavLink to="/" className={activeClass}>
             <LuHouse />
             Home
           </NavLink>

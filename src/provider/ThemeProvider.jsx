@@ -8,7 +8,6 @@ const ThemeProvider = ({ children }) => {
   const applyTheme = themeValue => {
     const root = document.documentElement;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     root.classList.remove('light', 'dark');
 
     if (themeValue === 'system') {
@@ -25,7 +24,6 @@ const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
-
     const systemThemeListener = () => {
       if (theme === 'system') {
         applyTheme('system');
@@ -33,7 +31,6 @@ const ThemeProvider = ({ children }) => {
     };
 
     media.addEventListener('change', systemThemeListener);
-
     return () => media.removeEventListener('change', systemThemeListener);
   }, [theme]);
 
