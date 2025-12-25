@@ -8,7 +8,6 @@ import useAuth from '../../../hooks/useAuth';
 import { useCart } from '../../../provider/CartProvider';
 import CartModal from '../../CartModal/CartModal';
 import ThemeToggle from '../../Theme/ThemeToggle';
-import Button from '../CartButton/Button';
 
 AOS.init();
 
@@ -54,7 +53,6 @@ const Navbar = () => {
             </span>
           )}
         </button>
-        <Button />
       </li>
       {!loading && !user && (
         <li>
@@ -79,13 +77,13 @@ const Navbar = () => {
           <img src={logo} alt="Cartify Logo" className="w-10 h-10" />
           <h1 className="font-bold text-lg">Cartify</h1>
         </Link>
-        <ul className="hidden lg:flex items-center gap-4 ml-auto">
+        <ul className="hidden sm:flex items-center gap-4 ml-auto">
           <li>
             <ThemeToggle />
           </li>
           {navLinks}
         </ul>
-        <div className="lg:hidden dropdown">
+        <div className="sm:hidden dropdown dropdown-center">
           <label tabIndex={0} className="btn btn-ghost p-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +109,7 @@ const Navbar = () => {
         </div>
 
         {user && (
-          <div className="dropdown dropdown-end ml-4">
+          <div className="dropdown ml-4">
             <label tabIndex={0} className="cursor-pointer">
               <img src={user.photoURL} alt="user avatar" className="w-8 h-8 rounded-full" />
             </label>
